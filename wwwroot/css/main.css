@@ -84,3 +84,41 @@ footer p {
 .bb {
     border-bottom: 2px solid #707070;
 }
+
+/* Buttons
+-------------------------------------------------- */
+
+.rd-sm {
+    border-radius: 5px;
+}
+
+.rd {
+    border-radius: 10px;
+}
+
+.rd-lg {
+    border-radius: 20px;
+}
+
+.button-cyan {
+    background-color: #0eb7b7;
+    border: 2px solid #0e7777;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+/* Forms
+-------------------------------------------------- */
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    resize: vertical;
+    margin-top: 1%;
+}

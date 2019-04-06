@@ -8,11 +8,24 @@
 
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/start.css">
+    <link rel="stylesheet" href="./css/start-nickname.css">
 </head>
 <body>
 <header class="bb">
     <h1>Space Travelling Salesman</h1>
 </header>
+<section id="nickname-modal" class="modal">
+    <form id="nickname-form" class="modal-content">
+        <h2>New game</h2>
+        <label id="nickname-input">
+            Enter your nickname:
+            <input name="nickname" type="text" placeholder="Player"/>
+        </label>
+        <button id="new-game-button" type="submit" class="button-cyan rd">
+            Play
+        </button>
+    </form>
+</section>
 <main>
     <table id="highscore" class="b">
         <thead>
