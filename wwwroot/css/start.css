@@ -1,0 +1,82 @@
+/* Highscore font
+-------------------------------------------------- */
+
+#highscore {
+    font-size: 28px;
+}
+
+@media (min-width: 768px) {
+    #highscore {
+        font-size: 32px;
+    }
+}
+
+/* Highscore layout
+-------------------------------------------------- */
+
+#highscore {
+    margin: auto;
+    border-collapse: collapse;
+    border-spacing: 50px 0;
+    width: 50%;
+}
+
+#highscore thead {
+    text-align: center;
+    height: 7vh;
+}
+
+#highscore th, #highscore td {
+    padding: 15px;
+    width: 50%;
+}
+
+#highscore tbody tr:nth-child(1) {
+    background-color: rgba(175, 135, 0, 0.3);
+}
+
+#highscore tbody tr:nth-child(2) {
+    background-color: rgba(160, 160, 160, 0.3);
+}
+
+#highscore tbody tr:nth-child(3) {
+    background-color: rgba(139, 69, 19, 0.3);
+}
+
+/* Start button font
+-------------------------------------------------- */
+
+#start-button {
+    font-size: 56px;
+}
+
+@media (min-width: 768px) {
+    #start-button {
+        font-size: 64px;
+    }
+}
+
+/* Start button
+-------------------------------------------------- */
+
+#start-button {
+    margin-top: 10vh;
+    height: 10vh;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: #0eb7b7;
+    border: 2px solid #0e7777;
+    border-radius: 10px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#start-button:hover {
+    background-color: #0ed7d7;
+}
+
+#start-button:active {
+    background-color: #0e7777;
+    box-shadow: 0 0 0 0.3rem rgba(14, 119, 119, 0.5)
+}

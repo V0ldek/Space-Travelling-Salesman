@@ -1,0 +1,86 @@
+/* Fonts
+-------------------------------------------------- */
+
+html { font-size: 14px; }
+
+@media (min-width: 768px) {
+    html { font-size: 16px; }
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* Main styles
+-------------------------------------------------- */
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+header {
+    margin: auto;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+body {
+    background-color: #101010;
+    color: #efefef;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 60px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+main {
+    padding: 5%;
+    display: flex;
+    flex-flow: column;
+}
+
+footer {
+    bottom: 0;
+    height: 60px;
+    line-height: 60px;
+    position: absolute;
+    white-space: nowrap;
+    width: 100%;
+    text-align: center;
+}
+
+footer p {
+    margin: auto;
+}
+
+/* Text
+-------------------------------------------------- */
+
+.text-bleak {
+    color: #707070
+}
+
+/* Borders
+-------------------------------------------------- */
+
+.b {
+    border: 2px solid #707070
+}
+
+.bl {
+    border-left: 2px solid #707070
+}
+
+.br {
+    border-right: 2px solid #707070
+}
+
+.bt {
+    border-top: 2px solid #707070
+}
+
+.bb {
+    border-bottom: 2px solid #707070;
+}
