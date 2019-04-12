@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Space Travelling Salesman</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/game.css">
+</head>
+<body>
+<header class="bb">
+    <section id="game-summary">
+        <h1 id="game-summary-title"><a href="start.html" class="href-unstyled">Space Travelling Salesman</a></h1>
+        <p id="game-summary-nickname" class="text-cyan">Player: V0ldek</p>
+        <p id="game-summary-score" class="text-cyan">Credits: 1337 &#x20A1</p>
+        <p id="game-summary-time" class="text-cyan">Time left: 05:32</p>
+    </section>
+</header>
+<main id="game-view">
+    <ul id="planet-list">
+        <li class="card planet-card modal-trigger" data-target="#caprica-planet-modal">
+            <img src="./img/planet.svg" class="planet-icon" alt="planet">
+            <p class="planet-name text-cyan">Kobol</p>
+            <p class="planet-coordinates">077, 011</p>
+        </li>
+        <li class="card planet-card modal-trigger" data-target="#caprica-planet-modal">
+            <img src="./img/planet.svg" class="planet-icon" alt="planet">
+            <p class="planet-name text-cyan">Caprica</p>
+            <p class="planet-coordinates">056, 071</p>
+        </li>
+        <li class="card planet-card modal-trigger" data-target="#caprica-planet-modal">
+            <img src="./img/planet.svg" class="planet-icon" alt="planet">
+            <p class="planet-name text-cyan">Scorpia</p>
+            <p class="planet-coordinates">081, 056</p>
+        </li>
+        <li class="card planet-card modal-trigger" data-target="#caprica-planet-modal">
+            <img src="./img/planet.svg" class="planet-icon" alt="planet">
+            <p class="planet-name text-cyan">Picon</p>
+            <p class="planet-coordinates">055, 075</p>
+        </li>
+        <li class="card planet-card modal-trigger" data-target="#caprica-planet-modal">
+            <img src="./img/planet.svg" class="planet-icon" alt="planet">
+            <p class="planet-name text-cyan">Earth</p>
+            <p class="planet-coordinates">023, 027</p>
+        </li>
+    </ul>
+    <ul id="ship-list">
+        <li class="card ship-card modal-trigger" data-target="#galactica-ship-modal">
+            <img src="img/ship.svg" class="ship-icon" alt="ship">
+            <p class="ship-name text-cyan">Galactica</p>
+            <div class="ship-position">
+                <p><span class="text-cyan">Scorpia</span> in 00:10</p>
+                <p>010, 001</p>
+            </div>
+        </li>
+        <li class="card ship-card modal-trigger" data-target="#pegasus-ship-modal">
+            <img src="img/ship.svg" class="ship-icon" alt="ship">
+            <p class="ship-name text-cyan">Pegasus</p>
+            <div class="ship-position">
+                <p><span class="text-cyan">Scorpia</span></p>
+                <p>010, 001</p>
+            </div>
+        </li>
+        <li class="card ship-card modal-trigger" data-target="#galactica-ship-modal">
+            <img src="img/ship.svg" class="ship-icon" alt="ship">
+            <p class="ship-name text-cyan">Columbia</p>
+            <div class="ship-position">
+                <p><span class="text-cyan">Scorpia</span> in 00:10</p>
+                <p>056, 072</p>
+            </div>
+        </li>
+        <li class="card ship-card modal-trigger" data-target="#galactica-ship-modal">
+            <img src="img/ship.svg" class="ship-icon" alt="ship">
+            <p class="ship-name text-cyan">Atlantia</p>
+            <div class="ship-position">
+                <p><span class="text-cyan">Scorpia</span> in 00:10</p>
+                <p>056, 073</p>
+            </div>
+        </li>
+        <li class="card ship-card modal-trigger" data-target="#galactica-ship-modal">
+            <img src="img/ship.svg" class="ship-icon" alt="ship">
+            <p class="ship-name text-cyan">Valkyrie</p>
+            <div class="ship-position">
+                <p><span class="text-cyan">Scorpia</span> in 00:10</p>
+                <p>057, 071</p>
+            </div>
+        </li>
+    </ul>
+</main>
+<div id="caprica-planet-modal" class="modal" hidden>
+    <article class="planet-screen modal-content">
+        <img src="./img/planet.svg" class="planet-icon" alt="planet">
+        <h2 class="planet-name text-cyan">Caprica</h2>
+        <p class="planet-coordinates">056, 071</p>
+        <h3 class="planet-goods-title">Goods</h3>
+        <h3 class="planet-ships-title">Stardock</h3>
+        <section class="planet-goods">
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Units</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Potatoes</td>
+                    <td>32</td>
+                    <td>1500 &#x20A1</td>
+                </tr>
+                <tr>
+                    <td>Tylium</td>
+                    <td>1000</td>
+                    <td>700 &#x20A1</td>
+                </tr>
+                <tr>
+                    <td>Uranium</td>
+                    <td>10</td>
+                    <td>400 &#x20A1</td>
+                </tr>
+                <tr>
+                    <td>Gold</td>
+                    <td>310</td>
+                    <td>230 &#x20A1</td>
+                </tr>
+                <tr>
+                    <td>Titanium</td>
+                    <td>200</td>
+                    <td>200 &#x20A1</td>
+                </tr>
+                <tr>
+                    <td>Computer parts</td>
+                    <td>137</td>
+                    <td>150 &#x20A1</td>
+                </tr>
+                <tr>
+                    <td>Steel</td>
+                    <td>1300</td>
+                    <td>73 &#x20A1</td>
+                </tr>
+                <tr>
+                    <td>Water</td>
+                    <td>10000</td>
+                    <td>50 &#x20A1</td>
+                </tr>
+                <tr>
+                    <td>Food</td>
+                    <td>7341</td>
+                    <td>30 &#x20A1</td>
+                </tr>
+                <tr>
+                    <td>Hydrogen</td>
+                    <td>20000</td>
+                    <td>1 &#x20A1</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <ul class="planet-ships">
+            <li class="card ship-card modal-trigger" data-target="#pegasus-ship-modal">
+                <img src="img/ship.svg" class="ship-icon" alt="ship">
+                <p class="ship-name text-cyan">Galactica</p>
+            </li>
+            <li class="card ship-card modal-trigger" data-target="#pegasus-ship-modal">
+                <img src="img/ship.svg" class="ship-icon" alt="ship">
+                <p class="ship-name text-cyan">Pegasus</p>
+            </li>
+            <li class="card ship-card modal-trigger" data-target="#pegasus-ship-modal">
+                <img src="img/ship.svg" class="ship-icon" alt="ship">
+                <p class="ship-name text-cyan">Columbia</p>
+            </li>
+        </ul>
+    </article>
+</div>
+<div id="galactica-ship-modal" class="modal" hidden>
+    <article class="ship-screen modal-content">
+        <img src="./img/ship.svg" class="ship-icon" alt="ship">
+        <h2 class="ship-name text-cyan">Galactica</h2>
+        <div class="ship-position">
+            <p><span class="text-cyan">Scorpia</span> in 00:10</p>
+            <p>056, 071</p>
+        </div>
+        <form class="ship-movement">
+            <label>
+                Destination:
+                <select>
+                    <option value="kobol">Kobol</option>
+                    <option value="caprica">Caprica</option>
+                    <option value="scorpia">Scorpia</option>
+                    <option value="picon">Picon</option>
+                </select>
+            </label>
+            <button class="button-cyan rd" type="button">
+                Travel
+            </button>
+        </form>
+        <h3 class="ship-cargo-title">Cargo</h3>
+        <h3 class="ship-cargo-capacity">40,330/50,000 Units</h3>
+        <section class="ship-cargo">
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Units in cargo</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Potatoes</td>
+                    <td>32</td>
+                </tr>
+                <tr>
+                    <td>Tylium</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td>Uranium</td>
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>Gold</td>
+                    <td>310</td>
+                </tr>
+                <tr>
+                    <td>Titanium</td>
+                    <td>200</td>
+                </tr>
+                <tr>
+                    <td>Computer parts</td>
+                    <td>137</td>
+                </tr>
+                <tr>
+                    <td>Steel</td>
+                    <td>1300</td>
+                </tr>
+                <tr>
+                    <td>Water</td>
+                    <td>10000</td>
+                </tr>
+                <tr>
+                    <td>Food</td>
+                    <td>7341</td>
+                </tr>
+                <tr>
+                    <td>Hydrogen</td>
+                    <td>20000</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </article>
+</div>
+<div id="pegasus-ship-modal" class="modal" hidden>
+    <article class="ship-screen modal-content">
+        <img src="./img/ship.svg" class="ship-icon" alt="ship">
+        <h2 class="ship-name text-cyan">Pegasus</h2>
+        <div class="ship-position">
+            <p><span class="text-cyan">Scorpia</span></p>
+            <p>010, 001</p>
+        </div>
+        <form class="ship-movement">
+            <label>
+                Destination:
+                <select>
+                    <option value="kobol">Kobol</option>
+                    <option value="caprica">Caprica</option>
+                    <option value="scorpia">Scorpia</option>
+                    <option value="picon">Picon</option>
+                </select>
+            </label>
+            <button class="button-cyan rd" type="button">
+                Travel
+            </button>
+        </form>
+        <h3 class="ship-cargo-title">Cargo</h3>
+        <h3 class="ship-cargo-capacity">40,330/50,000 Units</h3>
+        <div class="ship-cargo">
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Units on planet</th>
+                    <th>Price</th>
+                    <th>Units in cargo</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Potatoes</td>
+                    <td>32</td>
+                    <td>1500 &#x20A1</td>
+                    <td>
+                        <label>
+                            <input class="ship-trade-input" type="number" min="0" max="32" value="0">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tylium</td>
+                    <td>1000</td>
+                    <td>700 &#x20A1</td>
+                    <td>
+                        <label>
+                            <input class="ship-trade-input" type="number" min="0" max="1173" value="173">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Uranium</td>
+                    <td>10</td>
+                    <td>400 &#x20A1</td>
+                    <td>
+                        <label>
+                            <input class="ship-trade-input" type="number" min="0" max="10" value="0">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gold</td>
+                    <td>310</td>
+                    <td>230 &#x20A1</td>
+                    <td>
+                        <label>
+                            <input class="ship-trade-input" type="number" min="0" max="1810" value="1500">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Titanium</td>
+                    <td>200</td>
+                    <td>200 &#x20A1</td>
+                    <td>
+                        <label>
+                            <input class="ship-trade-input" type="number" min="0" max="2200" value="20000">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Computer parts</td>
+                    <td>137</td>
+                    <td>150 &#x20A1</td>
+                    <td>
+                        <label>
+                            <input class="ship-trade-input" type="number" min="0" max="140" value="3">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Steel</td>
+                    <td>1300</td>
+                    <td>73 &#x20A1</td>
+                    <td>
+                        <label>
+                            <input class="ship-trade-input" type="number" min="0" max="2300" value="1000">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Water</td>
+                    <td>10000</td>
+                    <td>50 &#x20A1</td>
+                    <td>
+                        <label>
+                            <input class="ship-trade-input" type="number" min="0" max="12337" value="2337">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Food</td>
+                    <td>7341</td>
+                    <td>30 &#x20A1</td>
+                    <td>
+                        <label>
+                            <input class="ship-trade-input" type="number" min="0" max="11642" value="4301">
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hydrogen</td>
+                    <td>20000</td>
+                    <td>1 &#x20A1</td>
+                    <td>
+                        <label>
+                            <input class="ship-trade-input" type="number" min="0" max="20000" value="0">
+                        </label>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <label class="ship-trade-title">
+            Credits:
+        </label>
+        <p class="ship-trade-sum">
+            14,707 (<span class="text-green">+13,370</span>) &#x20A1
+        </p>
+        <button type="button" class="ship-trade-submit button-cyan rd">
+            Trade!
+        </button>
+    </article>
+</div>
+<footer class="bt">
+    <p class="text-bleak">Space Travelling Salesman - &copy; 2019 Mateusz Gienieczko</p>
+    <p class="text-bleak">Icons provided by FontAwesome under
+        <a href="https://fontawesome.com/license">https://fontawesome.com/license</a></p>
+</footer>
+</body>
+<script src="scripts/game.js" type="text/javascript"></script>
+</html>

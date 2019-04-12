@@ -1,10 +1,10 @@
 /* Fonts
 -------------------------------------------------- */
 
-html { font-size: 14px; }
+html { font-size: 2.5vw; }
 
 @media (min-width: 768px) {
-    html { font-size: 16px; }
+    html { font-size: 1.45vh; }
 }
 
 body {
@@ -58,8 +58,29 @@ footer p {
 /* Text
 -------------------------------------------------- */
 
+h1 {
+    font-size: 200%;
+}
+
 .text-bleak {
     color: #707070
+}
+
+.text-green {
+    color: #0eb70e;
+}
+
+.text-red {
+    color: #b70e0e;
+}
+
+.text-cyan {
+    color: #4eb7b7;
+}
+
+.href-unstyled {
+    text-decoration: none;
+    color: #efefef;
 }
 
 /* Borders
@@ -107,6 +128,33 @@ footer p {
     padding-right: 5%;
 }
 
+.button-cyan:hover {
+    background-color: #0ed7d7;
+    cursor: pointer;
+}
+
+.button-cyan:active {
+    background-color: #0e7777;
+    box-shadow: 0 0 0 0.2rem rgba(14, 119, 119, 0.5)
+}
+
+.button-red {
+    background-color: #b70e0e;
+    border: 2px solid #770e0e;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.button-red:hover {
+    background-color: #d70e0e;
+    cursor: pointer;
+}
+
+.button-red:active {
+    background-color: #770e0e;
+    box-shadow: 0 0 0 0.2rem rgba(119, 14, 14, 0.5)
+}
+
 /* Forms
 -------------------------------------------------- */
 
@@ -121,4 +169,35 @@ input[type=text] {
     box-sizing: border-box;
     resize: vertical;
     margin-top: 1%;
+}
+
+/* Modal
+-------------------------------------------------- */
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #101010;
+    border: 2px solid #707070;
+    margin: 20% auto;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 75%;
+}
+
+@media (min-width: 768px) {
+    .modal-content {
+        width: 25%;
+    }
 }

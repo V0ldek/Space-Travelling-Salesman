@@ -2,17 +2,16 @@
 -------------------------------------------------- */
 
 #highscore {
-    font-size: 28px;
-}
-
-@media (min-width: 768px) {
-    #highscore {
-        font-size: 32px;
-    }
+    font-size: 200%;
 }
 
 /* Highscore layout
 -------------------------------------------------- */
+
+main {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
 
 #highscore {
     margin: auto;
@@ -27,8 +26,8 @@
 }
 
 #highscore th, #highscore td {
-    padding: 15px;
-    width: 50%;
+    padding: 5px 10px;
+    width: auto;
 }
 
 #highscore tbody tr:nth-child(1) {
@@ -47,31 +46,26 @@
 -------------------------------------------------- */
 
 #start-button {
-    font-size: 56px;
-}
-
-@media (min-width: 768px) {
-    #start-button {
-        font-size: 64px;
-    }
+    font-size: 400%;
 }
 
 /* Start button
 -------------------------------------------------- */
 
 #start-button {
-    margin-top: 10vh;
+    margin-top: 5vh;
     height: 10vh;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
 
-#start-button:hover {
-    background-color: #0ed7d7;
-}
+/* Submit button
+-------------------------------------------------- */
 
-#start-button:active {
-    background-color: #0e7777;
-    box-shadow: 0 0 0 0.3rem rgba(14, 119, 119, 0.5)
+#submit-nickname-button {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
 }
