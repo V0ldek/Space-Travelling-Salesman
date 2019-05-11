@@ -4,6 +4,7 @@ export class TemplateRenderer {
     private readonly name: string;
     private readonly templateElement: HTMLTemplateElement;
     private readonly renderElements: NodeListOf<Element>;
+    private nextId: number = 1;
 
     constructor(name: string) {
         this.name = name;
@@ -12,8 +13,8 @@ export class TemplateRenderer {
     }
 
     public render(): RenderedTemplate {
-        this.renderTemplateToRenderElement();
-        return new RenderedTemplate(this.renderElements);
+        const templateInstances = this.renderTemplateToRenderElements();
+        return new RenderedTemplate(templateInstances);
     }
 
     private getTemplateElement(): HTMLTemplateElement {
@@ -24,8 +25,26 @@ export class TemplateRenderer {
         return document.querySelectorAll(`.render-${this.name}`);
     }
 
-    private renderTemplateToRenderElement(): void {
-        const templateInstance = this.templateElement.content.cloneNode(true);
-        this.renderElements.forEach(e => e.appendChild(templateInstance));
+    private renderTemplateToRenderElements(): HTMLElement[] {
+        const templateInstances: HTMLElement[] = [];
+        this.renderElements.forEach(e => {
+            templateInstances.push(this.renderTemplateToRenderElement(e));
+        });
+
+        return templateInstances;
     }
+
+    private renderTemplateToRenderElement(renderElement: Element): HTMLElement {
+        const templateRoot = this.templateElement.content.querySelector(".template-root");
+        const templateInstance = templateRoot.cloneNode(true) as HTMLElement;
+        this.setTemplateInstanceId(templateInstance);
+        renderElement.appendChild(templateInstance);
+        return templateInstance;
+    }
+
+    private setTemplateInstanceId(templateInstance: HTMLElement): void {
+        templateInstance.id = `rendered-template-instance-${this.nextId}`;
+        this.nextId++;
+    }
+
 }

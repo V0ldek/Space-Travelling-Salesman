@@ -1,4 +1,9 @@
-export class Position {
+export interface IPositionInfo {
+    getX(): number;
+    getY(): number;
+}
+
+export class Position implements IPositionInfo{
     private readonly x: number;
     private readonly y: number;
 

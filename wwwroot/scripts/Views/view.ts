@@ -1,6 +1,6 @@
 import {ITemplateFactory} from "../Templates/templateFactory.js";
 import {RenderedTemplate} from "../Templates/renderedTemplate.js";
-import {IUpdateable} from "../GameSystem/gameClock.js";
+import {IUpdateable} from "../GameSystem/updateable.js";
 
 export abstract class View implements IUpdateable {
     protected readonly name;

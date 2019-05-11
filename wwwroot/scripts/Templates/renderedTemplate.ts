@@ -1,14 +1,14 @@
 import {IDictionary} from "../dictionary.js";
 
 export class RenderedTemplate {
-    private readonly renderedElements: NodeListOf<Element>;
+    private readonly instances: HTMLElement[];
 
-    constructor(renderedElements: NodeListOf<Element>) {
-        this.renderedElements = renderedElements;
+    constructor(renderedElements: HTMLElement[]) {
+        this.instances = renderedElements;
     }
 
     public setAttribute(attribute: string, value: string): void {
-        this.renderedElements.forEach(e => e.setAttribute(attribute, value));
+        this.instances.forEach(e => e.setAttribute(attribute, value));
     }
 
     public renderData(data: IDictionary<string>): void {
@@ -20,8 +20,7 @@ export class RenderedTemplate {
     }
 
     private renderItem(key: string, item: string) {
-        console.log(`Rendering item for key ${key}, value ${item}`);
-        this.renderedElements.forEach(renderElement => {
+        this.instances.forEach(renderElement => {
             const itemDisplayElements = renderElement.querySelectorAll(`.data-${key}`);
             itemDisplayElements.forEach(e => e.innerHTML = item);
         });

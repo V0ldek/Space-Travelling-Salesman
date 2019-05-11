@@ -1,8 +1,5 @@
 import {Format} from "../format.js"
-
-export interface IUpdateable {
-    update(): void;
-}
+import {IUpdateable} from "./updateable.js";
 
 export interface ITimeInfo {
     getRemainingTimeString(): string;

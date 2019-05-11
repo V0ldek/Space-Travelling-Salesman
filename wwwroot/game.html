@@ -11,14 +11,16 @@
 <body>
 <header class="bb">
     <template id="template-game-summary">
-        <section id="game-summary">
-            <h1 id="game-summary-title">
-                <a href="start.html" class="href-unstyled">Space Travelling Salesman</a>
-            </h1>
-            <p id="game-summary-nickname" class="text-cyan">Player: <span class="data-nickname"></span></p>
-            <p id="game-summary-score" class="text-cyan">Credits: <span class="data-score"></span> &#x20A1</p>
-            <p id="game-summary-time" class="text-cyan">Time left: <span class="data-time"></span></p>
-        </section>
+        <div class="template-root">
+            <section id="game-summary">
+                <h1 id="game-summary-title">
+                    <a href="start.html" class="href-unstyled">Space Travelling Salesman</a>
+                </h1>
+                <p id="game-summary-nickname" class="text-cyan">Player: <span class="data-nickname"></span></p>
+                <p id="game-summary-score" class="text-cyan">Credits: <span class="data-score"></span> &#x20A1</p>
+                <p id="game-summary-time" class="text-cyan">Time left: <span class="data-time"></span></p>
+            </section>
+        </div>
     </template>
     <div class="render-game-summary">
 
@@ -26,7 +28,7 @@
 </header>
 <main id="game-view">
     <template id="template-planet-card">
-        <li class="card planet-card modal-trigger" data-target="#planetname-planet-modal">
+        <li class="card planet-card modal-trigger template-root" data-target="planetname-planet-modal">
             <img src="./img/planet.svg" class="planet-icon" alt="planet">
             <p class="planet-name text-cyan"><span class="data-name"></span></p>
             <p class="planet-coordinates"><span class="data-position"></span></p>
@@ -35,7 +37,7 @@
     <ul id="planet-list" class="render-planet-card">
     </ul>
     <ul id="ship-list">
-        <li class="card ship-card modal-trigger" data-target="#galactica-ship-modal">
+        <li class="card ship-card modal-trigger" data-target="galactica-ship-modal">
             <img src="img/ship.svg" class="ship-icon" alt="ship">
             <p class="ship-name text-cyan">Galactica</p>
             <div class="ship-position">
@@ -43,7 +45,7 @@
                 <p>010, 001</p>
             </div>
         </li>
-        <li class="card ship-card modal-trigger" data-target="#pegasus-ship-modal">
+        <li class="card ship-card modal-trigger" data-target="pegasus-ship-modal">
             <img src="img/ship.svg" class="ship-icon" alt="ship">
             <p class="ship-name text-cyan">Pegasus</p>
             <div class="ship-position">
@@ -51,7 +53,7 @@
                 <p>010, 001</p>
             </div>
         </li>
-        <li class="card ship-card modal-trigger" data-target="#galactica-ship-modal">
+        <li class="card ship-card modal-trigger" data-target="galactica-ship-modal">
             <img src="img/ship.svg" class="ship-icon" alt="ship">
             <p class="ship-name text-cyan">Columbia</p>
             <div class="ship-position">
@@ -59,7 +61,7 @@
                 <p>056, 072</p>
             </div>
         </li>
-        <li class="card ship-card modal-trigger" data-target="#galactica-ship-modal">
+        <li class="card ship-card modal-trigger" data-target="galactica-ship-modal">
             <img src="img/ship.svg" class="ship-icon" alt="ship">
             <p class="ship-name text-cyan">Atlantia</p>
             <div class="ship-position">
@@ -67,7 +69,7 @@
                 <p>056, 073</p>
             </div>
         </li>
-        <li class="card ship-card modal-trigger" data-target="#galactica-ship-modal">
+        <li class="card ship-card modal-trigger" data-target="galactica-ship-modal">
             <img src="img/ship.svg" class="ship-icon" alt="ship">
             <p class="ship-name text-cyan">Valkyrie</p>
             <div class="ship-position">
@@ -77,7 +79,7 @@
         </li>
     </ul>
 </main>
-<div id="caprica-planet-modal" class="modal" hidden>
+<div id="Sur'Kesh-planet-modal" class="modal" hidden>
     <article class="planet-screen modal-content">
         <img src="./img/planet.svg" class="planet-icon" alt="planet">
         <h2 class="planet-name text-cyan">Caprica</h2>
@@ -159,15 +161,15 @@
             </table>
         </section>
         <ul class="planet-ships">
-            <li class="card ship-card modal-trigger" data-target="#pegasus-ship-modal">
+            <li class="card ship-card modal-trigger" data-target="pegasus-ship-modal">
                 <img src="img/ship.svg" class="ship-icon" alt="ship">
                 <p class="ship-name text-cyan">Galactica</p>
             </li>
-            <li class="card ship-card modal-trigger" data-target="#pegasus-ship-modal">
+            <li class="card ship-card modal-trigger" data-target="pegasus-ship-modal">
                 <img src="img/ship.svg" class="ship-icon" alt="ship">
                 <p class="ship-name text-cyan">Pegasus</p>
             </li>
-            <li class="card ship-card modal-trigger" data-target="#pegasus-ship-modal">
+            <li class="card ship-card modal-trigger" data-target="pegasus-ship-modal">
                 <img src="img/ship.svg" class="ship-icon" alt="ship">
                 <p class="ship-name text-cyan">Columbia</p>
             </li>
