@@ -63,7 +63,7 @@ footer {
     }
 }
 
-#ship-list {
+#starship-list {
     width: 45%;
     overflow: auto;
     max-height: 65vh;
@@ -72,7 +72,7 @@ footer {
 }
 
 @media (min-width: 768px) {
-    #ship-list {
+    #starship-list {
         width: 25%;
         max-height: 57vh;
     }
@@ -122,22 +122,22 @@ footer {
     color: #efefef;
 }
 
-.ship-card .ship-icon {
+.starship-card .starship-icon {
     grid-area: image;
 }
 
-.ship-card .ship-name {
+.starship-card .starship-name {
     grid-area: name;
     font-size: 125%;
     font-weight: bolder;
 }
 
-.ship-card .ship-position {
+.starship-card .starship-position {
     grid-area: position;
     text-align: center;
 }
 
-.ship-icon {
+.starship-icon {
     max-height: 64px;
     max-width: 64px;
     color: #efefef;
@@ -245,7 +245,7 @@ ul {
 /* Ship screen
 -------------------------------------------------- */
 
-.ship-screen {
+.starship-screen {
     margin: 9% auto;
     height: 65vh;
     width: 80vw;
@@ -265,61 +265,61 @@ ul {
 }
 
 @media (min-width: 768px) {
-    .ship-screen {
+    .starship-screen {
         height: 55vh;
         width: 35vw;
     }
 }
 
-.ship-screen .ship-icon {
+.starship-screen .starship-icon {
     grid-area: icon;
 }
 
-.ship-screen .ship-name {
+.starship-screen .starship-name {
     grid-area: name;
 }
 
-.ship-screen .ship-position {
+.starship-screen .starship-position {
     grid-area: position;
     text-align: center;
 }
 
-.ship-screen .ship-movement {
+.starship-screen .starship-movement {
     grid-area: movement;
 }
 
-.ship-screen .ship-movement label {
+.starship-screen .starship-movement label {
     margin-bottom: 10%;
 }
 
-.ship-screen .ship-cargo-title {
+.starship-screen .starship-cargo-title {
     grid-area: cargo-title;
 }
 
-.ship-screen .ship-cargo-capacity {
+.starship-screen .starship-cargo-capacity {
     grid-area: cargo-capacity;
 }
 
-.ship-screen .ship-trade-title {
+.starship-screen .starship-trade-title {
     grid-area: trade-title;
 }
 
-.ship-screen .ship-trade-sum {
+.starship-screen .starship-trade-sum {
     grid-area: trade-sum;
 }
 
-.ship-screen .ship-trade-submit {
+.starship-screen .starship-trade-submit {
     grid-area: trade-submit;
 }
 
-.ship-screen .ship-cargo {
+.starship-screen .starship-cargo {
     grid-area: cargo;
     width: 100%;
     height: 100%;
     overflow: auto;
 }
 
-.ship-screen .ship-cargo table {
+.starship-screen .starship-cargo table {
     border-collapse: collapse;
     border: 2px solid #efefef;
     padding: 0 2.5%;
@@ -327,31 +327,31 @@ ul {
     width: 100%;
 }
 
-.ship-screen .ship-cargo tr {
+.starship-screen .starship-cargo tr {
     height: 4vh;
 }
 
-.ship-screen .ship-cargo th {
+.starship-screen .starship-cargo th {
     border-top: 2px solid #efefef;
     border-right: 2px solid #efefef;
 }
 
-.ship-screen .ship-cargo td {
+.starship-screen .starship-cargo td {
     border-top: 1px solid #707070;
     border-right: 1px solid #707070;
     padding-left: 2.5%;
 }
 
-.ship-screen .ship-cargo tr:first-child {
+.starship-screen .starship-cargo tr:first-child {
     border-top: 2px solid #efefef;
 }
 
-.ship-trade-input {
+.starship-trade-input {
     width: 15vw;
 }
 
 @media(min-width: 768px) {
-    .ship-trade-input {
+    .starship-trade-input {
         width: 75%;
     }
 }

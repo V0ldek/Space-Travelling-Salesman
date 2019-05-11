@@ -7,6 +7,7 @@ export class TemplateRenderer {
     private nextId: number = 1;
 
     constructor(name: string) {
+        console.warn("Rendering " + name);
         this.name = name;
         this.templateElement = this.getTemplateElement();
         this.renderElements = this.getRenderElements();

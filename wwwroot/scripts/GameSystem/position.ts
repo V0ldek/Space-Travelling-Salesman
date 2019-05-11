@@ -1,6 +1,7 @@
 export interface IPositionInfo {
     getX(): number;
     getY(): number;
+    euclideanDistanceTo(other: IPositionInfo): number;
 }
 
 export class Position implements IPositionInfo{
@@ -18,5 +19,11 @@ export class Position implements IPositionInfo{
 
     public getY(): number {
         return this.y;
+    }
+
+    public euclideanDistanceTo(other: IPositionInfo): number {
+        const deltaX = this.x - other.getX();
+        const deltaY = this.y - other.getY();
+        return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
     }
 }

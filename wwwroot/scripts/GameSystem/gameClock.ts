@@ -2,11 +2,11 @@ import {Format} from "../format.js"
 import {IUpdateable} from "./updateable.js";
 
 export interface ITimeInfo {
-    getRemainingTimeString(): string;
+    getRemainingTicks(): number;
 }
 
 export class GameClock implements ITimeInfo {
-    public static readonly tickDuration = 1000;
+    private static readonly tickDuration = 1000;
     private readonly updateables: IUpdateable[] = [];
     private readonly maximalTicks: number;
     private elapsedTicks: number = 0;
@@ -24,12 +24,17 @@ export class GameClock implements ITimeInfo {
         this.updateables.push(updateable);
     }
 
-    public getRemainingTimeString(): string {
-        const remainingSeconds = this.getRemainingTicks() * GameClock.tickDuration / 1000;
-        const minutes = Math.floor(remainingSeconds / 60);
-        const seconds = remainingSeconds % 60;
+    public getRemainingTicks(): number {
+        const result = this.maximalTicks - this.elapsedTicks;
+        return result >= 0 ? result : 0;
+    }
 
-        return Format.minutesAndSecondsToTimeString(minutes, seconds);
+    public static ticksToTimeString(ticks: number): string {
+        const totalSeconds = ticks * GameClock.tickDuration / 1000;
+        const minutesPart = Math.floor(totalSeconds / 60);
+        const secondsPart = totalSeconds % 60;
+
+        return Format.minutesAndSecondsToTimeString(minutesPart, secondsPart);
     }
 
     private update(): void {
@@ -40,10 +45,5 @@ export class GameClock implements ITimeInfo {
         for(const updateable of this.updateables) {
             updateable.update();
         }
-    }
-
-    private getRemainingTicks(): number {
-        const result = this.maximalTicks - this.elapsedTicks;
-        return result >= 0 ? result : 0;
     }
 }

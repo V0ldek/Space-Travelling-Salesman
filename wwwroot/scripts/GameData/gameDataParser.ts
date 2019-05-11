@@ -14,7 +14,7 @@ export interface IPlanet {
 
 export interface IStarship {
     cargo_hold_size: number;
-    initial_location: string;
+    position: string;
 }
 
 export interface IGameData {

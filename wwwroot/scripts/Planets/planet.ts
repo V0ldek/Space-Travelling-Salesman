@@ -11,7 +11,7 @@ export interface IPlanetCardInfo {
     getPosition(): IPositionInfo;
 }
 
-export class Planet implements IUpdateable, IPlanetCardInfo {
+export class Planet implements IPlanetCardInfo, IUpdateable {
     private readonly name: string;
     private readonly position: Position;
     private readonly itemStores: IDictionary<ItemStore> = {};

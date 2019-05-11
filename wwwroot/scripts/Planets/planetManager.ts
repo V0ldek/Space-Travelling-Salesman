@@ -4,7 +4,11 @@ import {Planet} from "./planet.js";
 import {ITemplateFactory} from "../Templates/templateFactory.js";
 import {IUpdateable} from "../GameSystem/updateable.js";
 
-export class PlanetManager implements IUpdateable {
+export interface IPlanetRepository {
+    getPlanetByName(name: string): Planet;
+}
+
+export class PlanetManager implements IUpdateable, IPlanetRepository {
     private readonly planets: IDictionary<Planet> = {};
     private readonly templateFactory: ITemplateFactory;
 
@@ -19,6 +23,10 @@ export class PlanetManager implements IUpdateable {
                 this.planets[key].update();
             }
         }
+    }
+
+    public getPlanetByName(name: string): Planet {
+        return this.planets[name];
     }
 
     private createPlanetsFromData(planetData: IDictionary<IPlanet>) {
