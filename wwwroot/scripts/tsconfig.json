@@ -5,8 +5,16 @@
     "sourceMap": true
   },
   "files": [
-    "start.ts",
-    "game.ts"
+    "./GameData/gameDataParser.ts",
+    "./GameSystem/game.ts",
+    "./GameSystem/gameClock.ts",
+    "./Player/playerState.ts",
+    "./Views/view.ts",
+    "./Views/gameSummaryView.ts",
+    "./dictionary.ts",
+    "./template.ts",
+    "./site.ts",
+    "./start.ts"
   ],
   "exclude": [
     "node_modules"
