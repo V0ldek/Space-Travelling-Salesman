@@ -1,4 +1,4 @@
-import {TemplateFactory} from "../template.js";
+import {TemplateFactory} from "../Templates/templateFactory.js";
 import {GameClock} from "./gameClock.js";
 import {GameDataParser, IGameData} from "../GameData/gameDataParser.js";
 import {PlayerState} from "../Player/playerState.js";

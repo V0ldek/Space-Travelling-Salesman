@@ -1,6 +1,6 @@
 import {ICreditsInfo, INicknameInfo} from "../Player/playerState.js";
 import {ITimeInfo} from "../GameSystem/gameClock.js"
-import {TemplateFactory} from "../template.js";
+import {TemplateFactory} from "../Templates/templateFactory.js";
 import {View} from "./view.js";
 import {IDictionary} from "../dictionary.js";
 

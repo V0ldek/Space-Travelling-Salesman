@@ -1,5 +1,5 @@
 import {IPlanet} from "../GameData/gameDataParser.js";
-import {Position} from "../GameSystem/Position.js";
+import {Position} from "../GameSystem/position.js";
 
 export class Planet {
     private readonly name: string;
