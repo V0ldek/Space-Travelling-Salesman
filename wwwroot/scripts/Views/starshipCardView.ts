@@ -16,7 +16,7 @@ export class StarshipCardView extends View {
     }
 
     private setModalData(): void {
-        this.renderedTemplate.setAttribute(
+        this.renderedTemplate.getElement().setAttribute(
             "data-target",
             `${this.starshipCardInfo.getName()}-starship-modal`);
     }

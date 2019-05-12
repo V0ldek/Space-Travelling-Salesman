@@ -22,6 +22,7 @@
     "./Templates/templateRenderer.ts",
     "./Views/gameSummaryView.ts",
     "./Views/Planets/planetCardView.ts",
+    "./Views/Planets/planetItemStoreView.ts",
     "./Views/Planets/planetModalView.ts",
     "./Views/starshipCardView.ts",
     "./Views/view.ts",

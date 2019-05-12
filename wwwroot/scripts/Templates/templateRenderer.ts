@@ -4,7 +4,7 @@ export class TemplateRenderer {
     private readonly name: string;
     private readonly root: HTMLElement;
     private readonly templateElement: HTMLTemplateElement;
-    private readonly renderElements: NodeListOf<Element>;
+    private readonly renderElement: HTMLElement;
     private nextId: number = 1;
 
     constructor(name: string, root: HTMLElement) {
@@ -12,36 +12,27 @@ export class TemplateRenderer {
         this.name = name;
         this.root = root;
         this.templateElement = this.getTemplateElement();
-        this.renderElements = this.getRenderElements();
+        this.renderElement = this.getRenderElement();
     }
 
     public render(): RenderedTemplate {
-        const templateInstances = this.renderTemplateToRenderElements();
-        return new RenderedTemplate(templateInstances);
+        const templateInstance = this.renderTemplateToRenderElement();
+        return new RenderedTemplate(templateInstance);
     }
 
     private getTemplateElement(): HTMLTemplateElement {
         return document.querySelector(`#template-${this.name}`);
     }
 
-    private getRenderElements(): NodeListOf<Element> {
-        return this.root.querySelectorAll(`.render-${this.name}`);
+    private getRenderElement(): HTMLElement {
+        return this.root.querySelector(`.render-${this.name}`);
     }
 
-    private renderTemplateToRenderElements(): HTMLElement[] {
-        const templateInstances: HTMLElement[] = [];
-        this.renderElements.forEach(e => {
-            templateInstances.push(this.renderTemplateToRenderElement(e));
-        });
-
-        return templateInstances;
-    }
-
-    private renderTemplateToRenderElement(renderElement: Element): HTMLElement {
+    private renderTemplateToRenderElement(): HTMLElement {
         const templateRoot = this.templateElement.content.querySelector(".template-root");
         const templateInstance = templateRoot.cloneNode(true) as HTMLElement;
         this.setTemplateInstanceId(templateInstance);
-        renderElement.appendChild(templateInstance);
+        this.renderElement.appendChild(templateInstance);
         return templateInstance;
     }
 
@@ -49,5 +40,4 @@ export class TemplateRenderer {
         templateInstance.id = `rendered-template-instance-${this.nextId}`;
         this.nextId++;
     }
-
 }

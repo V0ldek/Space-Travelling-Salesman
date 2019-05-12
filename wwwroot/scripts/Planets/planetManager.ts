@@ -1,14 +1,14 @@
-import {IDictionary} from "../dictionary.js";
+import {Dictionary, IDictionary} from "../dictionary.js";
 import {IPlanet} from "../GameData/gameDataParser.js";
-import {Planet} from "./planet.js";
+import {ISpacedock, Planet} from "./planet.js";
 import {ITemplateFactory} from "../Templates/templateFactory.js";
 import {IUpdateable} from "../GameSystem/updateable.js";
 
-export interface IPlanetRepository {
-    getPlanetByName(name: string): Planet;
+export interface ISpacedockRepository {
+    getSpacedockByName(name: string): ISpacedock;
 }
 
-export class PlanetManager implements IUpdateable, IPlanetRepository {
+export class PlanetManager implements IUpdateable, ISpacedockRepository {
     private readonly planets: IDictionary<Planet> = {};
     private readonly templateFactory: ITemplateFactory;
 
@@ -18,23 +18,15 @@ export class PlanetManager implements IUpdateable, IPlanetRepository {
     }
 
     public update(): void {
-        for(const key in this.planets) {
-            if(this.planets.hasOwnProperty(key)) {
-                this.planets[key].update();
-            }
-        }
+        Dictionary.forEach(this.planets, (_, p) => p.update());
     }
 
-    public getPlanetByName(name: string): Planet {
+    public getSpacedockByName(name: string): Planet {
         return this.planets[name];
     }
 
     private createPlanetsFromData(planetData: IDictionary<IPlanet>) {
-        for(const key in planetData) {
-            if(planetData.hasOwnProperty(key)) {
-                this.createPlanetFromData(key, planetData[key]);
-            }
-        }
+        Dictionary.forEach(planetData, (k, p) => this.createPlanetFromData(k, p));
     }
 
     private createPlanetFromData(key: string, planetData: IPlanet) {

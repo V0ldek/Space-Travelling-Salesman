@@ -1,36 +1,26 @@
-import {IDictionary} from "../dictionary.js";
+import {Dictionary, IDictionary} from "../dictionary.js";
 
 export class RenderedTemplate {
-    private readonly instances: HTMLElement[];
+    private readonly instance: HTMLElement;
 
-    constructor(renderedElements: HTMLElement[]) {
-        this.instances = renderedElements;
+    constructor(renderedElement: HTMLElement) {
+        this.instance = renderedElement;
     }
 
-    public setId(id: string) {
-        if(this.instances.length > 1) {
-            throw new Error(
-                `Attempt to set id ${id} to a multi-instance template ${JSON.stringify(this)}.`);
-        }
-        this.instances.forEach(e => e.id = id);
-    }
-
-    public setAttribute(attribute: string, value: string): void {
-        this.instances.forEach(e => e.setAttribute(attribute, value));
+    public getElement(): HTMLElement {
+        return this.instance;
     }
 
     public renderData(data: IDictionary<string>): void {
-        for(const key in data) {
-            if(data.hasOwnProperty(key)) {
-                this.renderItem(key, data[key]);
-            }
-        }
+        Dictionary.forEach(data, (k, i) => this.renderItem(k, i));
+    }
+
+    public remove(): void {
+        this.instance.remove();
     }
 
     private renderItem(key: string, item: string) {
-        this.instances.forEach(renderElement => {
-            const itemDisplayElements = renderElement.querySelectorAll(`.data-${key}`);
-            itemDisplayElements.forEach(e => e.innerHTML = item);
-        });
+        const itemDisplayElements = this.instance.querySelectorAll(`.data-${key}`);
+        itemDisplayElements.forEach(e => e.innerHTML = item);
     }
 }
