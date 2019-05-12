@@ -86,38 +86,38 @@ h1 {
 /* Borders
 -------------------------------------------------- */
 
-.b {
+.border {
     border: 2px solid #707070
 }
 
-.bl {
+.border-left {
     border-left: 2px solid #707070
 }
 
-.br {
+.border-right {
     border-right: 2px solid #707070
 }
 
-.bt {
+.border-top {
     border-top: 2px solid #707070
 }
 
-.bb {
+.border-bottom {
     border-bottom: 2px solid #707070;
 }
 
 /* Buttons
 -------------------------------------------------- */
 
-.rd-sm {
+.rounded-small {
     border-radius: 5px;
 }
 
-.rd {
+.rounded {
     border-radius: 10px;
 }
 
-.rd-lg {
+.rounded-large {
     border-radius: 20px;
 }
 

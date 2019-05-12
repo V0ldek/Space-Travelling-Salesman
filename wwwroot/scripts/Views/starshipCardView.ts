@@ -15,17 +15,13 @@ export class StarshipCardView extends View {
         this.update();
     }
 
-    public update(): void {
-        this.renderedTemplate.renderData(this.getData())
-    }
-
     private setModalData(): void {
         this.renderedTemplate.setAttribute(
             "data-target",
             `${this.starshipCardInfo.getName()}-starship-modal`);
     }
 
-    private getData(): IDictionary<string> {
+    protected getData(): IDictionary<string> {
         return {
             name: this.starshipCardInfo.getName(),
             planet: this.starshipCardInfo.getDestinationPlanetName(),

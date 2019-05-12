@@ -2,13 +2,15 @@ import {RenderedTemplate} from "./renderedTemplate.js";
 
 export class TemplateRenderer {
     private readonly name: string;
+    private readonly root: HTMLElement;
     private readonly templateElement: HTMLTemplateElement;
     private readonly renderElements: NodeListOf<Element>;
     private nextId: number = 1;
 
-    constructor(name: string) {
+    constructor(name: string, root: HTMLElement) {
         console.warn("Rendering " + name);
         this.name = name;
+        this.root = root;
         this.templateElement = this.getTemplateElement();
         this.renderElements = this.getRenderElements();
     }
@@ -23,7 +25,7 @@ export class TemplateRenderer {
     }
 
     private getRenderElements(): NodeListOf<Element> {
-        return document.querySelectorAll(`.render-${this.name}`);
+        return this.root.querySelectorAll(`.render-${this.name}`);
     }
 
     private renderTemplateToRenderElements(): HTMLElement[] {

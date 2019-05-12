@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/game.css">
 </head>
 <body>
-<header class="bb">
+<header class="border-bottom">
     <template id="template-game-summary">
         <div class="template-root">
             <section id="game-summary">
@@ -51,127 +51,86 @@
 
     </ul>
 </main>
-<div id="Sur'Kesh-planet-modal" class="modal" hidden>
-    <article class="planet-screen modal-content">
-        <img src="./img/planet.svg" class="planet-icon" alt="planet">
-        <h2 class="planet-name text-cyan">Caprica</h2>
-        <p class="planet-coordinates">056, 071</p>
-        <h3 class="planet-goods-title">Goods</h3>
-        <h3 class="planet-starships-title">Stardock</h3>
-        <section class="planet-goods">
-            <table>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Units</th>
-                    <th>Buy price</th>
-                    <th>Sell price</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Potatoes</td>
-                    <td>32</td>
-                    <td>1500 &#x20A1</td>
-                    <td>0 &#x20A1</td>
-                </tr>
-                <tr>
-                    <td>Tylium</td>
-                    <td>1000</td>
-                    <td>700 &#x20A1</td>
-                    <td>800 &#x20A1</td>
-                </tr>
-                <tr>
-                    <td>Uranium</td>
-                    <td>10</td>
-                    <td>400 &#x20A1</td>
-                    <td>1000 &#x20A1</td>
-                </tr>
-                <tr>
-                    <td>Gold</td>
-                    <td>310</td>
-                    <td>230 &#x20A1</td>
-                    <td>320 &#x20A1</td>
-                </tr>
-                <tr>
-                    <td>Titanium</td>
-                    <td>200</td>
-                    <td>200 &#x20A1</td>
-                    <td>300 &#x20A1</td>
-                </tr>
-                <tr>
-                    <td>Computer parts</td>
-                    <td>137</td>
-                    <td>150 &#x20A1</td>
-                    <td>170 &#x20A1</td>
-                </tr>
-                <tr>
-                    <td>Steel</td>
-                    <td>1300</td>
-                    <td>73 &#x20A1</td>
-                    <td>100 &#x20A1</td>
-                </tr>
-                <tr>
-                    <td>Water</td>
-                    <td>10000</td>
-                    <td>50 &#x20A1</td>
-                    <td>80 &#x20A1</td>
-                </tr>
-                <tr>
-                    <td>Food</td>
-                    <td>7341</td>
-                    <td>30 &#x20A1</td>
-                    <td>50 &#x20A1</td>
-                </tr>
-                <tr>
-                    <td>Hydrogen</td>
-                    <td>20000</td>
-                    <td>1 &#x20A1</td>
-                    <td>2 &#x20A1</td>
-                </tr>
-                </tbody>
-            </table>
-        </section>
-        <ul class="planet-starships">
-            <li class="card starship-card modal-trigger" data-target="pegasus-starship-modal">
-                <img src="img/starship.svg" class="starship-icon" alt="starship">
-                <p class="starship-name text-cyan">Galactica</p>
-            </li>
-            <li class="card starship-card modal-trigger" data-target="pegasus-starship-modal">
-                <img src="img/starship.svg" class="starship-icon" alt="starship">
-                <p class="starship-name text-cyan">Pegasus</p>
-            </li>
-            <li class="card starship-card modal-trigger" data-target="pegasus-starship-modal">
-                <img src="img/starship.svg" class="starship-icon" alt="starship">
-                <p class="starship-name text-cyan">Columbia</p>
-            </li>
-        </ul>
-    </article>
+<template id="template-planet-modal">
+    <div id="planetname-planet-modal" class="modal template-root" hidden>
+        <article class="planet-screen modal-content">
+            <img src="./img/planet.svg" class="planet-icon" alt="planet">
+            <h2 class="planet-name text-cyan"><span class="data-name"></span></h2>
+            <p class="planet-coordinates"><span class="data-position"></span></p>
+            <h3 class="planet-goods-title">Goods</h3>
+            <h3 class="planet-starships-title">Stardock</h3>
+            <section class="planet-goods">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Units</th>
+                        <th>Buy price</th>
+                        <th>Sell price</th>
+                    </tr>
+                    </thead>
+                    <tbody class="render-planet-item-store">
+
+                    </tbody>
+                </table>
+            </section>
+            <ul class="planet-starships render-planet-starships">
+
+            </ul>
+        </article>
+    </div>
+</template>
+<template id="template-planet-item-store">
+    <tr class="template-root">
+        <td><span class="data-name"></span></td>
+        <td><span class="data-amount"></span></td>
+        <td><span class="data-buy-price"></span> &#x20A1</td>
+        <td><span class="data-sell-price"></span> &#x20A1</td>
+    </tr>
+</template>
+<template id="template-planet-starships">
+    <li class="card starship-card modal-trigger template-root" data-target="starshipname-starship-modal">
+        <img src="img/starship.svg" class="starship-icon" alt="starship">
+        <p class="starship-name text-cyan"><span class="data-name"></span></p>
+    </li>
+</template>
+<div class="render-planet-modal">
+
 </div>
-<div id="galactica-starship-modal" class="modal" hidden>
-    <article class="starship-screen modal-content">
-        <img src="./img/starship.svg" class="starship-icon" alt="starship">
-        <h2 class="starship-name text-cyan">Galactica</h2>
-        <div class="starship-position">
-            <p><span class="text-cyan">Scorpia</span> in 00:10</p>
-            <p>056, 071</p>
-        </div>
-        <form class="starship-movement">
-            <label>
-                Destination:
-                <select>
-                    <option value="kobol">Kobol</option>
-                    <option value="caprica">Caprica</option>
-                    <option value="scorpia">Scorpia</option>
-                    <option value="picon">Picon</option>
-                </select>
-            </label>
-            <button class="button-cyan rd" type="button">
-                Travel
-            </button>
-        </form>
+<template id="template-starship-modal">
+    <div id="starshipname-starship-modal" class="modal template-root" hidden>
+        <article class="starship-screen modal-content">
+            <img src="./img/starship.svg" class="starship-icon" alt="starship">
+            <h2 class="starship-name text-cyan"><span class="data-name"></span></h2>
+            <div class="starship-position">
+                <p><span class="text-cyan data-planet"></span><span class="data-eta"></span></p>
+                <p><span class="data-position"></span></p>
+            </div>
+            <form class="starship-movement">
+                <label>
+                    Destination:
+                    <select>
+                    </select>
+                </label>
+                <button class="button-cyan rounded" type="button">
+                    Travel
+                </button>
+            </form>
+            <div class="render-starship-cargo">
+
+            </div>
+            <div class="render-starship-trade">
+
+            </div>
+        </article>
+    </div>
+</template>
+<template id="template-starship-cargo">
+    <div class="template-root">
         <h3 class="starship-cargo-title">Cargo</h3>
-        <h3 class="starship-cargo-capacity">40,330/50,000 Units</h3>
+        <h3 class="starship-cargo-capacity">
+            <span class="data-cargo"></span>/<span class="data-capacity"></span> Units
+        </h3>
         <section class="starship-cargo">
             <table>
                 <thead>
@@ -180,213 +139,64 @@
                     <th>Units in cargo</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>Potatoes</td>
-                    <td>32</td>
-                </tr>
-                <tr>
-                    <td>Tylium</td>
-                    <td>1000</td>
-                </tr>
-                <tr>
-                    <td>Uranium</td>
-                    <td>10</td>
-                </tr>
-                <tr>
-                    <td>Gold</td>
-                    <td>310</td>
-                </tr>
-                <tr>
-                    <td>Titanium</td>
-                    <td>200</td>
-                </tr>
-                <tr>
-                    <td>Computer parts</td>
-                    <td>137</td>
-                </tr>
-                <tr>
-                    <td>Steel</td>
-                    <td>1300</td>
-                </tr>
-                <tr>
-                    <td>Water</td>
-                    <td>10000</td>
-                </tr>
-                <tr>
-                    <td>Food</td>
-                    <td>7341</td>
-                </tr>
-                <tr>
-                    <td>Hydrogen</td>
-                    <td>20000</td>
-                </tr>
+                <tbody class="render-starship-item-store">
+
                 </tbody>
             </table>
         </section>
-    </article>
-</div>
-<div id="pegasus-starship-modal" class="modal" hidden>
-    <article class="starship-screen modal-content">
-        <img src="./img/starship.svg" class="starship-icon" alt="starship">
-        <h2 class="starship-name text-cyan">Pegasus</h2>
-        <div class="starship-position">
-            <p><span class="text-cyan">Scorpia</span></p>
-            <p>010, 001</p>
-        </div>
-        <form class="starship-movement">
+    </div>
+</template>
+<template id="template-starship-item-store">
+    <tr class="template-root">
+        <td><span class="data-name"></span></td>
+        <td><span class="data-amount"></span></td>
+    </tr>
+</template>
+<template id="template-starship-trade">
+    <h3 class="starship-cargo-title">Trade</h3>
+    <h3 class="starship-cargo-capacity">
+        <span class="data-cargo"></span>/<span class="data-capacity"></span> Units
+    </h3>
+    <div class="starship-cargo">
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Units on planet</th>
+                <th>Buy Price</th>
+                <th>Sell price</th>
+                <th>Units in cargo</th>
+            </tr>
+            </thead>
+            <tbody class="render-starship-trade-item">
+
+            </tbody>
+        </table>
+    </div>
+    <label class="starship-trade-title">
+        Credits:
+    </label>
+    <p class="starship-trade-sum">
+        <span class="data-credits"></span> (<span class="data-balance"></span>) &#x20A1
+    </p>
+    <button type="button" class="starship-trade-submit button-cyan rounded">
+        Trade!
+    </button>
+</template>
+<template id="template-starship-trade-item">
+    <tr>
+        <td><span class="data-name"></span></td>
+        <td><span class="data-planet-amount"></span></td>
+        <td><span class="data-buy-price"></span> &#x20A1</td>
+        <td><span class="data-sell-price"></span> &#x20A1</td>
+        <td>
             <label>
-                Destination:
-                <select>
-                    <option value="kobol">Kobol</option>
-                    <option value="caprica">Caprica</option>
-                    <option value="scorpia">Scorpia</option>
-                    <option value="picon">Picon</option>
-                </select>
+                <input class="starship-trade-input" type="number" min="" max="" value="">
             </label>
-            <button class="button-cyan rd" type="button">
-                Travel
-            </button>
-        </form>
-        <h3 class="starship-cargo-title">Cargo</h3>
-        <h3 class="starship-cargo-capacity">40,330/50,000 Units</h3>
-        <div class="starship-cargo">
-            <table>
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Units on planet</th>
-                    <th>Buy Price</th>
-                    <th>Sell price</th>
-                    <th>Units in cargo</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Potatoes</td>
-                    <td>32</td>
-                    <td>1500 &#x20A1</td>
-                    <td>0 &#x20A1</td>
-                    <td>
-                        <label>
-                            <input class="starship-trade-input" type="number" min="0" max="32" value="0">
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Tylium</td>
-                    <td>1000</td>
-                    <td>700 &#x20A1</td>
-                    <td>800 &#x20A1</td>
-                    <td>
-                        <label>
-                            <input class="starship-trade-input" type="number" min="0" max="1173" value="173">
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Uranium</td>
-                    <td>10</td>
-                    <td>400 &#x20A1</td>
-                    <td>1000 &#x20A1</td>
-                    <td>
-                        <label>
-                            <input class="starship-trade-input" type="number" min="0" max="10" value="0">
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Gold</td>
-                    <td>310</td>
-                    <td>230 &#x20A1</td>
-                    <td>320 &#x20A1</td>
-                    <td>
-                        <label>
-                            <input class="starship-trade-input" type="number" min="0" max="1810" value="1500">
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Titanium</td>
-                    <td>200</td>
-                    <td>200 &#x20A1</td>
-                    <td>300 &#x20A1</td>
-                    <td>
-                        <label>
-                            <input class="starship-trade-input" type="number" min="0" max="2200" value="20000">
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Computer parts</td>
-                    <td>137</td>
-                    <td>150 &#x20A1</td>
-                    <td>170 &#x20A1</td>
-                    <td>
-                        <label>
-                            <input class="starship-trade-input" type="number" min="0" max="140" value="3">
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Steel</td>
-                    <td>1300</td>
-                    <td>73 &#x20A1</td>
-                    <td>100 &#x20A1</td>
-                    <td>
-                        <label>
-                            <input class="starship-trade-input" type="number" min="0" max="2300" value="1000">
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Water</td>
-                    <td>10000</td>
-                    <td>50 &#x20A1</td>
-                    <td>80 &#x20A1</td>
-                    <td>
-                        <label>
-                            <input class="starship-trade-input" type="number" min="0" max="12337" value="2337">
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Food</td>
-                    <td>7341</td>
-                    <td>30 &#x20A1</td>
-                    <td>50 &#x20A1</td>
-                    <td>
-                        <label>
-                            <input class="starship-trade-input" type="number" min="0" max="11642" value="4301">
-                        </label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Hydrogen</td>
-                    <td>20000</td>
-                    <td>1 &#x20A1</td>
-                    <td>2 &#x20A1</td>
-                    <td>
-                        <label>
-                            <input class="starship-trade-input" type="number" min="0" max="20000" value="0">
-                        </label>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <label class="starship-trade-title">
-            Credits:
-        </label>
-        <p class="starship-trade-sum">
-            14,707 (<span class="text-green">+13,370</span>) &#x20A1
-        </p>
-        <button type="button" class="starship-trade-submit button-cyan rd">
-            Trade!
-        </button>
-    </article>
-</div>
-<footer class="bt">
+        </td>
+    </tr>
+</template>
+<footer class="border-top">
     <p class="text-bleak">Space Travelling Salesman - &copy; 2019 Mateusz Gienieczko</p>
     <p class="text-bleak">Icons provided by FontAwesome under
         <a href="https://fontawesome.com/license">https://fontawesome.com/license</a></p>

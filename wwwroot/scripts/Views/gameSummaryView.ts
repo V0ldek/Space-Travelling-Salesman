@@ -21,11 +21,7 @@ export class GameSummaryView extends View {
         this.update();
     }
 
-    public update(): void {
-        this.renderedTemplate.renderData(this.getData());
-    }
-
-    private getData(): IDictionary<string> {
+    protected getData(): IDictionary<string> {
         return {
             nickname: this.nicknameInfo.getNickname(),
             score: this.creditsInfo.getCredits().toString(),
