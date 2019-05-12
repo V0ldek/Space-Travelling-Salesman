@@ -2,8 +2,8 @@ import {IUpdateable} from "../GameSystem/updateable.js";
 import {Dictionary, IDictionary} from "../dictionary.js";
 import {Starship} from "../Starships/starship.js";
 import {ITemplateFactory} from "../Templates/templateFactory.js";
-import {IStarship} from "../GameData/gameDataParser.js";
-import {ISpacedockRepository} from "../Planets/planetManager.js";
+import {IStarship} from "../GameData/starship.js";
+import {ISpacedockRepository} from "../Planets/spacedockRepository.js";
 
 export class StarshipManager implements IUpdateable {
     private readonly starships: IDictionary<Starship> = {};
@@ -11,10 +11,9 @@ export class StarshipManager implements IUpdateable {
     private readonly planetRepository: ISpacedockRepository;
     private nextId: number = 1;
 
-    public constructor(
-        starships: IDictionary<IStarship>,
-        planetRepository: ISpacedockRepository,
-        templateFactory: ITemplateFactory) {
+    public constructor(starships: IDictionary<IStarship>,
+                       planetRepository: ISpacedockRepository,
+                       templateFactory: ITemplateFactory) {
         this.planetRepository = planetRepository;
         this.templateFactory = templateFactory;
         this.createStarshipsFromData(starships);

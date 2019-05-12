@@ -1,11 +1,11 @@
 import {View} from "../view.js";
-import {IPlanetInfo} from "../../Planets/planet.js";
+import {IPlanetInfo} from "../../Planets/planetInfo.js";
 import {ITemplateFactory} from "../../Templates/templateFactory.js";
 import {Dictionary, IDictionary} from "../../dictionary.js";
 import {Format} from "../../format.js";
 import {PlanetItemStoreView} from "./planetItemStoreView.js";
 import {PlanetStarshipView} from "./planetStarshipView.js";
-import {IStarshipCardInfo} from "../../Starships/starship.js";
+import {IStarshipCardInfo} from "../../Starships/starshipCardInfo.js";
 
 export class PlanetModalView extends View {
     private readonly planetInfo: IPlanetInfo;
@@ -28,17 +28,17 @@ export class PlanetModalView extends View {
 
     public createStarshipView(starshipCardInfo: IStarshipCardInfo): void {
         const name = starshipCardInfo.getName();
-        if(this.starshipViews[name]) {
+        if (this.starshipViews[name]) {
             this.starshipViews[name].remove();
         }
         this.starshipViews[name] = new PlanetStarshipView(
             starshipCardInfo,
-            this.templateFactory,
-            this.renderedTemplate.getElement());
+            this.renderedTemplate.getElement(),
+            this.templateFactory);
     }
 
     public removeStarshipView(starshipName: string): void {
-        if(this.starshipViews[starshipName]) {
+        if (this.starshipViews[starshipName]) {
             this.starshipViews[starshipName].remove();
         }
     }
@@ -55,11 +55,11 @@ export class PlanetModalView extends View {
     }
 
     private createItemStoreViews(): void {
-        for(const itemStore of this.planetInfo.getItemStores()) {
+        for (const itemStore of this.planetInfo.getItemStores()) {
             this.itemStoreViews.push(new PlanetItemStoreView(
                 itemStore,
-                this.templateFactory,
-                this.renderedTemplate.getElement()));
+                this.renderedTemplate.getElement(),
+                this.templateFactory));
         }
     }
 }

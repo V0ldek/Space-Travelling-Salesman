@@ -1,20 +1,10 @@
-export interface ICreditsInfo {
-    getCredits(): number;
-}
+import {IPlayerStateInfo} from "./playerStateInfo.js";
 
-export interface ICreditsManager extends ICreditsInfo {
-    changeCredits(amount: number): void;
-}
-
-export interface INicknameInfo {
-    getNickname(): string;
-}
-
-export class PlayerState implements ICreditsManager, INicknameInfo {
-    private credits: number;
+export class PlayerState implements IPlayerStateInfo {
     private readonly nickname: string;
+    private credits: number;
 
-    public constructor(credits: number, nickname: string) {
+    public constructor(credits: number, nickname: string = "V0ldek") {
         this.credits = credits;
         this.nickname = nickname;
     }
@@ -24,7 +14,7 @@ export class PlayerState implements ICreditsManager, INicknameInfo {
     }
 
     public changeCredits(amount: number): void {
-        if(this.credits + amount < 0) {
+        if (this.credits + amount < 0) {
             throw new Error(`Invalid transaction, changing by ${amount} when the balance is ${this.credits}.`);
         }
         this.credits += amount;

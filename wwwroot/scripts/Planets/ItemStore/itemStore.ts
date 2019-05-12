@@ -1,9 +1,4 @@
-export interface IItemStoreInfo {
-    getName(): string;
-    getBuyPrice(): number;
-    getSellPrice(): number;
-    getAmount(): number;
-}
+import {IItemStoreInfo} from "./itemStoreInfo.js";
 
 export class ItemStore implements IItemStoreInfo {
     private readonly name: string;

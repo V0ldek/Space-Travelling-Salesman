@@ -1,10 +1,11 @@
+import {IGameData} from "../GameData/gameData.js";
 import {TemplateFactory} from "../Templates/templateFactory.js";
-import {GameClock} from "./gameClock.js";
-import {GameDataParser, IGameData} from "../GameData/gameDataParser.js";
 import {PlayerState} from "../Player/playerState.js";
-import {GameSummaryView} from "../Views/gameSummaryView.js";
-import {PlanetManager} from "../Planets/planetManager.js";
+import {GameDataParser} from "../GameData/gameDataParser.js";
 import {StarshipManager} from "../Starships/starshipManager.js";
+import {PlanetManager} from "../Planets/planetManager.js";
+import {GameClock} from "./Clock/gameClock.js";
+import {GameSummaryView} from "../Views/gameSummaryView.js";
 
 export class Game {
     private readonly gameData: IGameData;
@@ -22,14 +23,11 @@ export class Game {
         this.gameClock = new GameClock(this.gameData.game_duration);
         this.gameSummaryView = new GameSummaryView(
             this.playerState,
-            this.playerState,
             this.gameClock,
             this.templateFactory);
         this.planetManager = new PlanetManager(this.gameData.planets, this.templateFactory);
         this.starshipManager = new StarshipManager(this.gameData.starships, this.planetManager, this.templateFactory);
-
         this.registerUpdates();
-
         this.gameClock.start();
     }
 

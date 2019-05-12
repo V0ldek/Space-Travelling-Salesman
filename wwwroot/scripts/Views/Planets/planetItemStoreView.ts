@@ -1,15 +1,12 @@
 import {View} from "../view.js";
-import {IItemStoreInfo} from "../../Planets/itemStore.js";
+import {IItemStoreInfo} from "../../Planets/ItemStore/itemStoreInfo.js";
 import {ITemplateFactory} from "../../Templates/templateFactory.js";
 import {IDictionary} from "../../dictionary.js";
 
-export class PlanetItemStoreView extends View{
+export class PlanetItemStoreView extends View {
     private readonly itemStoreInfo: IItemStoreInfo;
 
-    public constructor(
-        itemStoreInfo: IItemStoreInfo,
-        templateFactory: ITemplateFactory,
-        root: HTMLElement = null) {
+    public constructor(itemStoreInfo: IItemStoreInfo, root: HTMLElement, templateFactory: ITemplateFactory) {
         super("planet-item-store", templateFactory, root);
         this.itemStoreInfo = itemStoreInfo;
         this.update();

@@ -1,26 +1,15 @@
-import {IStarship} from "../GameData/gameDataParser.js";
+import {IStarship} from "../GameData/starship.js";
 import {ITemplateFactory} from "../Templates/templateFactory.js";
 import {Point} from "../GameSystem/point.js";
-import {ISpacedock} from "../Planets/planet.js";
-import {CargoHold, ICargoHoldInfo} from "./cargoHold.js";
+import {ISpacedock} from "../Planets/spacedock.js";
+import {CargoHold} from "./cargoHold.js";
 import {StarshipCardView} from "../Views/Starships/starshipCardView.js";
-import {ISpacedockRepository} from "../Planets/planetManager.js";
+import {ISpacedockRepository} from "../Planets/spacedockRepository.js";
 import {IUpdateable} from "../GameSystem/updateable.js";
-import {GameClock} from "../GameSystem/gameClock.js";
+import {GameClock} from "../GameSystem/Clock/gameClock.js";
 import {StarshipModalView} from "../Views/Starships/starshipModalView.js";
-
-export interface IStarshipCardInfo {
-    getId(): number;
-    getName(): string;
-    getDestinationName(): string;
-    getEta(): string;
-    getPosition(): Point;
-}
-
-export interface IStarshipInfo extends IStarshipCardInfo {
-    getCargoHold(): ICargoHoldInfo;
-    getPossibleDestinations(): string[];
-}
+import {ICargoHoldInfo} from "./cargoHoldInfo.js";
+import {IStarshipInfo} from "./starshipInfo.js";
 
 export class Starship implements IStarshipInfo, IUpdateable {
     private static readonly distancePerTick: number = 1.0;
@@ -34,12 +23,11 @@ export class Starship implements IStarshipInfo, IUpdateable {
     private destinationSpacedock: ISpacedock;
     private position: Point;
 
-    public constructor(
-        id: number,
-        name: string,
-        data: IStarship,
-        spacedockRepository: ISpacedockRepository,
-        templateFactory: ITemplateFactory) {
+    public constructor(id: number,
+                       name: string,
+                       data: IStarship,
+                       spacedockRepository: ISpacedockRepository,
+                       templateFactory: ITemplateFactory) {
         this.id = id;
         this.name = name;
         this.cargoHold = new CargoHold(data.cargo_hold_size);
@@ -49,7 +37,7 @@ export class Starship implements IStarshipInfo, IUpdateable {
         this.cardView = new StarshipCardView(this, templateFactory);
         this.modalView = new StarshipModalView(this, templateFactory);
 
-        if(name == "Millenium Falcon") {
+        if (name == "Millenium Falcon") {
             this.destinationSpacedock = spacedockRepository.getSpacedockByName("Corellia");
         }
     }
@@ -96,10 +84,10 @@ export class Starship implements IStarshipInfo, IUpdateable {
 
     private moveTowardsDestination(): void {
         const euclideanDistance = this.getDistanceToDestination();
-        if(euclideanDistance == 0) {
+        if (euclideanDistance == 0) {
             return;
         }
-        if(euclideanDistance <= Starship.distancePerTick) {
+        if (euclideanDistance <= Starship.distancePerTick) {
             this.arriveAtDestination();
             return;
         }

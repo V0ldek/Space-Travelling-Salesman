@@ -1,4 +1,4 @@
-import {Starship} from "../../Starships/starship";
+import {Starship} from "../../Starships/starship.js";
 
 export class StarshipMovementForm {
     private readonly starship: Starship;
@@ -12,7 +12,7 @@ export class StarshipMovementForm {
 
     public toggle(): void {
         this.form.toggleAttribute("hidden");
-        if(!this.form.hidden) {
+        if (!this.form.hidden) {
             this.getButtonElement().disabled = false;
         }
     }
@@ -24,7 +24,7 @@ export class StarshipMovementForm {
 
     private createSelectOptions(): void {
         const select = this.getSelectElement();
-        for(const destination of this.starship.getPossibleDestinations()) {
+        for (const destination of this.starship.getPossibleDestinations()) {
             const option = document.createElement("option");
             option.text = destination;
             option.value = destination;

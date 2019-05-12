@@ -1,11 +1,9 @@
-import {Format} from "../format.js"
-import {IUpdateable} from "./updateable.js";
+import {Format} from "../../format.js"
+import {IUpdateable} from "../updateable.js";
+import {ITimeInfo} from "./timeInfo.js";
+import {IUpdateManager} from "./updateManager.js";
 
-export interface ITimeInfo {
-    getRemainingTicks(): number;
-}
-
-export class GameClock implements ITimeInfo {
+export class GameClock implements IUpdateManager, ITimeInfo {
     private static readonly tickDuration = 1000;
     private readonly updateables: IUpdateable[] = [];
     private readonly maximalTicks: number;
@@ -38,11 +36,11 @@ export class GameClock implements ITimeInfo {
     }
 
     private update(): void {
-        if(this.getRemainingTicks() == 0) {
+        if (this.getRemainingTicks() == 0) {
             return;
         }
         ++this.elapsedTicks;
-        for(const updateable of this.updateables) {
+        for (const updateable of this.updateables) {
             updateable.update();
         }
     }

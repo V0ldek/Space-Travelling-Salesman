@@ -1,13 +1,9 @@
 import {Dictionary, IDictionary} from "../dictionary.js";
-import {IPlanet} from "../GameData/gameDataParser.js";
-import {ISpacedock, Planet} from "./planet.js";
+import {IPlanet} from "../GameData/planet.js";
+import {Planet} from "./planet.js";
 import {ITemplateFactory} from "../Templates/templateFactory.js";
 import {IUpdateable} from "../GameSystem/updateable.js";
-
-export interface ISpacedockRepository {
-    getAllSpacedockNames(): string[];
-    getSpacedockByName(name: string): ISpacedock;
-}
+import {ISpacedockRepository} from "./spacedockRepository.js";
 
 export class PlanetManager implements IUpdateable, ISpacedockRepository {
     private readonly planets: IDictionary<Planet> = {};
@@ -25,7 +21,7 @@ export class PlanetManager implements IUpdateable, ISpacedockRepository {
 
     public getAllSpacedockNames(): string[] {
         const result: string[] = [];
-        Dictionary.forEach(this.planets,  (k, _) => result.push(k));
+        Dictionary.forEach(this.planets, k => result.push(k));
         return result;
     }
 

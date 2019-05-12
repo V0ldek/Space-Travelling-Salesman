@@ -1,5 +1,5 @@
 import {View} from "../view.js";
-import {IPlanetCardInfo} from "../../Planets/planet.js";
+import {IPlanetCardInfo} from "../../Planets/planetCardInfo.js";
 import {ITemplateFactory} from "../../Templates/templateFactory.js";
 import {IDictionary} from "../../dictionary.js";
 import {Format} from "../../format.js";

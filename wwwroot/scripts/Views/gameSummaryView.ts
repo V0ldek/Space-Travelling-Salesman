@@ -1,30 +1,25 @@
-import {ICreditsInfo, INicknameInfo} from "../Player/playerState.js";
-import {GameClock, ITimeInfo} from "../GameSystem/gameClock.js"
+import {GameClock} from "../GameSystem/Clock/gameClock.js"
 import {TemplateFactory} from "../Templates/templateFactory.js";
 import {View} from "./view.js";
 import {IDictionary} from "../dictionary.js";
+import {ITimeInfo} from "../GameSystem/Clock/timeInfo.js";
+import {IPlayerStateInfo} from "../Player/playerStateInfo.js";
 
 export class GameSummaryView extends View {
-    private readonly creditsInfo: ICreditsInfo;
-    private readonly nicknameInfo: INicknameInfo;
+    private readonly playerStateInfo: IPlayerStateInfo;
     private readonly timeInfo: ITimeInfo;
 
-    public constructor(creditsInfo: ICreditsInfo,
-                       nicknameInfo: INicknameInfo,
-                       timeInfo: ITimeInfo,
-                       templateFactory: TemplateFactory) {
+    public constructor(creditsInfo: IPlayerStateInfo, timeInfo: ITimeInfo, templateFactory: TemplateFactory) {
         super("game-summary", templateFactory);
-        this.creditsInfo = creditsInfo;
-        this.nicknameInfo = nicknameInfo;
+        this.playerStateInfo = creditsInfo;
         this.timeInfo = timeInfo;
-
         this.update();
     }
 
     protected getData(): IDictionary<string> {
         return {
-            nickname: this.nicknameInfo.getNickname(),
-            score: this.creditsInfo.getCredits().toString(),
+            nickname: this.playerStateInfo.getNickname(),
+            score: this.playerStateInfo.getCredits().toString(),
             time: GameClock.ticksToTimeString(this.timeInfo.getRemainingTicks())
         };
     }

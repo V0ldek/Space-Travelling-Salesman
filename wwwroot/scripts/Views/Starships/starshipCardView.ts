@@ -1,5 +1,5 @@
 import {View} from "../view.js";
-import {IStarshipCardInfo} from "../../Starships/starship.js";
+import {IStarshipCardInfo} from "../../Starships/starshipCardInfo.js";
 import {ITemplateFactory} from "../../Templates/templateFactory.js";
 import {IDictionary} from "../../dictionary.js";
 import {Format} from "../../format.js";
@@ -10,7 +10,6 @@ export class StarshipCardView extends View {
     public constructor(starshipCardInfo: IStarshipCardInfo, templateFactory: ITemplateFactory) {
         super("starship-card", templateFactory);
         this.starshipCardInfo = starshipCardInfo;
-
         this.setModalData();
         this.update();
     }

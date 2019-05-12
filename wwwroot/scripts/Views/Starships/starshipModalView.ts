@@ -4,25 +4,35 @@ import {ITemplateFactory} from "../../Templates/templateFactory.js";
 import {IDictionary} from "../../dictionary.js";
 import {Format} from "../../format.js";
 import {StarshipMovementForm} from "./starshipMovementForm.js";
+import {StarshipCargoView} from "./starshipCargoView.js";
+import {StarshipTradeView} from "./starshipTradeView.js";
 
 export class StarshipModalView extends View {
     private readonly starship: Starship;
     private readonly starshipMovementForm: StarshipMovementForm;
-    private isInDockedMode: boolean = false;
+    private readonly starshipCargoView: StarshipCargoView;
+    private starshipTradeView: StarshipTradeView = null;
+    private isInDockedMode: boolean = true;
 
     public constructor(starship: Starship, templateFactory: ITemplateFactory) {
         super("starship-modal", templateFactory);
         this.starship = starship;
         this.starshipMovementForm = new StarshipMovementForm(this.starship, this.getMovementFormElement());
+        this.starshipCargoView = new StarshipCargoView(
+            this.starship.getCargoHold(),
+            this.renderedTemplate.getElement(),
+            this.templateFactory);
+        this.toggleTradeView();
         this.setModalData();
         this.update();
     }
 
     public update(): void {
-        if(this.shouldChangeMode()) {
+        if (this.shouldChangeMode()) {
             this.changeMode();
         }
         super.update();
+        this.starshipCargoView.update();
     }
 
     protected getData(): IDictionary<string> {
@@ -47,16 +57,27 @@ export class StarshipModalView extends View {
     }
 
     private changeMode() {
+        console.log(`Changing mode from ${this.isInDockedMode}.`);
+
         this.isInDockedMode = !this.isInDockedMode;
         this.starshipMovementForm.toggle();
         this.toggleTradeView();
     }
 
     private isStarshipMoving() {
-        return this.starship.getEta() === "";
+        return this.starship.getEta() !== "";
     }
 
     private toggleTradeView() {
-
+        this.starshipCargoView.toggle();
+        if (this.starshipTradeView) {
+            this.starshipTradeView.remove();
+            this.starshipTradeView = null;
+        } else {
+            this.starshipTradeView = new StarshipTradeView(
+                this.starship,
+                this.renderedTemplate.getElement(),
+                this.templateFactory);
+        }
     }
 }

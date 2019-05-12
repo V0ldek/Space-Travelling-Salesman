@@ -3,7 +3,7 @@ import {Point} from "./GameSystem/point.js";
 export class Format {
     public static padLeft(source: string, padding: string, length: number) {
         let result = source;
-        while(result.length < length) {
+        while (result.length < length) {
             result = padding + result;
         }
         return result;
@@ -22,7 +22,7 @@ export class Format {
     public static positionToString(position: Point) {
         const x = position.getX().toFixed(2);
         const y = position.getY().toFixed(2);
-        return `${Format.padNumberToNDigits(x, 5)}`+
-               `, ${Format.padNumberToNDigits(y, 5)}`;
+        return `${Format.padNumberToNDigits(x, 5)}` +
+            `, ${Format.padNumberToNDigits(y, 5)}`;
     }
 }

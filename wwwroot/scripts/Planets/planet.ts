@@ -1,27 +1,16 @@
-import {IItemStore, IPlanet} from "../GameData/gameDataParser.js";
+import {IPlanet} from "../GameData/planet.js";
 import {Point} from "../GameSystem/point.js";
 import {Dictionary, IDictionary} from "../dictionary.js";
-import {IItemStoreInfo, ItemStore} from "./itemStore.js";
+import {ItemStore} from "./ItemStore/itemStore.js";
 import {ITemplateFactory} from "../Templates/templateFactory.js";
 import {IUpdateable} from "../GameSystem/updateable.js";
 import {PlanetCardView} from "../Views/Planets/planetCardView.js";
 import {PlanetModalView} from "../Views/Planets/planetModalView.js";
-import {IStarshipCardInfo} from "../Starships/starship.js";
-
-export interface IPlanetCardInfo {
-    getId(): number,
-    getName(): string;
-    getPosition(): Point;
-}
-
-export interface IPlanetInfo extends IPlanetCardInfo {
-    getItemStores(): IItemStoreInfo[]
-}
-
-export interface ISpacedock extends IPlanetCardInfo {
-    dockArrivingStarship(starshipCardInfo: IStarshipCardInfo): void;
-    checkOutDepartingStarship(starshipCardInfo: IStarshipCardInfo): void;
-}
+import {IStarshipCardInfo} from "../Starships/starshipCardInfo.js";
+import {IItemStoreInfo} from "./ItemStore/itemStoreInfo.js";
+import {IPlanetInfo} from "./planetInfo.js";
+import {ISpacedock} from "./spacedock.js";
+import {IItemStore} from "../GameData/itemStore.js";
 
 export class Planet implements IPlanetInfo, ISpacedock, IUpdateable {
     private readonly id: number;

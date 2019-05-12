@@ -4,34 +4,8 @@
     "target": "es5",
     "sourceMap": true
   },
-  "files": [
-    "./GameData/gameDataParser.ts",
-    "./GameSystem/game.ts",
-    "./GameSystem/gameClock.ts",
-    "./GameSystem/point.ts",
-    "./GameSystem/updateable.ts",
-    "./Planets/itemStore.ts",
-    "./Planets/planet.ts",
-    "./Planets/planetManager.ts",
-    "./Player/playerState.ts",
-    "./Starships/cargoHold.ts",
-    "./Starships/starship.ts",
-    "./Starships/starshipManager.ts",
-    "./Templates/renderedTemplate.ts",
-    "./Templates/templateFactory.ts",
-    "./Templates/templateRenderer.ts",
-    "./Views/gameSummaryView.ts",
-    "./Views/Planets/planetCardView.ts",
-    "./Views/Planets/planetItemStoreView.ts",
-    "./Views/Planets/planetModalView.ts",
-    "./Views/Starships/starshipCardView.ts",
-    "./Views/Starships/starshipModalView.ts",
-    "./Views/Starships/starshipMovementForm.ts",
-    "./Views/view.ts",
-    "./dictionary.ts",
-    "./format.ts",
-    "./site.ts",
-    "./start.ts"
+  "include": [
+    "./**/*.ts"
   ],
   "exclude": [
     "node_modules"

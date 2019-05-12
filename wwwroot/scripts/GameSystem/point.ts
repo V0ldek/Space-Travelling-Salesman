@@ -2,8 +2,6 @@ export class Point {
     private readonly x: number;
     private readonly y: number;
 
-    public static Zero: Point = new Point(0, 0);
-
     public constructor(x: number, y: number) {
         this.x = x;
         this.y = y;

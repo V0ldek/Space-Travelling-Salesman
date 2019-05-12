@@ -116,10 +116,10 @@
                     Travel
                 </button>
             </form>
-            <div class="render-starship-cargo">
+            <div class="render-starship-cargo starship-cargo-area">
 
             </div>
-            <div class="render-starship-trade">
+            <div class="render-starship-trade starship-cargo-area">
 
             </div>
         </article>
@@ -129,12 +129,12 @@
 
 </div>
 <template id="template-starship-cargo">
-    <div class="template-root">
+    <div class="template-root starship-cargo">
         <h3 class="starship-cargo-title">Cargo</h3>
         <h3 class="starship-cargo-capacity">
             <span class="data-cargo"></span>/<span class="data-capacity"></span> Units
         </h3>
-        <section class="starship-cargo">
+        <section class="starship-cargo-table">
             <table>
                 <thead>
                 <tr>
@@ -142,49 +142,51 @@
                     <th>Units in cargo</th>
                 </tr>
                 </thead>
-                <tbody class="render-starship-item-store">
+                <tbody class="render-starship-cargo-item">
 
                 </tbody>
             </table>
         </section>
     </div>
 </template>
-<template id="template-starship-item-store">
+<template id="template-starship-cargo-item">
     <tr class="template-root">
         <td><span class="data-name"></span></td>
         <td><span class="data-amount"></span></td>
     </tr>
 </template>
 <template id="template-starship-trade">
-    <h3 class="starship-cargo-title">Trade</h3>
-    <h3 class="starship-cargo-capacity">
-        <span class="data-cargo"></span>/<span class="data-capacity"></span> Units
-    </h3>
-    <div class="starship-cargo">
-        <table>
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Units on planet</th>
-                <th>Buy Price</th>
-                <th>Sell price</th>
-                <th>Units in cargo</th>
-            </tr>
-            </thead>
-            <tbody class="render-starship-trade-item">
+    <div class="template-root starship-cargo">
+        <h3 class="starship-cargo-title">Trade</h3>
+        <h3 class="starship-cargo-capacity">
+            <span class="data-cargo"></span>/<span class="data-capacity"></span> Units
+        </h3>
+        <div class="starship-cargo-table">
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Units on planet</th>
+                    <th>Buy Price</th>
+                    <th>Sell price</th>
+                    <th>Units in cargo</th>
+                </tr>
+                </thead>
+                <tbody class="render-starship-trade-item">
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
+        <label class="starship-trade-title">
+            Credits:
+        </label>
+        <p class="starship-trade-sum">
+            <span class="data-credits"></span> (<span class="data-balance"></span>) &#x20A1
+        </p>
+        <button type="button" class="starship-trade-submit button-cyan rounded">
+            Trade!
+        </button>
     </div>
-    <label class="starship-trade-title">
-        Credits:
-    </label>
-    <p class="starship-trade-sum">
-        <span class="data-credits"></span> (<span class="data-balance"></span>) &#x20A1
-    </p>
-    <button type="button" class="starship-trade-submit button-cyan rounded">
-        Trade!
-    </button>
 </template>
 <template id="template-starship-trade-item">
     <tr>
@@ -206,5 +208,5 @@
     </p>
 </footer>
 </body>
-<script type="module" src="scripts/site.js"></script>
+<script type="module" src="scripts/main.js"></script>
 </html>

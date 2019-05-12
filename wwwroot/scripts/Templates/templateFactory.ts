@@ -3,6 +3,7 @@ import {TemplateRenderer} from "./templateRenderer.js";
 
 export interface ITemplateFactory {
     createTemplate(name: string): RenderedTemplate;
+
     createTemplate(name: string, root: HTMLElement): RenderedTemplate;
 }
 

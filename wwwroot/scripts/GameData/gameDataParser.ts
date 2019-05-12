@@ -1,29 +1,4 @@
-import {IDictionary} from "../dictionary.js";
-
-export interface IItemStore {
-    available: number;
-    buy_price: number;
-    sell_price: number;
-}
-
-export interface IPlanet {
-    available_items: IDictionary<IItemStore>;
-    x: number;
-    y: number;
-}
-
-export interface IStarship {
-    cargo_hold_size: number;
-    position: string;
-}
-
-export interface IGameData {
-    game_duration: number;
-    initial_credits: number;
-    items: string[];
-    planets: IDictionary<IPlanet>;
-    starships: IDictionary<IStarship>;
-}
+import {IGameData} from "./gameData.js";
 
 export class GameDataParser {
     public static parse(): IGameData {

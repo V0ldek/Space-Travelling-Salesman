@@ -1,22 +1,15 @@
-import {View} from "../view.js";
 import {ITemplateFactory} from "../../Templates/templateFactory.js";
 import {IDictionary} from "../../dictionary.js";
-import {IStarshipCardInfo} from "../../Starships/starship.js";
+import {IStarshipCardInfo} from "../../Starships/starshipCardInfo.js";
+import {RemovableView} from "../removableView.js";
 
-export class PlanetStarshipView extends View {
+export class PlanetStarshipView extends RemovableView {
     private readonly starshipCardInfo: IStarshipCardInfo;
 
-    public constructor(
-        starshipCardInfo: IStarshipCardInfo,
-        templateFactory: ITemplateFactory,
-        root: HTMLElement) {
+    public constructor(starshipCardInfo: IStarshipCardInfo, root: HTMLElement, templateFactory: ITemplateFactory) {
         super("planet-starship", templateFactory, root);
         this.starshipCardInfo = starshipCardInfo;
         this.setModalData();
-    }
-
-    public remove() {
-        this.renderedTemplate.remove();
     }
 
     protected getData(): IDictionary<string> {
