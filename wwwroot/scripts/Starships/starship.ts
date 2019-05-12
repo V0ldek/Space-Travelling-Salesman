@@ -1,6 +1,6 @@
 import {IStarship} from "../GameData/gameDataParser.js";
 import {ITemplateFactory} from "../Templates/templateFactory.js";
-import {IPositionInfo, Position} from "../GameSystem/position.js";
+import {Point} from "../GameSystem/point.js";
 import {IPlanetCardInfo} from "../Planets/planet.js";
 import {CargoHold} from "./cargoHold.js";
 import {StarshipCardView} from "../Views/starshipCardView.js";
@@ -12,7 +12,7 @@ export interface IStarshipCardInfo {
     getName(): string;
     getDestinationPlanetName(): string;
     getEta(): string;
-    getPosition(): IPositionInfo;
+    getPosition(): Point;
 }
 
 export class Starship implements IStarshipCardInfo, IUpdateable {
@@ -20,10 +20,10 @@ export class Starship implements IStarshipCardInfo, IUpdateable {
 
     private readonly name: string;
     private readonly destinationPlanet: IPlanetCardInfo;
-    private readonly position: Position;
     private readonly cargoHold: CargoHold;
     private readonly planetRepository: IPlanetRepository;
     private readonly cardView: StarshipCardView;
+    private position: Point;
 
     public constructor(
         name: string,
@@ -34,10 +34,14 @@ export class Starship implements IStarshipCardInfo, IUpdateable {
         this.cargoHold = new CargoHold(data.cargo_hold_size);
         this.planetRepository = planetRepository;
         this.destinationPlanet = planetRepository.getPlanetByName(data.position);
-        this.position = new Position(
+        this.position = new Point(
             this.destinationPlanet.getPosition().getX(),
             this.destinationPlanet.getPosition().getY());
         this.cardView = new StarshipCardView(this, templateFactory);
+
+        if(name == "Millenium Falcon") {
+            this.destinationPlanet = planetRepository.getPlanetByName("Alderaan");
+        }
     }
 
     public getDestinationPlanetName(): string {
@@ -45,8 +49,8 @@ export class Starship implements IStarshipCardInfo, IUpdateable {
     }
 
     public getEta(): string {
-        const euclideanDifference = this.position.euclideanDistanceTo(this.destinationPlanet.getPosition());
-        const ticks = Math.ceil(euclideanDifference / Starship.distancePerTick);
+        const euclideanDistance = this.getDistanceToDestination();
+        const ticks = Math.ceil(euclideanDistance / Starship.distancePerTick);
         return ticks > 0 ? ` in ${GameClock.ticksToTimeString(ticks)}` : "";
     }
 
@@ -54,11 +58,32 @@ export class Starship implements IStarshipCardInfo, IUpdateable {
         return this.name;
     }
 
-    public getPosition(): IPositionInfo {
+    public getPosition(): Point {
         return this.position;
     }
 
     public update(): void {
+        this.moveTowardsDestination();
         this.cardView.update();
+    }
+
+    private moveTowardsDestination(): void {
+        const euclideanDistance = this.getDistanceToDestination();
+        if(euclideanDistance == 0) {
+            return;
+        }
+        if(euclideanDistance < Starship.distancePerTick) {
+            this.position = this.destinationPlanet.getPosition();
+            return;
+        }
+        const pointDifference = this.position.subtract(this.destinationPlanet.getPosition());
+        const deltaX = -pointDifference.getX() * Starship.distancePerTick / euclideanDistance;
+        const deltaY = -pointDifference.getY() * Starship.distancePerTick / euclideanDistance;
+
+        this.position = this.position.add(new Point(deltaX, deltaY));
+    }
+
+    private getDistanceToDestination(): number {
+        return this.position.euclideanDistanceTo(this.destinationPlanet.getPosition());
     }
 }

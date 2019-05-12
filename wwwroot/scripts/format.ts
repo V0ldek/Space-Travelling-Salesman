@@ -1,4 +1,4 @@
-import {IPositionInfo} from "./GameSystem/position.js";
+import {Point} from "./GameSystem/point.js";
 
 export class Format {
     public static padLeft(source: string, padding: string, length: number) {
@@ -9,17 +9,21 @@ export class Format {
         return result;
     }
 
-    public static padNumberToNDigits(number: number, digits: number) {
-        return Format.padLeft(number.toString(), "0", digits);
+    public static padNumberToNDigits(number: string, digits: number) {
+        return Format.padLeft(number, "0", digits);
     }
 
     public static minutesAndSecondsToTimeString(minutes: number, seconds: number) {
-        return `${Format.padNumberToNDigits(minutes, 2)}:${Format.padNumberToNDigits(seconds, 2)}`;
+        const formattedMinutes = Format.padNumberToNDigits(minutes.toString(), 2);
+        const formattedSeconds = Format.padNumberToNDigits(seconds.toString(), 2);
+        return `${formattedMinutes}:${formattedSeconds}`;
     }
 
-    public static positionToString(position: IPositionInfo) {
-        return `${Format.padNumberToNDigits(position.getX(), 3)}`+
-               `, ${Format.padNumberToNDigits(position.getY(), 3)}`;
+    public static positionToString(position: Point) {
+        const x = position.getX().toFixed(2);
+        const y = position.getY().toFixed(2);
+        return `${Format.padNumberToNDigits(x, 5)}`+
+               `, ${Format.padNumberToNDigits(y, 5)}`;
     }
 
     public static sanitizeSelectorQuery(query: string) {

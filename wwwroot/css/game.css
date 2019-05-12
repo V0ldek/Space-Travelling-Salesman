@@ -161,8 +161,8 @@ ul {
     grid-template-columns: 25% 25% 25% 25%;
     grid-template-areas:
             "icon name name position"
-            "goods-title goods-title ships-title ships-title"
-            "goods goods ships ships";
+            "goods-title goods-title starships-title starships-title"
+            "goods goods starships starships";
 
     align-items: center;
     justify-items: center;
@@ -192,7 +192,7 @@ ul {
 }
 
 .planet-screen .planet-ships-title {
-    grid-area: ships-title;
+    grid-area: starships-title;
 }
 
 .planet-screen .planet-goods {
@@ -229,8 +229,8 @@ ul {
     border-top: 2px solid #efefef;
 }
 
-.planet-screen .planet-ships {
-    grid-area: ships;
+.planet-screen .planet-starships {
+    grid-area: starships;
     width: 100%;
     height: 100%;
     margin: auto;
@@ -238,7 +238,7 @@ ul {
     padding: 0 2.5%;
 }
 
-.planet-screen .planet-ships .card {
+.planet-screen .planet-starships .card {
     grid-template-areas: "image name name";
 }
 

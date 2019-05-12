@@ -1,5 +1,5 @@
 import {IItemStore, IPlanet} from "../GameData/gameDataParser.js";
-import {IPositionInfo, Position} from "../GameSystem/position.js";
+import {Point} from "../GameSystem/point.js";
 import {IDictionary} from "../dictionary.js";
 import {ItemStore} from "./itemStore.js";
 import {ITemplateFactory} from "../Templates/templateFactory.js";
@@ -8,12 +8,12 @@ import {PlanetCardView} from "../Views/planetCardView.js";
 
 export interface IPlanetCardInfo {
     getName(): string;
-    getPosition(): IPositionInfo;
+    getPosition(): Point;
 }
 
 export class Planet implements IPlanetCardInfo, IUpdateable {
     private readonly name: string;
-    private readonly position: Position;
+    private readonly position: Point;
     private readonly itemStores: IDictionary<ItemStore> = {};
     private readonly templateFactory: ITemplateFactory;
     private readonly cardView: PlanetCardView;
@@ -21,7 +21,7 @@ export class Planet implements IPlanetCardInfo, IUpdateable {
     public constructor(name: string, data: IPlanet, templateFactory: ITemplateFactory) {
         this.name = name;
         this.templateFactory = templateFactory;
-        this.position = new Position(data.x, data.y);
+        this.position = new Point(data.x, data.y);
         this.loadItemStores(data.available_items);
         this.cardView = new PlanetCardView(this, templateFactory);
     }
@@ -30,7 +30,7 @@ export class Planet implements IPlanetCardInfo, IUpdateable {
         return this.name;
     }
 
-    public getPosition(): IPositionInfo {
+    public getPosition(): Point {
         return this.position;
     }
 
