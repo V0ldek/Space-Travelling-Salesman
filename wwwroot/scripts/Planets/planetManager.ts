@@ -5,12 +5,14 @@ import {ITemplateFactory} from "../Templates/templateFactory.js";
 import {IUpdateable} from "../GameSystem/updateable.js";
 
 export interface ISpacedockRepository {
+    getAllSpacedockNames(): string[];
     getSpacedockByName(name: string): ISpacedock;
 }
 
 export class PlanetManager implements IUpdateable, ISpacedockRepository {
     private readonly planets: IDictionary<Planet> = {};
     private readonly templateFactory: ITemplateFactory;
+    private nextId: number = 1;
 
     public constructor(planets: IDictionary<IPlanet>, templateFactory: ITemplateFactory) {
         this.templateFactory = templateFactory;
@@ -19,6 +21,12 @@ export class PlanetManager implements IUpdateable, ISpacedockRepository {
 
     public update(): void {
         Dictionary.forEach(this.planets, (_, p) => p.update());
+    }
+
+    public getAllSpacedockNames(): string[] {
+        const result: string[] = [];
+        Dictionary.forEach(this.planets,  (k, _) => result.push(k));
+        return result;
     }
 
     public getSpacedockByName(name: string): Planet {
@@ -30,6 +38,7 @@ export class PlanetManager implements IUpdateable, ISpacedockRepository {
     }
 
     private createPlanetFromData(key: string, planetData: IPlanet) {
-        this.planets[key] = new Planet(key, planetData, this.templateFactory);
+        this.planets[key] = new Planet(this.nextId, key, planetData, this.templateFactory);
+        ++this.nextId;
     }
 }

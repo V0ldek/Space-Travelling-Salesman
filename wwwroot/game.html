@@ -28,7 +28,7 @@
 </header>
 <main id="game-view">
     <template id="template-planet-card">
-        <li class="card planet-card modal-trigger template-root" data-target="planetname-planet-modal">
+        <li class="card planet-card modal-trigger template-root" data-target="planet-modal-id">
             <img src="./img/planet.svg" class="planet-icon" alt="planet">
             <p class="planet-name text-cyan"><span class="data-name"></span></p>
             <p class="planet-coordinates"><span class="data-position"></span></p>
@@ -38,7 +38,7 @@
 
     </ul>
     <template id="template-starship-card">
-        <li class="card starship-card modal-trigger template-root" data-target="starshipname-starship-modal">
+        <li class="card starship-card modal-trigger template-root" data-target="starship-modal-id">
             <img src="img/starship.svg" class="starship-icon" alt="starship">
             <p class="starship-name text-cyan"><span class="data-name"></span></p>
             <div class="starship-position">
@@ -52,7 +52,7 @@
     </ul>
 </main>
 <template id="template-planet-modal">
-    <div id="planetname-planet-modal" class="modal template-root" hidden>
+    <div id="planet-modal-id" class="modal template-root" hidden>
         <article class="planet-screen modal-content">
             <img src="./img/planet.svg" class="planet-icon" alt="planet">
             <h2 class="planet-name text-cyan"><span class="data-name"></span></h2>
@@ -89,7 +89,7 @@
     </tr>
 </template>
 <template id="template-planet-starship">
-    <li class="card starship-card modal-trigger template-root" data-target="starshipname-starship-modal">
+    <li class="card starship-card modal-trigger template-root" data-target="starship-modal-id">
         <img src="img/starship.svg" class="starship-icon" alt="starship">
         <p class="starship-name text-cyan"><span class="data-name"></span></p>
     </li>
@@ -98,7 +98,7 @@
 
 </div>
 <template id="template-starship-modal">
-    <div id="starshipname-starship-modal" class="modal template-root" hidden>
+    <div id="starship-modal-id" class="modal template-root" hidden>
         <article class="starship-screen modal-content">
             <img src="./img/starship.svg" class="starship-icon" alt="starship">
             <h2 class="starship-name text-cyan"><span class="data-name"></span></h2>
@@ -125,6 +125,9 @@
         </article>
     </div>
 </template>
+<div class="render-starship-modal">
+
+</div>
 <template id="template-starship-cargo">
     <div class="template-root">
         <h3 class="starship-cargo-title">Cargo</h3>

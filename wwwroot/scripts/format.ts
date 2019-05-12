@@ -25,10 +25,4 @@ export class Format {
         return `${Format.padNumberToNDigits(x, 5)}`+
                `, ${Format.padNumberToNDigits(y, 5)}`;
     }
-
-    public static sanitizeSelectorQuery(query: string) {
-        const regexString = /['!@$^%&*#()\[\]{}.<>;:?`\\=]/g;
-        const regex = new RegExp(regexString);
-        return query.replace(regex, "\\$&");
-    }
 }

@@ -51,7 +51,7 @@ export class PlanetModalView extends View {
     }
 
     private setModalData(): void {
-        this.renderedTemplate.getElement().id = `${this.planetInfo.getName()}-planet-modal`;
+        this.renderedTemplate.getElement().id = `planet-modal-${this.planetInfo.getId()}`;
     }
 
     private createItemStoreViews(): void {

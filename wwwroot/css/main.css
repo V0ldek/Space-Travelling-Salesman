@@ -11,6 +11,10 @@ body {
     font-family: "Segoe UI", sans-serif;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 /* Main styles
 -------------------------------------------------- */
 
@@ -128,12 +132,19 @@ h1 {
     padding-right: 5%;
 }
 
-.button-cyan:hover {
+.button-cyan[disabled],
+.button-cyan[disabled]:hover,
+.button-cyan[disabled]:active {
+    background-color: #3e5757;
+    border: 2px solid #1e2727;
+}
+
+.button-cyan:not([disabled]):hover {
     background-color: #0ed7d7;
     cursor: pointer;
 }
 
-.button-cyan:active {
+.button-cyan:not([disabled]):active {
     background-color: #0e7777;
     box-shadow: 0 0 0 0.2rem rgba(14, 119, 119, 0.5)
 }

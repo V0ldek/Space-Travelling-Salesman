@@ -1,3 +1,7 @@
+export interface ICargoHoldInfo {
+
+}
+
 export class CargoHold {
     private readonly capacity: number;
 

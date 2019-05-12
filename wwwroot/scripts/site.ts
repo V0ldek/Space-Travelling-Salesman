@@ -1,13 +1,10 @@
 import { Game } from "./GameSystem/game.js";
-import {Format} from "./format.js";
 
 export const game = new Game();
 
 document.querySelectorAll(".modal-trigger").forEach(modalTrigger => {
     const targetId = modalTrigger.getAttribute("data-target");
-    const query = Format.sanitizeSelectorQuery(targetId);
-    const target = document.querySelector(`#${query}`);
-    console.warn(query);
+    const target = document.querySelector(`#${targetId}`);
     modalTrigger.addEventListener("click", () => {
         target.removeAttribute("hidden");
     });

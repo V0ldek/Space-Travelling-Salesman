@@ -9,6 +9,7 @@ import {PlanetModalView} from "../Views/Planets/planetModalView.js";
 import {IStarshipCardInfo} from "../Starships/starship.js";
 
 export interface IPlanetCardInfo {
+    getId(): number,
     getName(): string;
     getPosition(): Point;
 }
@@ -23,6 +24,7 @@ export interface ISpacedock extends IPlanetCardInfo {
 }
 
 export class Planet implements IPlanetInfo, ISpacedock, IUpdateable {
+    private readonly id: number;
     private readonly name: string;
     private readonly position: Point;
     private readonly itemStores: IDictionary<ItemStore> = {};
@@ -30,13 +32,18 @@ export class Planet implements IPlanetInfo, ISpacedock, IUpdateable {
     private readonly cardView: PlanetCardView;
     private readonly modalView: PlanetModalView;
 
-    public constructor(name: string, data: IPlanet, templateFactory: ITemplateFactory) {
+    public constructor(id: number, name: string, data: IPlanet, templateFactory: ITemplateFactory) {
+        this.id = id;
         this.name = name;
         this.templateFactory = templateFactory;
         this.position = new Point(data.x, data.y);
         this.loadItemStores(data.available_items);
         this.cardView = new PlanetCardView(this, templateFactory);
         this.modalView = new PlanetModalView(this, templateFactory);
+    }
+
+    public getId(): number {
+        return this.id;
     }
 
     public getName(): string {

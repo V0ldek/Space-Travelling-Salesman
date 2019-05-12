@@ -18,7 +18,7 @@ export class PlanetCardView extends View {
     private setModalData(): void {
         this.renderedTemplate.getElement().setAttribute(
             "data-target",
-            `${this.planetCardInfo.getName()}-planet-modal`);
+            `planet-modal-${this.planetCardInfo.getId()}`);
     }
 
     protected getData(): IDictionary<string> {

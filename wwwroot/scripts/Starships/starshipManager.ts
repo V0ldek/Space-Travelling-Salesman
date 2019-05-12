@@ -9,6 +9,7 @@ export class StarshipManager implements IUpdateable {
     private readonly starships: IDictionary<Starship> = {};
     private readonly templateFactory: ITemplateFactory;
     private readonly planetRepository: ISpacedockRepository;
+    private nextId: number = 1;
 
     public constructor(
         starships: IDictionary<IStarship>,
@@ -28,6 +29,7 @@ export class StarshipManager implements IUpdateable {
     }
 
     private createStarshipFromData(key: string, starshipData: IStarship) {
-        this.starships[key] = new Starship(key, starshipData, this.planetRepository, this.templateFactory);
+        this.starships[key] = new Starship(this.nextId, key, starshipData, this.planetRepository, this.templateFactory);
+        ++this.nextId;
     }
 }
