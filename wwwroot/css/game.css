@@ -415,3 +415,46 @@ ul {
 .template-root {
     visibility: visible;
 }
+
+/* Game over
+-------------------------------------------------- */
+
+.game-over-screen {
+    margin: 8% auto;
+    height: 65vh;
+    width: 85vw;
+    padding: 2%;
+
+    display: grid;
+    grid-template-rows: 50% 30% 20%;
+    grid-template-columns: auto;
+    grid-template-areas:
+            "title"
+            "text"
+            "exit-button";
+
+    align-items: center;
+    justify-items: center;
+}
+
+.game-over-screen .game-over-title {
+    font-size: 400%;
+    grid-area: title;
+}
+
+.game-over-screen .game-over-text {
+    font-size: 200%;
+    grid-area: text;
+}
+
+.game-over-screen .exit-to-start-button {
+    font-size: 200%;
+    grid-area: exit-button;
+}
+
+@media (min-width: 768px) {
+    .game-over-screen {
+        height: 50vh;
+        width: 30vw;
+    }
+}

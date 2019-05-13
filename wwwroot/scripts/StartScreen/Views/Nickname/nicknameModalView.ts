@@ -7,7 +7,7 @@ export class NicknameModalView extends ModalView {
     public constructor(templateFactory: ITemplateFactory) {
         super("nickname-modal", "nickname-modal", templateFactory);
         this.setInputValueToCurrentNickname();
-        this.setButtonBehaviour();
+        this.setSubmitBehaviour();
     }
 
     protected getData(): IDictionary<string> {
@@ -16,17 +16,19 @@ export class NicknameModalView extends ModalView {
 
     private setInputValueToCurrentNickname() {
         const inputElement = this.getInputElement();
-        if(NicknameManager.getCurrentNickname()) {
+        if (NicknameManager.getCurrentNickname()) {
             inputElement.value = NicknameManager.getCurrentNickname();
         }
     }
 
-    private setButtonBehaviour() {
+    private setSubmitBehaviour() {
         const inputElement = this.getInputElement();
-        const buttonElement = this.getButtonElement();
-        buttonElement.addEventListener("click", () => {
-           NicknameManager.setCurrentNickname(inputElement.value);
-           window.location.href = "./game.html";
+        const formElement = this.getFormElement();
+        formElement.addEventListener("submit", e => {
+            console.log("submit");
+            NicknameManager.setCurrentNickname(inputElement.value);
+            window.location.href = "./game.html";
+            e.preventDefault();
         });
     }
 
@@ -34,7 +36,7 @@ export class NicknameModalView extends ModalView {
         return this.renderedTemplate.getElement().querySelector("input.nickname-input");
     }
 
-    private getButtonElement(): HTMLButtonElement {
-        return this.renderedTemplate.getElement().querySelector("button.submit-nickname-button");
+    private getFormElement(): HTMLFormElement {
+        return this.renderedTemplate.getElement().querySelector("form.nickname-form");
     }
 }

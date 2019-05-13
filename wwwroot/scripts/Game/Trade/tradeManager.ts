@@ -73,42 +73,49 @@ export class TradeManager {
     }
 
     public commitTransaction(): void {
-        Dictionary.forEach(this.tradeItems, (_, i) => this.commitItemTransaction(i));
-        this.playerState.changeCredits(this.tradeValue);
-        this.reset();
+        Dictionary.forEach(this.tradeItems, k => this.commitTransactionForItem(k));
+    }
+
+    public commitTransactionForItem(itemName: string) {
+        const item = this.tradeItems[itemName];
+        this.starshipCargo.setAmountOfItem(item.getName(), item.getStarshipAmount());
+        this.spacedock.setAmountOfItem(item.getName(), item.getSpacedockAmount());
+        this.playerState.changeCredits(item.getTradeValue());
+        this.resetTradeItem(item);
+    }
+
+    public reset() {
+        Dictionary.forEach(this.tradeItems, (_, i) => this.resetTradeItem(i));
+    }
+
+    public resetTradeItem(item: TradeItem) {
+        this.tradeValue -= item.getTradeValue();
+        this.deltaStarshipCargoSize -= item.getDeltaStarshipAmount();
+        this.createTradeItem(item.getName());
+        this.updateSubscribers();
     }
 
     public subscribeToChanges(updateable: IUpdateable) {
         this.updateables.push(updateable);
     }
 
-    public reset() {
-        this.tradeValue = 0;
-        this.deltaStarshipCargoSize = 0;
-        this.createTradeItems();
-        this.updateSubscribers();
+    private createTradeItems() {
+        this.spacedock.getItemStores().forEach(i => this.createTradeItem(i.getName()));
     }
 
-    private createTradeItems() {
-        const spacedockItems = Dictionary.fromArray(this.spacedock.getItemStores(), i => i.getName());
+    private createTradeItem(name: string) {
+        const spacedockItem = this.spacedock.getItemStores().filter(i => i.getName() == name)[0];
         const starshipItems = Dictionary.fromArray(this.starshipCargo.getCargoItems(), i => i.getName());
 
-        Dictionary.forEach(spacedockItems, (name, spacedockItem) => {
-            const starshipAmount = starshipItems.hasOwnProperty(name) && starshipItems[name]
-                ? starshipItems[name].getAmount()
-                : 0;
-            this.tradeItems[name] = new TradeItem(
-                name,
-                starshipAmount,
-                spacedockItem.getAmount(),
-                spacedockItem.getBuyPrice(),
-                spacedockItem.getSellPrice());
-        });
-    }
-
-    private commitItemTransaction(item: TradeItem) {
-        this.starshipCargo.setAmountOfItem(item.getName(), item.getStarshipAmount());
-        this.spacedock.setAmountOfItem(item.getName(), item.getSpacedockAmount());
+        const starshipAmount = starshipItems.hasOwnProperty(name) && starshipItems[name]
+            ? starshipItems[name].getAmount()
+            : 0;
+        this.tradeItems[name] = new TradeItem(
+            name,
+            starshipAmount,
+            spacedockItem.getAmount(),
+            spacedockItem.getBuyPrice(),
+            spacedockItem.getSellPrice());
     }
 
     private updateSubscribers(): void {

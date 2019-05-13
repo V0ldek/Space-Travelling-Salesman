@@ -36,12 +36,12 @@ export class Leaderboard {
 
     private parseEntriesFromLocalStorage(): void {
         for(const key in window.localStorage) {
-            if(!Leaderboard.isLeaderboardEntryKey(key)) {
-                return;
+            if(!Storage.isApplicationEntryKey(key) || !Leaderboard.isLeaderboardEntryKey(key)) {
+                continue;
             }
             const entry = JSON.parse(window.localStorage[key]) as LeaderboardEntry;
             if(entry) {
-                this.leaderboardEntries.push(new LeaderboardEntry(entry.getNickname(), entry.getCredits()));
+                this.leaderboardEntries.push(new LeaderboardEntry(entry.nickname, entry.credits));
             }
         }
     }
@@ -60,14 +60,15 @@ export class Leaderboard {
     }
 
     private static addItemToLocalStorage(key: string, value: string): void {
-        if(this.isLeaderboardEntryKey(key)) {
+        const keyWithPrefix = `${Leaderboard.KeyPrefix}:${key}`;
+        if(this.isLeaderboardEntryKey(keyWithPrefix)) {
             this.incrementNumberOfEntriesInLocalStorage();
         }
-        Storage.addItemToLocalStorage(`${Leaderboard.KeyPrefix}:${key}`, value);
+        Storage.addItemToLocalStorage(keyWithPrefix, value);
     }
 
     private static isLeaderboardEntryKey(key: string) {
-        return key.indexOf(`${Leaderboard.KeyPrefix}:${Leaderboard.EntryKeyPrefix}`) === 0;
+        return key.indexOf(`${Leaderboard.KeyPrefix}:${Leaderboard.EntryKeyPrefix}`) >= 0;
     }
 
     private static incrementNumberOfEntriesInLocalStorage(): void {

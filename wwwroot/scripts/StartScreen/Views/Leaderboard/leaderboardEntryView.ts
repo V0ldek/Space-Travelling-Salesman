@@ -14,14 +14,15 @@ export class LeaderboardEntryView extends View {
         super("leaderboard-entry", templateFactory, root);
         this.rank = rank;
         this.leaderboardEntry = leaderboardEntry;
+        console.log(leaderboardEntry);
         this.update();
     }
 
     protected getData(): IDictionary<string> {
         return {
             rank: this.rank.toString(),
-            nickname: this.leaderboardEntry.getNickname(),
-            credits: this.leaderboardEntry.getCredits().toString()
+            nickname: this.leaderboardEntry.nickname,
+            credits: this.leaderboardEntry.credits.toString()
         };
     }
 }

@@ -15,7 +15,7 @@ export class StarshipTradeItemView extends View {
         super("starship-trade-item", templateFactory, root);
         this.tradeManager = tradeManager;
         this.itemName = itemName;
-        this.setInputBehaviour();
+        this.setInputAndButtonBehaviour();
     }
 
     public update(): void {
@@ -34,19 +34,10 @@ export class StarshipTradeItemView extends View {
         };
     }
 
-    private setInputBehaviour(): void {
-        const inputElement = this.getInputElement();
-        const buyMaxElement = this.renderedTemplate.getElement().querySelector("button.starship-trade-item-buy-max");
-        const sellAllElement = this.renderedTemplate.getElement().querySelector("button.starship-trade-item-sell-all");
-        inputElement.addEventListener("input", () => {
-            this.tradeManager.setStarshipAmountForItem(this.itemName, parseInt(inputElement.value));
-        });
-        buyMaxElement.addEventListener("click", () => {
-            this.tradeManager.setStarshipAmountForItem(this.itemName, parseInt(inputElement.max));
-        });
-        sellAllElement.addEventListener("click", () => {
-           this.tradeManager.setStarshipAmountForItem(this.itemName, 0);
-        });
+    private setInputAndButtonBehaviour(): void {
+        this.setInputBehaviour();
+        this.setBuyMaxButtonBehaviour();
+        this.setSellAllButtonBehaviour();
     }
 
     private updateInputMaxValue(): void {
@@ -63,7 +54,39 @@ export class StarshipTradeItemView extends View {
         return this.tradeManager.getTradeItemInfoByName(this.itemName);
     }
 
+    private setInputBehaviour() {
+        const inputElement = this.getInputElement();
+        inputElement.addEventListener("input", () => {
+            this.tradeManager.setStarshipAmountForItem(this.itemName, parseInt(inputElement.value));
+        });
+    }
+
+    private setBuyMaxButtonBehaviour() {
+        const inputElement = this.getInputElement();
+        const buyMaxElement = this.getBuyMaxButton();
+        buyMaxElement.addEventListener("click", () => {
+            this.tradeManager.setStarshipAmountForItem(this.itemName, parseInt(inputElement.max));
+            this.tradeManager.commitTransactionForItem(this.itemName);
+        });
+    }
+
+    private setSellAllButtonBehaviour() {
+        const sellAllElement = this.getSellAllButton();
+        sellAllElement.addEventListener("click", () => {
+            this.tradeManager.setStarshipAmountForItem(this.itemName, 0);
+            this.tradeManager.commitTransactionForItem(this.itemName);
+        });
+    }
+
     private getInputElement(): HTMLInputElement {
         return this.renderedTemplate.getElement().querySelector("input");
+    }
+
+    private getBuyMaxButton(): HTMLButtonElement {
+        return this.renderedTemplate.getElement().querySelector("button.starship-trade-item-buy-max")
+    }
+
+    private getSellAllButton(): HTMLButtonElement {
+        return this.renderedTemplate.getElement().querySelector("button.starship-trade-item-sell-all");
     }
 }

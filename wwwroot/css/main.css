@@ -190,7 +190,8 @@ input[type=text] {
 /* Modal
 -------------------------------------------------- */
 
-.modal {
+.modal,
+.modal-permanent {
     position: fixed;
     z-index: 1;
     left: 0;

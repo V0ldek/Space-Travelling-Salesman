@@ -213,6 +213,22 @@
         </td>
     </tr>
 </template>
+<template id="template-game-over-screen">
+    <div class="modal-permanent template-root">
+        <article class="game-over-screen modal-content">
+            <h2 class="game-over-title text-cyan">Game over!</h2>
+            <p class="game-over-text">
+                Your final credits: <span class="data-credits text-cyan"></span> &#x20A1
+            </p>
+            <button class="exit-to-start-button button-cyan rounded" type="button">
+                Exit to start screen
+            </button>
+        </article>
+    </div>
+</template>
+<div class="render-game-over-screen">
+
+</div>
 <footer class="border-top">
     <p class="text-bleak">Space Travelling Salesman - &copy; 2019 Mateusz Gienieczko</p>
     <p class="text-bleak">Icons provided by FontAwesome under

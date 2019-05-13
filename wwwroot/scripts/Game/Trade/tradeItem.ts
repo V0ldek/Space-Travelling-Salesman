@@ -59,12 +59,16 @@ export class TradeItem implements ITradeItemInfo {
     }
 
     public getTradeValue(): number {
-        const delta = this.starshipAmount - this.originalStarshipAmount;
+        const delta = this.getDeltaStarshipAmount();
         if(delta < 0) {
             return -(delta * this.sellPrice);
         }
         else {
             return -(delta * this.buyPrice);
         }
+    }
+
+    public getDeltaStarshipAmount() {
+        return this.starshipAmount - this.originalStarshipAmount;
     }
 }

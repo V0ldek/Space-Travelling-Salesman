@@ -8,6 +8,7 @@ import {LeaderboardEntry} from "../../Leaderboard/leaderboardEntry.js";
 export class LeaderboardView extends View {
     private static readonly Size: number = 10;
     private readonly leaderboard: Leaderboard;
+    // noinspection JSMismatchedCollectionQueryUpdate
     private readonly leaderboardEntryViews: LeaderboardEntryView[] = [];
 
     public constructor(leaderboard: Leaderboard, templateFactory: ITemplateFactory) {
@@ -18,10 +19,11 @@ export class LeaderboardView extends View {
 
     private createLeaderboardEntryViews(): void {
         const leaderboardEntries = this.leaderboard.getEntries().sort(
-            (a, b) => b.getCredits() - a.getCredits());
+            (a, b) => b.credits - a.credits);
         for(let i = leaderboardEntries.length; i < LeaderboardView.Size; ++i) {
             leaderboardEntries.push(new LeaderboardEntry("-", 0));
         }
+        console.log(JSON.stringify(leaderboardEntries));
         leaderboardEntries.splice(0, LeaderboardView.Size).forEach(
             (e, i) => this.createLeaderboardEntryView(e, i + 1));
     }
