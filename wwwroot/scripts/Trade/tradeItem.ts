@@ -4,6 +4,7 @@ export class TradeItem implements ITradeItemInfo {
     private readonly name: string;
     private readonly buyPrice: number;
     private readonly sellPrice: number;
+    private readonly originalStarshipAmount: number;
     private starshipAmount: number;
     private spacedockAmount: number;
 
@@ -13,6 +14,7 @@ export class TradeItem implements ITradeItemInfo {
                        buyPrice: number,
                        sellPrice: number) {
         this.name = name;
+        this.originalStarshipAmount = starshipAmount;
         this.starshipAmount = starshipAmount;
         this.spacedockAmount = spacedockAmount;
         this.buyPrice = buyPrice;
@@ -54,5 +56,15 @@ export class TradeItem implements ITradeItemInfo {
 
     public getSellPrice(): number {
         return this.sellPrice;
+    }
+
+    public getTradeValue(): number {
+        const delta = this.starshipAmount - this.originalStarshipAmount;
+        if(delta < 0) {
+            return -(delta * this.sellPrice);
+        }
+        else {
+            return -(delta * this.buyPrice);
+        }
     }
 }

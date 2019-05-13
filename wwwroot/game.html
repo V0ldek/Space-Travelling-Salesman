@@ -116,10 +116,10 @@
                     Travel
                 </button>
             </form>
-            <div class="render-starship-cargo starship-cargo-area">
+            <div class="render-starship-cargo starship-cargo-area render-hide">
 
             </div>
-            <div class="render-starship-trade starship-cargo-area">
+            <div class="render-starship-trade starship-cargo-area render-hide">
 
             </div>
         </article>
@@ -177,15 +177,21 @@
                 </tbody>
             </table>
         </div>
-        <label class="starship-trade-title">
-            Credits:
-        </label>
         <p class="starship-trade-sum">
+            <label>Credits:</label>
             <span class="data-credits"></span> (<span class="data-balance"></span>) &#x20A1
         </p>
-        <button type="button" class="starship-trade-submit button-cyan rounded">
-            Trade!
-        </button>
+        <div class="starship-trade-control">
+            <button type="button" class="starship-trade-submit button-cyan rounded">
+                Trade
+            </button>
+            <button type="button" class="starship-trade-sell-all button-red rounded">
+                Sell all
+            </button>
+            <button type="button" class="starship-trade-reset button-red rounded">
+                Reset
+            </button>
+        </div>
     </div>
 </template>
 <template id="template-starship-trade-item">
@@ -196,8 +202,14 @@
         <td><span class="data-sell-price"></span> &#x20A1</td>
         <td>
             <label>
-                <input class="starship-trade-input" type="number" min="0" max="" value="">
+                <input class="starship-trade-item-input" type="number" min="0" max="" value="">
             </label>
+            <button class="starship-trade-item-buy-max button-cyan rounded-small" type="button">
+                Buy max
+            </button>
+            <button class="starship-trade-item-sell-all button-red rounded-small" type="button">
+                Sell all
+            </button>
         </td>
     </tr>
 </template>

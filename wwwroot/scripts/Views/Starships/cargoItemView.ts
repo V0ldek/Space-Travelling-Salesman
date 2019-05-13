@@ -1,9 +1,9 @@
-import {RemovableView} from "../removableView.js";
 import {ICargoItemInfo} from "../../Starships/cargoItemInfo.js";
 import {ITemplateFactory} from "../../Templates/templateFactory.js";
 import {IDictionary} from "../../dictionary.js";
+import {View} from "../view.js";
 
-export class CargoItemView extends RemovableView {
+export class CargoItemView extends View {
     private readonly cargoItemInfo: ICargoItemInfo;
 
     public constructor(cargoItemInfo: ICargoItemInfo, root: HTMLElement, templateFactory: ITemplateFactory) {

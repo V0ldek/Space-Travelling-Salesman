@@ -5,24 +5,22 @@ import {GameDataParser} from "../GameData/gameDataParser.js";
 import {StarshipManager} from "../Starships/starshipManager.js";
 import {PlanetManager} from "../Planets/planetManager.js";
 import {GameClock} from "./Clock/gameClock.js";
-import {GameSummaryView} from "../Views/gameSummaryView.js";
 
 export class Game {
     private readonly gameData: IGameData;
     private readonly templateFactory: TemplateFactory;
     private readonly playerState: PlayerState;
     private readonly gameClock: GameClock;
-    private readonly gameSummaryView: GameSummaryView;
     private readonly planetManager: PlanetManager;
     private readonly starshipManager: StarshipManager;
 
     public constructor() {
         this.gameData = GameDataParser.parse();
         this.templateFactory = new TemplateFactory();
-        this.playerState = new PlayerState(this.gameData.initial_credits, "V0ldek");
         this.gameClock = new GameClock(this.gameData.game_duration);
-        this.gameSummaryView = new GameSummaryView(
-            this.playerState,
+        this.playerState = new PlayerState(
+            this.gameData.initial_credits,
+            "V0ldek",
             this.gameClock,
             this.templateFactory);
         this.planetManager = new PlanetManager(this.gameData.planets, this.playerState, this.templateFactory);
@@ -34,6 +32,6 @@ export class Game {
     private registerUpdates(): void {
         this.gameClock.registerUpdateable(this.starshipManager);
         this.gameClock.registerUpdateable(this.planetManager);
-        this.gameClock.registerUpdateable(this.gameSummaryView);
+        this.gameClock.registerUpdateable(this.playerState);
     }
 }

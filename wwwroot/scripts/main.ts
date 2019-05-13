@@ -3,14 +3,6 @@ import {Game} from "./GameSystem/game.js";
 document.addEventListener("DOMContentLoaded", () => {
     const game = new Game();
 
-    document.querySelectorAll(".modal-trigger").forEach(modalTrigger => {
-        const targetId = modalTrigger.getAttribute("data-target");
-        const target = document.querySelector(`#${targetId}`);
-        modalTrigger.addEventListener("click", () => {
-            target.removeAttribute("hidden");
-        });
-    });
-
     window.addEventListener("click", e => {
         const target = e.target as HTMLLIElement;
 

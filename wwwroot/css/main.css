@@ -82,6 +82,10 @@ h1 {
     color: #4eb7b7;
 }
 
+.text-yellow {
+    color: #b7b70e;
+}
+
 .href-unstyled {
     text-decoration: none;
     color: #efefef;
@@ -152,6 +156,7 @@ h1 {
 .button-red {
     background-color: #b70e0e;
     border: 2px solid #770e0e;
+    color: #cfcfcf;
     padding-left: 5%;
     padding-right: 5%;
 }

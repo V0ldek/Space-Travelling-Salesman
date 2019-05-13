@@ -1,4 +1,3 @@
-import {View} from "../view.js";
 import {Starship} from "../../Starships/starship.js";
 import {ITemplateFactory} from "../../Templates/templateFactory.js";
 import {IDictionary} from "../../dictionary.js";
@@ -7,8 +6,10 @@ import {StarshipMovementForm} from "./starshipMovementForm.js";
 import {StarshipCargoView} from "./starshipCargoView.js";
 import {StarshipTradeView} from "./starshipTradeView.js";
 import {ISpacedockRepository} from "../../Planets/spacedockRepository.js";
+import {GameClock} from "../../GameSystem/Clock/gameClock.js";
+import {ModalView} from "../modalView.js";
 
-export class StarshipModalView extends View {
+export class StarshipModalView extends ModalView {
     private readonly starship: Starship;
     private readonly spacedockRepository: ISpacedockRepository;
     private readonly starshipMovementForm: StarshipMovementForm;
@@ -19,7 +20,7 @@ export class StarshipModalView extends View {
     public constructor(starship: Starship,
                        spacedockRepository: ISpacedockRepository,
                        templateFactory: ITemplateFactory) {
-        super("starship-modal", templateFactory);
+        super("starship-modal", `starship-modal-${starship.getId()}`, templateFactory);
         this.starship = starship;
         this.spacedockRepository = spacedockRepository;
         this.starshipMovementForm = new StarshipMovementForm(this.starship, this.getMovementFormElement());
@@ -28,7 +29,6 @@ export class StarshipModalView extends View {
             this.renderedTemplate.getElement(),
             this.templateFactory);
         this.toggleTradeView();
-        this.setModalData();
         this.update();
     }
 
@@ -45,16 +45,14 @@ export class StarshipModalView extends View {
     }
 
     protected getData(): IDictionary<string> {
+        const eta = this.starship.getEtaToCurrentDestination();
+        const etaString = eta > 0 ? ` in ${GameClock.ticksToTimeString(eta)}` : "";
         return {
             name: this.starship.getName(),
             planet: this.starship.getDestinationName(),
-            eta: this.starship.getEta(),
+            eta: etaString,
             position: Format.positionToString(this.starship.getPosition())
         }
-    }
-
-    private setModalData(): void {
-        this.renderedTemplate.getElement().id = `starship-modal-${this.starship.getId()}`;
     }
 
     private getMovementFormElement(): HTMLFormElement {
@@ -74,7 +72,7 @@ export class StarshipModalView extends View {
     }
 
     private isStarshipMoving() {
-        return this.starship.getEta() !== "";
+        return this.starship.getEtaToCurrentDestination() > 0;
     }
 
     private toggleTradeView() {

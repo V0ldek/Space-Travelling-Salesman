@@ -36,8 +36,16 @@ export class StarshipTradeItemView extends View {
 
     private setInputBehaviour(): void {
         const inputElement = this.getInputElement();
+        const buyMaxElement = this.renderedTemplate.getElement().querySelector("button.starship-trade-item-buy-max");
+        const sellAllElement = this.renderedTemplate.getElement().querySelector("button.starship-trade-item-sell-all");
         inputElement.addEventListener("input", () => {
             this.tradeManager.setStarshipAmountForItem(this.itemName, parseInt(inputElement.value));
+        });
+        buyMaxElement.addEventListener("click", () => {
+            this.tradeManager.setStarshipAmountForItem(this.itemName, parseInt(inputElement.max));
+        });
+        sellAllElement.addEventListener("click", () => {
+           this.tradeManager.setStarshipAmountForItem(this.itemName, 0);
         });
     }
 

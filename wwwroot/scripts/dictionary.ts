@@ -5,7 +5,7 @@ export interface IDictionary<T> {
 export class Dictionary {
     public static forEach<T>(dictionary: IDictionary<T>, action: ((key: string, value: T) => void)): void {
         for (const key in dictionary) {
-            if (dictionary.hasOwnProperty(key) && dictionary[key]) {
+            if (dictionary.hasOwnProperty(key) && dictionary[key] !== null && dictionary[key] !== undefined) {
                 action(key, dictionary[key]);
             }
         }

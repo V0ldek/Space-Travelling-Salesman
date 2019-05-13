@@ -1,4 +1,3 @@
-import {View} from "../view.js";
 import {IPlanetInfo} from "../../Planets/planetInfo.js";
 import {ITemplateFactory} from "../../Templates/templateFactory.js";
 import {Dictionary, IDictionary} from "../../dictionary.js";
@@ -6,16 +5,16 @@ import {Format} from "../../format.js";
 import {PlanetItemStoreView} from "./planetItemStoreView.js";
 import {PlanetStarshipView} from "./planetStarshipView.js";
 import {IStarshipCardInfo} from "../../Starships/starshipCardInfo.js";
+import {ModalView} from "../modalView.js";
 
-export class PlanetModalView extends View {
+export class PlanetModalView extends ModalView {
     private readonly planetInfo: IPlanetInfo;
     private readonly itemStoreViews: PlanetItemStoreView[] = [];
     private readonly starshipViews: IDictionary<PlanetStarshipView> = {};
 
     public constructor(planetInfo: IPlanetInfo, templateFactory: ITemplateFactory) {
-        super(`planet-modal`, templateFactory);
+        super(`planet-modal`, `planet-modal-${planetInfo.getId()}`, templateFactory);
         this.planetInfo = planetInfo;
-        this.setModalData();
         this.createItemStoreViews();
         this.update();
     }
@@ -48,10 +47,6 @@ export class PlanetModalView extends View {
             name: this.planetInfo.getName(),
             position: Format.positionToString(this.planetInfo.getPosition())
         };
-    }
-
-    private setModalData(): void {
-        this.renderedTemplate.getElement().id = `planet-modal-${this.planetInfo.getId()}`;
     }
 
     private createItemStoreViews(): void {

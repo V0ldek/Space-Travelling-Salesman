@@ -6,7 +6,6 @@ import {CargoHold} from "./cargoHold.js";
 import {StarshipCardView} from "../Views/Starships/starshipCardView.js";
 import {ISpacedockRepository} from "../Planets/spacedockRepository.js";
 import {IUpdateable} from "../GameSystem/updateable.js";
-import {GameClock} from "../GameSystem/Clock/gameClock.js";
 import {StarshipModalView} from "../Views/Starships/starshipModalView.js";
 import {IStarshipInfo} from "./starshipInfo.js";
 
@@ -49,10 +48,14 @@ export class Starship implements IStarshipInfo, IUpdateable {
         return this.destinationSpacedock.getName();
     }
 
-    public getEta(): string {
-        const euclideanDistance = this.getDistanceToDestination();
-        const ticks = Math.ceil(euclideanDistance / Starship.distancePerTick);
-        return ticks > 0 ? ` in ${GameClock.ticksToTimeString(ticks)}` : "";
+    public getEtaTo(spacedockName: string): number {
+        const euclideanDistance = this.getDistanceToSpacedock(
+            this.spacedockRepository.getSpacedockByName(spacedockName));
+        return Math.ceil(euclideanDistance / Starship.distancePerTick);
+    }
+
+    public getEtaToCurrentDestination(): number {
+        return this.getEtaTo(this.destinationSpacedock.getName());
     }
 
     public getPosition(): Point {
@@ -64,7 +67,8 @@ export class Starship implements IStarshipInfo, IUpdateable {
     }
 
     public getPossibleDestinations(): string[] {
-        return this.spacedockRepository.getAllSpacedockNames();
+        return this.spacedockRepository.getAllSpacedockNames().filter(
+            d => d !== this.destinationSpacedock.getName());
     }
 
     public moveToDestination(destination: string): void {
@@ -78,7 +82,7 @@ export class Starship implements IStarshipInfo, IUpdateable {
     }
 
     private moveTowardsDestination(): void {
-        const euclideanDistance = this.getDistanceToDestination();
+        const euclideanDistance = this.getDistanceToSpacedock(this.destinationSpacedock);
         if (euclideanDistance == 0) {
             return;
         }
@@ -93,8 +97,8 @@ export class Starship implements IStarshipInfo, IUpdateable {
         this.position = this.position.add(new Point(deltaX, deltaY));
     }
 
-    private getDistanceToDestination(): number {
-        return this.position.euclideanDistanceTo(this.destinationSpacedock.getPosition());
+    private getDistanceToSpacedock(spacedock: ISpacedock): number {
+        return this.position.euclideanDistanceTo(spacedock.getPosition());
     }
 
     private arriveAtDestination(): void {

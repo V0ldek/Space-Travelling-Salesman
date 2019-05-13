@@ -303,7 +303,7 @@ ul {
     grid-template-areas:
             "title title capacity capacity"
             "table table table table"
-            "trade-title trade-sum trade-sum trade-submit";
+            "trade-sum trade-sum trade-control trade-control";
     align-items: center;
     justify-items: center;
     height: 100%;
@@ -326,8 +326,31 @@ ul {
     grid-area: trade-sum;
 }
 
-.starship-cargo .starship-trade-submit {
-    grid-area: trade-submit;
+.starship-cargo .starship-trade-control {
+    grid-area: trade-control;
+}
+
+.starship-trade-control {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 25% 25% 50%;
+    grid-template-areas: "submit sell-all reset";
+    align-items: center;
+    justify-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.starship-trade-control .starship-trade-submit {
+    grid-area: submit;
+}
+
+.starship-trade-control .starship-trade-sell-all {
+    grid-area: sell-all;
+}
+
+.starship-trade-control .starship-trade-reset {
+    grid-area: reset;
 }
 
 .starship-cargo .starship-cargo-table {
@@ -364,12 +387,31 @@ ul {
     border-top: 2px solid #efefef;
 }
 
-.starship-trade-input {
+.starship-trade-item-input {
     width: 15vw;
+    margin-top: 1%;
+}
+
+.starship-trade-item-buy-max,
+.starship-trade-item-sell-all {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    justify-self: center;
 }
 
 @media(min-width: 768px) {
-    .starship-trade-input {
+    .starship-trade-item-input {
         width: 75%;
     }
+}
+
+/* Templates
+-------------------------------------------------- */
+
+.render-hide {
+    visibility: hidden;
+}
+
+.template-root {
+    visibility: visible;
 }

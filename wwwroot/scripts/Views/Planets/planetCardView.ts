@@ -1,24 +1,16 @@
-import {View} from "../view.js";
 import {IPlanetCardInfo} from "../../Planets/planetCardInfo.js";
 import {ITemplateFactory} from "../../Templates/templateFactory.js";
 import {IDictionary} from "../../dictionary.js";
 import {Format} from "../../format.js";
+import {ModalTriggerView} from "../modalTriggerView.js";
 
-export class PlanetCardView extends View {
+export class PlanetCardView extends ModalTriggerView {
     private readonly planetCardInfo: IPlanetCardInfo;
 
     public constructor(planetCardInfo: IPlanetCardInfo, templateFactory: ITemplateFactory) {
-        super("planet-card", templateFactory);
+        super("planet-card", `planet-modal-${planetCardInfo.getId()}`, templateFactory);
         this.planetCardInfo = planetCardInfo;
-
-        this.setModalData();
         this.update();
-    }
-
-    private setModalData(): void {
-        this.renderedTemplate.getElement().setAttribute(
-            "data-target",
-            `planet-modal-${this.planetCardInfo.getId()}`);
     }
 
     protected getData(): IDictionary<string> {

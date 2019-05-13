@@ -20,6 +20,7 @@ export class TradeManager {
         this.starshipCargo = starshipCargo;
         this.playerState = playerState;
         this.createTradeItems();
+        this.subscribeToChanges(this.playerState);
     }
 
     public getPossibleItemNames(): string[] {
@@ -61,27 +62,31 @@ export class TradeManager {
         const tradeItem = this.tradeItems[itemName];
         const delta = amount - tradeItem.getStarshipAmount();
         this.deltaStarshipCargoSize += delta;
-        if(delta > 0) {
-            this.tradeValue -= tradeItem.getBuyPrice() * delta;
-        }
-        else {
-            this.tradeValue += tradeItem.getSellPrice() * -delta;
-        }
+        this.tradeValue -= tradeItem.getTradeValue();
         tradeItem.changeStarshipAmountBy(delta);
+        this.tradeValue += tradeItem.getTradeValue();
         this.updateSubscribers();
+    }
+
+    public setStarshipAmountForAllToZero(): void {
+        Dictionary.forEach(this.tradeItems, k => this.setStarshipAmountForItem(k, 0));
     }
 
     public commitTransaction(): void {
         Dictionary.forEach(this.tradeItems, (_, i) => this.commitItemTransaction(i));
         this.playerState.changeCredits(this.tradeValue);
-        this.tradeValue = 0;
-        this.deltaStarshipCargoSize = 0;
-        this.createTradeItems();
-        this.updateSubscribers();
+        this.reset();
     }
 
     public subscribeToChanges(updateable: IUpdateable) {
         this.updateables.push(updateable);
+    }
+
+    public reset() {
+        this.tradeValue = 0;
+        this.deltaStarshipCargoSize = 0;
+        this.createTradeItems();
+        this.updateSubscribers();
     }
 
     private createTradeItems() {

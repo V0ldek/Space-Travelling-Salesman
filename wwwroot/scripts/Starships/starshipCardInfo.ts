@@ -7,7 +7,7 @@ export interface IStarshipCardInfo {
 
     getDestinationName(): string;
 
-    getEta(): string;
+    getEtaToCurrentDestination(): number;
 
     getPosition(): Point;
 }

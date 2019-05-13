@@ -18,6 +18,10 @@ export abstract class View implements IUpdateable {
         this.renderedTemplate.renderData(this.getData())
     };
 
+    public remove(): void {
+        this.renderedTemplate.remove();
+    }
+
     public toggle(): void {
         this.renderedTemplate.getElement().toggleAttribute("hidden");
     }

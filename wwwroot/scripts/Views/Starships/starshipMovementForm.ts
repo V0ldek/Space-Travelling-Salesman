@@ -1,4 +1,5 @@
 import {Starship} from "../../Starships/starship.js";
+import {GameClock} from "../../GameSystem/Clock/gameClock.js";
 
 export class StarshipMovementForm {
     private readonly starship: Starship;
@@ -14,6 +15,8 @@ export class StarshipMovementForm {
         this.form.toggleAttribute("hidden");
         if (!this.form.hidden) {
             this.getButtonElement().disabled = false;
+            this.removeAllOptions();
+            this.createSelectOptions();
         }
     }
 
@@ -25,10 +28,26 @@ export class StarshipMovementForm {
     private createSelectOptions(): void {
         const select = this.getSelectElement();
         for (const destination of this.starship.getPossibleDestinations()) {
-            const option = document.createElement("option");
-            option.text = destination;
-            option.value = destination;
-            select.options.add(option);
+            select.options.add(this.createOptionForDestination(destination));
+        }
+    }
+
+    private createOptionForDestination(destination: string): HTMLOptionElement {
+        const option = document.createElement("option");
+        option.text = this.createOptionText(destination);
+        option.value = destination;
+        return option;
+    }
+
+    private createOptionText(destination: string): string {
+        const eta = this.starship.getEtaTo(destination);
+        return `${destination} in ${GameClock.ticksToTimeString(eta)}`;
+    }
+
+    private removeAllOptions() {
+        const select = this.getSelectElement();
+        for(let i = select.length - 1; i >= 0; --i) {
+            select.options[i].remove();
         }
     }
 
