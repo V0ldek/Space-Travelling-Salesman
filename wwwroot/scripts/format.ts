@@ -1,4 +1,4 @@
-import {Point} from "./GameSystem/point.js";
+import {Point} from "./Game/GameSystem/point.js";
 
 export class Format {
     public static padLeft(source: string, padding: string, length: number) {

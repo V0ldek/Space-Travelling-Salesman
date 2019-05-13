@@ -1,5 +1,5 @@
 import {View} from "./view.js";
-import {ITemplateFactory} from "../Templates/templateFactory.js";
+import {ITemplateFactory} from "../Game/Templates/templateFactory.js";
 
 export abstract class ModalTriggerView extends View {
     protected constructor(name: string, targetId: string, templateFactory: ITemplateFactory, root: HTMLElement = null) {

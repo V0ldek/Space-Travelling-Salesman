@@ -1,6 +1,6 @@
-import {ITemplateFactory} from "../Templates/templateFactory.js";
-import {RenderedTemplate} from "../Templates/renderedTemplate.js";
-import {IUpdateable} from "../GameSystem/updateable.js";
+import {ITemplateFactory} from "../Game/Templates/templateFactory.js";
+import {RenderedTemplate} from "../Game/Templates/renderedTemplate.js";
+import {IUpdateable} from "../Game/GameSystem/updateable.js";
 import {IDictionary} from "../dictionary.js";
 
 export abstract class View implements IUpdateable {

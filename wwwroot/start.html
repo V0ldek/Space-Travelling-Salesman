@@ -14,86 +14,59 @@
     <h1>Space Travelling Salesman</h1>
 </header>
 <main>
-    <table id="highscore" class="border">
-        <thead>
-        <tr>
-            <th class="border">Rank</th>
-            <th class="border">Nickname</th>
-            <th class="border">Score</th>
+    <template id="template-leaderboard">
+        <table class="leaderboards border template-root">
+            <thead>
+            <tr>
+                <th class="border">Rank</th>
+                <th class="border">Nickname</th>
+                <th class="border">Credits</th>
+            </tr>
+            </thead>
+            <tbody class="render-leaderboard-entry">
+
+            </tbody>
+        </table>
+    </template>
+    <div class="render-leaderboard">
+
+    </div>
+    <template id="template-leaderboard-entry">
+        <tr class="template-root">
+            <td class="border"><span class="data-rank"></span></td>
+            <td class="border"><span class="data-nickname"></span></td>
+            <td class="border"><span class="data-credits"></span> &#x20A1</td>
         </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td class="border">1.</td>
-            <td class="border">V0ldek</td>
-            <td class="border">250000</td>
-        </tr>
-        <tr>
-            <td class="border">2.</td>
-            <td class="border">V0ldek</td>
-            <td class="border">100000</td>
-        </tr>
-        <tr>
-            <td class="border">3.</td>
-            <td class="border">V0ldek</td>
-            <td class="border">50000</td>
-        </tr>
-        <tr>
-            <td class="border">4.</td>
-            <td class="border">V0ldek</td>
-            <td class="border">10000</td>
-        </tr>
-        <tr>
-            <td class="border">5.</td>
-            <td class="border">V0ldek</td>
-            <td class="border">5000</td>
-        </tr>
-        <tr>
-            <td class="border">6.</td>
-            <td class="border">-</td>
-            <td class="border">-</td>
-        </tr>
-        <tr>
-            <td class="border">7.</td>
-            <td class="border">-</td>
-            <td class="border">-</td>
-        </tr>
-        <tr>
-            <td class="border">8.</td>
-            <td class="border">-</td>
-            <td class="border">-</td>
-        </tr>
-        <tr>
-            <td class="border">9.</td>
-            <td class="border">-</td>
-            <td class="border">-</td>
-        </tr>
-        <tr>
-            <td class="border">10.</td>
-            <td class="border">-</td>
-            <td class="border">-</td>
-        </tr>
-        </tbody>
-    </table>
-    <button id="start-button" type="button" class="button-cyan rounded-large">
-        START!
-    </button>
-</main>
-<div id="nickname-modal" class="modal" hidden>
-    <form id="nickname-form" class="modal-content" action="game.html" method="post">
-        <h2>New game</h2>
-        <label id="nickname-input">
-            Enter your nickname:
-            <input name="nickname" type="text" placeholder="Player"/>
-        </label>
-        <button id="submit-nickname-button" type="submit" class="button-cyan rounded">
-            Play
+    </template>
+    <template id="template-nickname-trigger">
+        <button type="button" class="start-button button-cyan rounded-large template-root">
+            START!
         </button>
-    </form>
+    </template>
+    <div class="render-nickname-trigger start-button-container">
+
+    </div>
+</main>
+<template id="template-nickname-modal">
+    <div class="nickname-modal modal template-root" hidden>
+        <form class="nickname-form modal-content">
+            <h2>New game</h2>
+            <label class="nickname-input">
+                Enter your nickname:
+                <input class="nickname-input" name="nickname" type="text" placeholder="Nickname"/>
+            </label>
+            <button type="button" class="submit-nickname-button button-cyan rounded">
+                Play
+            </button>
+        </form>
+    </div>
+</template>
+<div class="render-nickname-modal">
+
 </div>
 <footer class="border-top">
     <p class="text-bleak">Space Travelling Salesman - &copy; 2019 Mateusz Gienieczko</p>
 </footer>
 </body>
-<script src="scripts/start.js" type="text/javascript"></script>
+<script src="scripts/StartScreen/main.js" type="module"></script>
 </html>
