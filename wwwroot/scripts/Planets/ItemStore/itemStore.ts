@@ -28,4 +28,8 @@ export class ItemStore implements IItemStoreInfo {
     public getAmount(): number {
         return this.amount;
     }
+
+    public setAmount(amount: number): void {
+        this.amount = amount;
+    }
 }

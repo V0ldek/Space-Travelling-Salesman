@@ -8,7 +8,6 @@ import {ISpacedockRepository} from "../Planets/spacedockRepository.js";
 import {IUpdateable} from "../GameSystem/updateable.js";
 import {GameClock} from "../GameSystem/Clock/gameClock.js";
 import {StarshipModalView} from "../Views/Starships/starshipModalView.js";
-import {ICargoHoldInfo} from "./cargoHoldInfo.js";
 import {IStarshipInfo} from "./starshipInfo.js";
 
 export class Starship implements IStarshipInfo, IUpdateable {
@@ -35,11 +34,7 @@ export class Starship implements IStarshipInfo, IUpdateable {
         this.destinationSpacedock = spacedockRepository.getSpacedockByName(data.position);
         this.arriveAtDestination();
         this.cardView = new StarshipCardView(this, templateFactory);
-        this.modalView = new StarshipModalView(this, templateFactory);
-
-        if (name == "Millenium Falcon") {
-            this.destinationSpacedock = spacedockRepository.getSpacedockByName("Corellia");
-        }
+        this.modalView = new StarshipModalView(this, spacedockRepository, templateFactory);
     }
 
     public getId(): number {
@@ -64,7 +59,7 @@ export class Starship implements IStarshipInfo, IUpdateable {
         return this.position;
     }
 
-    public getCargoHold(): ICargoHoldInfo {
+    public getCargoHold(): CargoHold {
         return this.cargoHold;
     }
 

@@ -25,7 +25,7 @@ export class Game {
             this.playerState,
             this.gameClock,
             this.templateFactory);
-        this.planetManager = new PlanetManager(this.gameData.planets, this.templateFactory);
+        this.planetManager = new PlanetManager(this.gameData.planets, this.playerState, this.templateFactory);
         this.starshipManager = new StarshipManager(this.gameData.starships, this.planetManager, this.templateFactory);
         this.registerUpdates();
         this.gameClock.start();

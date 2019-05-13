@@ -306,6 +306,8 @@ ul {
             "trade-title trade-sum trade-sum trade-submit";
     align-items: center;
     justify-items: center;
+    height: 100%;
+    width: 100%;
 }
 
 .starship-cargo .starship-cargo-title {

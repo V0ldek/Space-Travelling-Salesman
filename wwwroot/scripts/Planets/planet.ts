@@ -62,6 +62,10 @@ export class Planet implements IPlanetInfo, ISpacedock, IUpdateable {
         this.modalView.removeStarshipView(starshipCardInfo.getName());
     }
 
+    public setAmountOfItem(item: string, amount: number): void {
+        this.itemStores[item].setAmount(amount);
+    }
+
     private loadItemStores(data: IDictionary<IItemStore>): void {
         Dictionary.forEach(data, (k, i) => this.addItemStore(k, i));
     }

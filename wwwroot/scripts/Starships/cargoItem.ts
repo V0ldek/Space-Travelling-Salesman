@@ -16,4 +16,8 @@ export class CargoItem implements ICargoItemInfo {
     public getAmount(): number {
         return this.amount;
     }
+
+    public setAmount(amount: number): void {
+        this.amount = amount;
+    }
 }
