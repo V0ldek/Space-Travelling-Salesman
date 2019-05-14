@@ -28,4 +28,8 @@ export class Point {
     public subtract(other: Point): Point {
         return new Point(this.x - other.x, this.y - other.y);
     }
+
+    public scale(scale: number): Point {
+        return new Point(this.x * scale, this.y * scale);
+    }
 }

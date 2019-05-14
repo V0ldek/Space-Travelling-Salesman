@@ -1,0 +1,112 @@
+.game-map-container {
+    width: 55vh;
+    height: 55vh;
+    position: relative;
+    overflow: hidden;
+    outline: 2px solid #707070;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.game-map {
+    position: relative;
+}
+
+.game-map * {
+    position: relative;
+}
+
+.game-map-background {
+    z-index: -1;
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+@media(max-width: 768px) {
+    .game-map {
+        display: none;
+    }
+}
+
+.game-map-top-boundary,
+.game-map-bottom-boundary,
+.game-map-left-boundary,
+.game-map-right-boundary {
+    display: none;
+    z-index: -1;
+    background-color: #101010;
+    position: absolute;
+}
+
+.game-map-top-boundary {
+    height: 26.65vh;
+    width: 100vw;
+}
+
+.game-map-bottom-boundary {
+    height: 18.2vh;
+    width: 100vw;
+}
+
+.game-map-left-boundary {
+    height: 100vh;
+    width: 36vw;
+}
+
+.game-map-right-boundary {
+    height: 100vh;
+    width: 36vw;
+}
+
+.game-map-top-boundary,
+.game-map-left-boundary {
+    top: 0;
+    left: 0;
+}
+
+.game-map-bottom-boundary {
+    bottom: 0;
+    left: 0;
+}
+
+.game-map-right-boundary {
+    top: 0;
+    right: 0;
+}
+
+/* Icons
+-------------------------------------------------- */
+
+.game-map-icon {
+    cursor: pointer;
+}
+
+.game-map-icon .game-map-icon-image {
+    position: absolute;
+    top: -2.5vh;
+    left: -2.5vh;
+    height: 5vh;
+    width: 5vh;
+}
+
+.game-map-icon .game-map-description {
+    position: absolute;
+    top: 2.5vh;
+    left: -5vh;
+    width: 10vh;
+    text-align: center;
+    border: 1px solid #efefef;
+    font-weight: bolder;
+}
+
+.game-map-planet-icon .game-map-description {
+    background-color: rgba(112, 112, 112, 0.7);
+}
+
+.game-map-starship-icon .game-map-description {
+    background-color: rgba(183, 14, 14, 0.7);
+}
+

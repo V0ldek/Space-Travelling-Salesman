@@ -7,6 +7,7 @@
     <title>Space Travelling Salesman</title>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/game.css">
+    <link rel="stylesheet" href="./css/map.css">
 </head>
 <body>
 <header class="border-bottom">
@@ -37,6 +38,33 @@
     <ul id="planet-list" class="render-planet-card">
 
     </ul>
+    <template id="template-game-map">
+        <div class="game-map-container template-root">
+            <section class="game-map">
+                <img src="img/map-background.jpg" class="game-map-background" alt="map background">
+                <section class="render-game-map-planet-icon render-hide">
+
+                </section>
+                <section class="render-game-map-starship-icon render-hide">
+
+                </section>
+            </section>
+        </div>
+    </template>
+    <template id="template-game-map-planet-icon">
+        <div class="game-map-icon game-map-planet-icon template-root">
+            <img src="img/planet.svg" class="game-map-icon-image" alt="planet">
+            <span class="text-cyan game-map-description data-name"></span>
+        </div>
+    </template>
+    <template id="template-game-map-starship-icon">
+        <div class="game-map-icon game-map-starship-icon template-root">
+            <img src="img/starship.svg" class="game-map-icon-image" alt="starship">
+            <span class="text-cyan game-map-description data-name"></span>
+        </div>
+    </template>
+    <div class="render-game-map">
+    </div>
     <template id="template-starship-card">
         <li class="card starship-card modal-trigger template-root" data-target="starship-modal-id">
             <img src="img/starship.svg" class="starship-icon" alt="starship">

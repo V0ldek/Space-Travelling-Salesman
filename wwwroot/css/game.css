@@ -54,6 +54,8 @@ footer {
     max-height: 65vh;
     padding-left: 2.5%;
     padding-right: 2.5%;
+    margin-right: 2.5%;
+    margin-left: -2.5%;
 }
 
 @media (min-width: 768px) {
@@ -358,6 +360,25 @@ ul {
     width: 100%;
     height: 100%;
     overflow: auto;
+}
+
+.twoja-stara {
+    margin-left: 2.5%;
+    border-collapse: collapse;
+    border: 2px solid #efefef;
+    padding: 0 2.5%;
+    overflow: auto;
+}
+
+.twoja-stara td {
+    border-top: 1px solid #707070;
+    border-right: 1px solid #707070;
+    width: 0.5vh;
+    height: 0.5vh;
+}
+
+.twoja-stara tr:first-child {
+    border-top: 2px solid #efefef;
 }
 
 .starship-cargo .starship-cargo-table table {

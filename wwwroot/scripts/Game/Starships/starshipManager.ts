@@ -4,6 +4,7 @@ import {Starship} from "./starship.js";
 import {ITemplateFactory} from "../Templates/templateFactory.js";
 import {IStarship} from "../GameData/starship.js";
 import {ISpacedockRepository} from "../Planets/spacedockRepository.js";
+import {IStarshipCardInfo} from "./starshipCardInfo";
 
 export class StarshipManager implements IUpdateable {
     private readonly starships: IDictionary<Starship> = {};
@@ -21,6 +22,12 @@ export class StarshipManager implements IUpdateable {
 
     public update(): void {
         Dictionary.forEach(this.starships, (_, s) => s.update());
+    }
+
+    public getAllStarships(): IStarshipCardInfo[] {
+        const result: IStarshipCardInfo[] = [];
+        Dictionary.forEach(this.starships, (_, s) => result.push(s));
+        return result;
     }
 
     private createStarshipsFromData(starshipData: IDictionary<IStarship>): void {

@@ -7,6 +7,7 @@ import {ISpacedockRepository} from "./spacedockRepository.js";
 import {Starship} from "../Starships/starship.js";
 import {TradeManager} from "../Trade/tradeManager.js";
 import {PlayerState} from "../Player/playerState.js";
+import {IPlanetCardInfo} from "./planetCardInfo";
 
 export class PlanetManager implements IUpdateable, ISpacedockRepository {
     private readonly playerState: PlayerState;
@@ -23,6 +24,12 @@ export class PlanetManager implements IUpdateable, ISpacedockRepository {
 
     public update(): void {
         Dictionary.forEach(this.planets, (_, p) => p.update());
+    }
+
+    public getAllPlanets(): IPlanetCardInfo[] {
+        const result: IPlanetCardInfo[] = [];
+        Dictionary.forEach(this.planets, (_, p) => result.push(p));
+        return result;
     }
 
     public getAllSpacedockNames(): string[] {

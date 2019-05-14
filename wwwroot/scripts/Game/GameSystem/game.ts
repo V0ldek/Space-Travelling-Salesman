@@ -9,6 +9,7 @@ import {NicknameManager} from "../../StartScreen/Nickname/nicknameManager.js";
 import {IUpdateable} from "./updateable.js";
 import {Leaderboard} from "../../StartScreen/Leaderboard/leaderboard.js";
 import {GameOverView} from "../Views/gameOverView.js";
+import {MapView} from "../../Views/Map/mapView.js";
 
 export class Game implements IUpdateable {
     private readonly gameData: IGameData;
@@ -17,6 +18,7 @@ export class Game implements IUpdateable {
     private readonly gameClock: GameClock;
     private readonly planetManager: PlanetManager;
     private readonly starshipManager: StarshipManager;
+    private readonly gameMap: MapView;
     private gameOverView: GameOverView;
 
     public constructor() {
@@ -30,6 +32,7 @@ export class Game implements IUpdateable {
             this.templateFactory);
         this.planetManager = new PlanetManager(this.gameData.planets, this.playerState, this.templateFactory);
         this.starshipManager = new StarshipManager(this.gameData.starships, this.planetManager, this.templateFactory);
+        this.gameMap = new MapView(this.planetManager, this.starshipManager, this.templateFactory);
         this.registerUpdates();
         this.gameClock.start();
     }
@@ -45,6 +48,7 @@ export class Game implements IUpdateable {
         this.gameClock.registerUpdateable(this.starshipManager);
         this.gameClock.registerUpdateable(this.planetManager);
         this.gameClock.registerUpdateable(this.playerState);
+        this.gameClock.registerUpdateable(this.gameMap);
         this.gameClock.registerUpdateable(this);
     }
 }
