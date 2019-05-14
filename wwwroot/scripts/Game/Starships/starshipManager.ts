@@ -23,11 +23,11 @@ export class StarshipManager implements IUpdateable {
         Dictionary.forEach(this.starships, (_, s) => s.update());
     }
 
-    private createStarshipsFromData(starshipData: IDictionary<IStarship>) {
+    private createStarshipsFromData(starshipData: IDictionary<IStarship>): void {
         Dictionary.forEach(starshipData, (k, s) => this.createStarshipFromData(k, s));
     }
 
-    private createStarshipFromData(key: string, starshipData: IStarship) {
+    private createStarshipFromData(key: string, starshipData: IStarship): void {
         this.starships[key] = new Starship(this.nextId, key, starshipData, this.planetRepository, this.templateFactory);
         ++this.nextId;
     }

@@ -23,7 +23,7 @@ export class StarshipCargoView extends View {
 
     protected getData(): IDictionary<string> {
         const capacityString = this.cargoHoldInfo.getCapacity().toString();
-        const cargoString = Format.padNumberToNDigits(
+        const cargoString = Format.padNumberToNCharacters(
             this.cargoHoldInfo.getCargoSize().toString(),
             capacityString.length);
         return {

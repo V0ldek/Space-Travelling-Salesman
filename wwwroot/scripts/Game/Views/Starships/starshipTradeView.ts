@@ -21,7 +21,7 @@ export class StarshipTradeView extends View {
 
         this.createTradeItemViews();
         this.setButtonBehaviour();
-        this.tradeManager.subscribeToChanges(this);
+        this.tradeManager.subscribeToChanges(() => this.update());
         this.update();
     }
 

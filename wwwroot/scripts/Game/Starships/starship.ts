@@ -72,6 +72,7 @@ export class Starship implements IStarshipInfo, IUpdateable {
     }
 
     public moveToDestination(destination: string): void {
+        this.destinationSpacedock.checkOutDepartingStarship(this.getName());
         this.destinationSpacedock = this.spacedockRepository.getSpacedockByName(destination);
     }
 

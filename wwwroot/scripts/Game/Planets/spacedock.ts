@@ -3,9 +3,11 @@ import {IStarshipCardInfo} from "../Starships/starshipCardInfo.js";
 import {IItemStoreInfo} from "./ItemStore/itemStoreInfo.js";
 
 export interface ISpacedock extends IPlanetCardInfo {
-    dockArrivingStarship(starshipCardInfo: IStarshipCardInfo): void;
+    dockArrivingStarship(starship: IStarshipCardInfo): void;
 
-    checkOutDepartingStarship(starshipCardInfo: IStarshipCardInfo): void;
+    checkOutDepartingStarship(starshipName: string): void;
+
+    forEachDockingShip(action: (s: IStarshipCardInfo) => void);
 
     getItemStores(): IItemStoreInfo[];
 

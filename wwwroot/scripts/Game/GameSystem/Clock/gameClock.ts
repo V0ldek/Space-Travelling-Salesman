@@ -1,9 +1,8 @@
 import {Format} from "../../../format.js"
 import {IUpdateable} from "../updateable.js";
 import {ITimeInfo} from "./timeInfo.js";
-import {IUpdateManager} from "./updateManager.js";
 
-export class GameClock implements IUpdateManager, ITimeInfo {
+export class GameClock implements ITimeInfo {
     private static readonly tickDuration = 1000;
     private readonly updateables: IUpdateable[] = [];
     private readonly maximalTicks: number;

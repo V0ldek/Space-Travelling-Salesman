@@ -6,11 +6,12 @@ import {ITemplateFactory} from "../Templates/templateFactory.js";
 import {IUpdateable} from "../GameSystem/updateable.js";
 import {PlanetCardView} from "../Views/Planets/planetCardView.js";
 import {PlanetModalView} from "../Views/Planets/planetModalView.js";
-import {IStarshipCardInfo} from "../Starships/starshipCardInfo.js";
 import {IItemStoreInfo} from "./ItemStore/itemStoreInfo.js";
 import {IPlanetInfo} from "./planetInfo.js";
 import {ISpacedock} from "./spacedock.js";
 import {IItemStore} from "../GameData/itemStore.js";
+import {IStarshipCardInfo} from "../Starships/starshipCardInfo.js";
+import {Starship} from "../Starships/starship.js";
 
 export class Planet implements IPlanetInfo, ISpacedock, IUpdateable {
     private readonly id: number;
@@ -20,6 +21,7 @@ export class Planet implements IPlanetInfo, ISpacedock, IUpdateable {
     private readonly templateFactory: ITemplateFactory;
     private readonly cardView: PlanetCardView;
     private readonly modalView: PlanetModalView;
+    private readonly dockingStarships: IDictionary<Starship> = {};
 
     public constructor(id: number, name: string, data: IPlanet, templateFactory: ITemplateFactory) {
         this.id = id;
@@ -54,16 +56,22 @@ export class Planet implements IPlanetInfo, ISpacedock, IUpdateable {
         this.modalView.update();
     }
 
-    public dockArrivingStarship(starshipCardInfo: IStarshipCardInfo): void {
-        this.modalView.createStarshipView(starshipCardInfo);
+    public dockArrivingStarship(starship: Starship): void {
+        this.modalView.createStarshipView(starship);
+        this.dockingStarships[starship.getName()] = starship;
     }
 
-    public checkOutDepartingStarship(starshipCardInfo: IStarshipCardInfo): void {
-        this.modalView.removeStarshipView(starshipCardInfo.getName());
+    public checkOutDepartingStarship(starshipName: string): void {
+        this.modalView.removeStarshipView(starshipName);
+        this.dockingStarships[starshipName] = null;
     }
 
     public setAmountOfItem(item: string, amount: number): void {
         this.itemStores[item].setAmount(amount);
+    }
+
+    public forEachDockingShip(action: (s: Starship) => void): void {
+        Dictionary.forEach(this.dockingStarships, (_, s) => action(s));
     }
 
     private loadItemStores(data: IDictionary<IItemStore>): void {

@@ -4,14 +4,14 @@ import {ITradeItemInfo} from "./tradeItemInfo.js";
 import {TradeItem} from "./tradeItem.js";
 import {IDictionary, Dictionary} from "../../dictionary.js";
 import {CargoHold} from "../Starships/cargoHold.js";
-import {IUpdateable} from "../GameSystem/updateable.js";
 
 export class TradeManager {
     private readonly spacedock: ISpacedock;
     private readonly starshipCargo: CargoHold;
     private readonly playerState: PlayerState;
     private readonly tradeItems: IDictionary<TradeItem> = {};
-    private readonly updateables: IUpdateable[] = [];
+    private readonly changeListeners: (() => void)[] = [];
+    private readonly commitListeners: (() => void)[] = [];
     private tradeValue: number = 0;
     private deltaStarshipCargoSize: number = 0;
 
@@ -20,7 +20,7 @@ export class TradeManager {
         this.starshipCargo = starshipCargo;
         this.playerState = playerState;
         this.createTradeItems();
-        this.subscribeToChanges(this.playerState);
+        this.subscribeToChanges(() => this.playerState.update());
     }
 
     public getPossibleItemNames(): string[] {
@@ -82,6 +82,7 @@ export class TradeManager {
         this.spacedock.setAmountOfItem(item.getName(), item.getSpacedockAmount());
         this.playerState.changeCredits(item.getTradeValue());
         this.resetTradeItem(item);
+        this.updateCommitSubscribers();
     }
 
     public reset() {
@@ -95,8 +96,12 @@ export class TradeManager {
         this.updateSubscribers();
     }
 
-    public subscribeToChanges(updateable: IUpdateable) {
-        this.updateables.push(updateable);
+    public subscribeToChanges(action: () => void) {
+        this.changeListeners.push(action);
+    }
+
+    public subscribeToCommits(action: () => void) {
+        this.commitListeners.push(action);
     }
 
     private createTradeItems() {
@@ -119,6 +124,10 @@ export class TradeManager {
     }
 
     private updateSubscribers(): void {
-        this.updateables.forEach(u => u.update());
+        this.changeListeners.forEach(l => l());
+    }
+
+    private updateCommitSubscribers(): void {
+        this.commitListeners.forEach(l => l());
     }
 }
