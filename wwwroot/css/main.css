@@ -52,7 +52,7 @@ footer {
     bottom: 0;
     height: 60px;
     line-height: 60px;
-    position: absolute;
+    position: fixed;
     white-space: nowrap;
     width: 100%;
     text-align: center;

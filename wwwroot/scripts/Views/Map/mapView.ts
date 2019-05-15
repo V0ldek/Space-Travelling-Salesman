@@ -16,16 +16,18 @@ export class MapView extends View {
     private readonly planetIcons: PlanetMapIconView[] = [];
     private readonly starshipIcons: StarshipMapIconView[] = [];
 
-    private static readonly MinOffset = -60.0;
-    private static readonly MaxOffset = 10.0;
-    private static readonly DragSpeed = 0.1;
+    private static readonly MinOffset = -4.0;
+    private static readonly MaxOffset = 1.0;
+    private static readonly DragSpeed = 0.2;
     private leftOffset = 0.0;
     private topOffset = 0.0;
     private dragging = false;
 
-    private static readonly MinScale = 5.5;
+    private static readonly MinScale = 4.0;
     private static readonly MaxScale = 15.0;
     private static readonly ScaleSpeed = 0.3;
+    private static readonly BackgroundScaleFactor = 1.0;
+    private static readonly BackgroundStaticOffset = -15.0;
     private scale: number = 10.0;
 
     public constructor(planetManager: PlanetManager,
@@ -42,6 +44,7 @@ export class MapView extends View {
 
     public update(): void {
         super.update();
+        this.positionBackground();
         this.positionAllIcons();
         this.updateAllIcons();
     }
@@ -70,6 +73,15 @@ export class MapView extends View {
             starshipCardInfo,
             this.renderedTemplate.getElement(),
             this.templateFactory));
+    }
+
+    private positionBackground(): void {
+        const background =
+            this.renderedTemplate.getElement().querySelector("img.game-map-background") as HTMLImageElement;
+        background.style.top = `${(this.topOffset + MapView.BackgroundStaticOffset) * this.scale}px`;
+        background.style.left = `${(this.leftOffset + MapView.BackgroundStaticOffset) * this.scale}px`;
+        background.style.width = `${this.scale * MapView.BackgroundScaleFactor * 100}%`;
+        background.style.height = `${this.scale * MapView.BackgroundScaleFactor * 100}%`;
     }
 
     private positionAllIcons() {
@@ -136,12 +148,12 @@ export class MapView extends View {
 
     private increaseTopOffset(number: number) {
         this.topOffset += number;
-        this.topOffset = MapView.clamp(this.topOffset, MapView.MinOffset, MapView.MaxOffset);
+        this.topOffset = MapView.clamp(this.topOffset, MapView.MinOffset * this.scale, MapView.MaxOffset * this.scale);
     }
 
     private increaseLeftOffset(number: number) {
         this.leftOffset += number;
-        this.leftOffset = MapView.clamp(this.leftOffset, MapView.MinOffset, MapView.MaxOffset);
+        this.leftOffset = MapView.clamp(this.leftOffset, MapView.MinOffset * this.scale, MapView.MaxOffset * this.scale);
     }
 
     private static clamp(number: number, min: number, max: number): number {

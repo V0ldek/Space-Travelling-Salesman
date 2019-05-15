@@ -12,7 +12,12 @@ export class StarshipMovementForm {
     }
 
     public toggle(): void {
-        this.form.toggleAttribute("hidden");
+        // toggleAttribute does not work on the lab version of Firefox.
+        if (this.form.getAttribute("hidden") !== null) {
+            this.form.removeAttribute("hidden");
+        } else {
+            this.form.setAttribute("hidden", "");
+        }
         if (!this.form.hidden) {
             this.getButtonElement().disabled = false;
             this.removeAllOptions();
