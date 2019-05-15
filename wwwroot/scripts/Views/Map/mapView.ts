@@ -26,7 +26,7 @@ export class MapView extends View {
     private static readonly MinScale = 4.0;
     private static readonly MaxScale = 15.0;
     private static readonly ScaleSpeed = 0.3;
-    private static readonly BackgroundScaleFactor = 1.0;
+    private static readonly BackgroundScaleFactor = 0.5 ;
     private static readonly BackgroundStaticOffset = -15.0;
     private scale: number = 10.0;
 

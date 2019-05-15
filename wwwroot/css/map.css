@@ -16,7 +16,7 @@
 
 .game-map * {
     position: relative;
-    transition: all 150ms;
+    transition: all 100ms;
 }
 
 .game-map-background {
