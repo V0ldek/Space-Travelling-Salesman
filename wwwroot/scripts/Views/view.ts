@@ -23,7 +23,13 @@ export abstract class View implements IUpdateable {
     }
 
     public toggle(): void {
-        this.renderedTemplate.getElement().toggleAttribute("hidden");
+        // toggleAttribute does not work on the lab version of Firefox.
+        const element = this.renderedTemplate.getElement();
+        if (element.getAttribute("hidden")) {
+            element.removeAttribute("hidden");
+        } else {
+            element.setAttribute("hidden", "");
+        }
     }
 
     protected abstract getData(): IDictionary<string>;

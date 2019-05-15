@@ -24,7 +24,7 @@ describe("point.euclideanDistanceTo", () => {
     });
 
     it("should return correct distance between two points", () => {
-       const checkUpTo = 20;
+       const checkUpTo = 15;
 
        for(let firstX = 0; firstX <= checkUpTo; ++firstX) {
            for(let firstY = 0; firstY <= checkUpTo; ++firstY) {
