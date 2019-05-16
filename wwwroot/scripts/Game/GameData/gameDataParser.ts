@@ -1,10 +1,6 @@
 import {IGameData} from "./gameData.js";
 
 export class GameDataParser {
-    public static parse(): IGameData {
-        return JSON.parse(GameDataParser.initial_data);
-    }
-
     private static readonly initial_data = '{\n' +
         '  "game_duration": 300,\n' +
         '  "initial_credits": 1984,\n' +
@@ -739,4 +735,8 @@ export class GameDataParser {
         '    }\n' +
         '  }\n' +
         '}';
+
+    public static parse(): IGameData {
+        return JSON.parse(GameDataParser.initial_data);
+    }
 }

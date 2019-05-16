@@ -8,12 +8,11 @@ import {PlanetCardView} from "../Views/Planets/planetCardView.js";
 import {PlanetModalView} from "../Views/Planets/planetModalView.js";
 import {IItemStoreInfo} from "./ItemStore/itemStoreInfo.js";
 import {IPlanetInfo} from "./planetInfo.js";
-import {ISpacedock} from "./spacedock.js";
+import {IStardock} from "./stardock.js";
 import {IItemStore} from "../GameData/itemStore.js";
-import {IStarshipCardInfo} from "../Starships/starshipCardInfo.js";
 import {Starship} from "../Starships/starship.js";
 
-export class Planet implements IPlanetInfo, ISpacedock, IUpdateable {
+export class Planet implements IPlanetInfo, IStardock, IUpdateable {
     private readonly id: number;
     private readonly name: string;
     private readonly position: Point;

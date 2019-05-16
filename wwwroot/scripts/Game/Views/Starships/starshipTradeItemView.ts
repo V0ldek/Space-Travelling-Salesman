@@ -28,7 +28,7 @@ export class StarshipTradeItemView extends View {
         const tradeItemInfo = this.getTradeItemInfo();
         return {
             name: tradeItemInfo.getName(),
-            "planet-amount": tradeItemInfo.getSpacedockAmount().toString(),
+            "planet-amount": tradeItemInfo.getStardockAmount().toString(),
             "buy-price": tradeItemInfo.getBuyPrice().toString(),
             "sell-price": tradeItemInfo.getSellPrice().toString()
         };

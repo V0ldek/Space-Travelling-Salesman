@@ -25,7 +25,7 @@ export class NicknameModalView extends ModalView {
         const inputElement = this.getInputElement();
         const formElement = this.getFormElement();
         formElement.addEventListener("submit", e => {
-            if(!inputElement.value) {
+            if (!inputElement.value) {
                 return;
             }
             NicknameManager.setCurrentNickname(inputElement.value);

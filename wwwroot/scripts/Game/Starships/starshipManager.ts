@@ -3,17 +3,17 @@ import {Dictionary, IDictionary} from "../../dictionary.js";
 import {Starship} from "./starship.js";
 import {ITemplateFactory} from "../Templates/templateFactory.js";
 import {IStarship} from "../GameData/starship.js";
-import {ISpacedockRepository} from "../Planets/spacedockRepository.js";
+import {IStardockRepository} from "../Planets/stardockRepository.js";
 import {IStarshipCardInfo} from "./starshipCardInfo";
 
 export class StarshipManager implements IUpdateable {
     private readonly starships: IDictionary<Starship> = {};
     private readonly templateFactory: ITemplateFactory;
-    private readonly planetRepository: ISpacedockRepository;
+    private readonly planetRepository: IStardockRepository;
     private nextId: number = 1;
 
     public constructor(starships: IDictionary<IStarship>,
-                       planetRepository: ISpacedockRepository,
+                       planetRepository: IStardockRepository,
                        templateFactory: ITemplateFactory) {
         this.planetRepository = planetRepository;
         this.templateFactory = templateFactory;

@@ -13,13 +13,13 @@ export class PlanetMapIconView extends MapIconView {
         this.update();
     }
 
+    getRepresentedObjectPosition(): Point {
+        return this.planetCardInfo.getPosition();
+    }
+
     protected getData(): IDictionary<string> {
         return {
             name: this.planetCardInfo.getName()
         };
-    }
-
-    getRepresentedObjectPosition(): Point {
-        return this.planetCardInfo.getPosition();
     }
 }

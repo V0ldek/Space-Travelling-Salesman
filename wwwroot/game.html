@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>Space Travelling Salesman</title>
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/game.css">
-    <link rel="stylesheet" href="./css/map.css">
+    <link href="./css/main.css" rel="stylesheet">
+    <link href="./css/game.css" rel="stylesheet">
+    <link href="./css/map.css" rel="stylesheet">
 </head>
 <body>
 <header class="border-bottom">
@@ -15,11 +15,11 @@
         <div class="template-root">
             <section id="game-summary">
                 <h1 id="game-summary-title">
-                    <a href="start.html" class="href-unstyled">Space Travelling Salesman</a>
+                    <a class="href-unstyled" href="start.html">Space Travelling Salesman</a>
                 </h1>
-                <p id="game-summary-nickname" class="text-cyan">Player: <span class="data-nickname"></span></p>
-                <p id="game-summary-score" class="text-cyan">Credits: <span class="data-score"></span> &#x20A1</p>
-                <p id="game-summary-time" class="text-cyan">Time left: <span class="data-time"></span></p>
+                <p class="text-cyan" id="game-summary-nickname">Player: <span class="data-nickname"></span></p>
+                <p class="text-cyan" id="game-summary-score">Credits: <span class="data-score"></span> &#x20A1</p>
+                <p class="text-cyan" id="game-summary-time">Time left: <span class="data-time"></span></p>
             </section>
         </div>
     </template>
@@ -30,12 +30,12 @@
 <main id="game-view">
     <template id="template-planet-card">
         <li class="card planet-card modal-trigger template-root" data-target="planet-modal-id">
-            <img src="./img/planet.svg" class="planet-icon" alt="planet">
+            <img alt="planet" class="planet-icon" src="./img/planet.svg">
             <p class="planet-name text-cyan"><span class="data-name"></span></p>
             <p class="planet-coordinates"><span class="data-position"></span></p>
         </li>
     </template>
-    <ul id="planet-list" class="render-planet-card">
+    <ul class="render-planet-card" id="planet-list">
 
     </ul>
     <template id="template-game-map">
@@ -47,27 +47,28 @@
                 <section class="render-game-map-starship-icon render-hide">
 
                 </section>
-                <img src="img/map-background.jpg" class="game-map-background" alt="map background">
+                <img alt="map background" class="game-map-background" src="img/map-background.jpg">
             </section>
         </div>
     </template>
     <template id="template-game-map-planet-icon">
         <div class="game-map-icon game-map-planet-icon template-root">
-            <img src="img/planet.svg" class="game-map-icon-image" alt="planet">
+            <img alt="planet" class="game-map-icon-image" src="img/planet.svg">
             <span class="text-cyan game-map-description data-name"></span>
         </div>
     </template>
     <template id="template-game-map-starship-icon">
         <div class="game-map-icon game-map-starship-icon template-root">
-            <img src="img/starship.svg" class="game-map-icon-image" alt="starship">
+            <img alt="starship" class="game-map-icon-image" src="img/starship.svg">
             <span class="text-cyan game-map-description data-name"></span>
         </div>
     </template>
     <div class="render-game-map">
+
     </div>
     <template id="template-starship-card">
         <li class="card starship-card modal-trigger template-root" data-target="starship-modal-id">
-            <img src="img/starship.svg" class="starship-icon" alt="starship">
+            <img alt="starship" class="starship-icon" src="img/starship.svg">
             <p class="starship-name text-cyan"><span class="data-name"></span></p>
             <div class="starship-position">
                 <p><span class="text-cyan data-planet"></span><span class="data-eta"></span></p>
@@ -75,14 +76,14 @@
             </div>
         </li>
     </template>
-    <ul id="starship-list" class="render-starship-card">
+    <ul class="render-starship-card" id="starship-list">
 
     </ul>
 </main>
 <template id="template-planet-modal">
-    <div id="planet-modal-id" class="modal template-root" hidden>
+    <div class="modal template-root" hidden id="planet-modal-id">
         <article class="planet-screen modal-content">
-            <img src="./img/planet.svg" class="planet-icon" alt="planet">
+            <img alt="planet" class="planet-icon" src="./img/planet.svg">
             <h2 class="planet-name text-cyan"><span class="data-name"></span></h2>
             <p class="planet-coordinates"><span class="data-position"></span></p>
             <h3 class="planet-goods-title">Goods</h3>
@@ -118,7 +119,7 @@
 </template>
 <template id="template-planet-starship">
     <li class="card starship-card modal-trigger template-root" data-target="starship-modal-id">
-        <img src="img/starship.svg" class="starship-icon" alt="starship">
+        <img alt="starship" class="starship-icon" src="img/starship.svg">
         <p class="starship-name text-cyan"><span class="data-name"></span></p>
     </li>
 </template>
@@ -126,9 +127,9 @@
 
 </div>
 <template id="template-starship-modal">
-    <div id="starship-modal-id" class="modal template-root" hidden>
+    <div class="modal template-root" hidden id="starship-modal-id">
         <article class="starship-screen modal-content">
-            <img src="./img/starship.svg" class="starship-icon" alt="starship">
+            <img alt="starship" class="starship-icon" src="./img/starship.svg">
             <h2 class="starship-name text-cyan"><span class="data-name"></span></h2>
             <div class="starship-position">
                 <p><span class="text-cyan data-planet"></span><span class="data-eta"></span></p>
@@ -210,13 +211,13 @@
             <span class="data-credits"></span> (<span class="data-balance"></span>) &#x20A1
         </p>
         <div class="starship-trade-control">
-            <button type="button" class="starship-trade-submit button-cyan rounded">
+            <button class="starship-trade-submit button-cyan rounded" type="button">
                 Trade
             </button>
-            <button type="button" class="starship-trade-sell-all button-red rounded">
+            <button class="starship-trade-sell-all button-red rounded" type="button">
                 Sell all
             </button>
-            <button type="button" class="starship-trade-reset button-red rounded">
+            <button class="starship-trade-reset button-red rounded" type="button">
                 Reset
             </button>
         </div>
@@ -230,7 +231,7 @@
         <td><span class="data-sell-price"></span> &#x20A1</td>
         <td>
             <label>
-                <input class="starship-trade-item-input" type="number" min="0" max="" value="">
+                <input class="starship-trade-item-input" max="" min="0" type="number" value="">
             </label>
             <button class="starship-trade-item-buy-max button-cyan rounded-small" type="button">
                 Buy max
@@ -263,6 +264,6 @@
         <a href="https://fontawesome.com/license">https://fontawesome.com/license</a>
     </p>
 </footer>
-<script type="module" src="scripts/Game/main.js"></script>
+<script src="scripts/Game/main.js" type="module"></script>
 </body>
 </html>

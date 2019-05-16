@@ -3,7 +3,7 @@ export interface ITradeItemInfo {
 
     getStarshipAmount(): number;
 
-    getSpacedockAmount(): number;
+    getStardockAmount(): number;
 
     getBuyPrice(): number;
 

@@ -2,7 +2,7 @@ import {Starship} from "../../Starships/starship.js";
 import {ITemplateFactory} from "../../Templates/templateFactory.js";
 import {IDictionary} from "../../../dictionary.js";
 import {TradeManager} from "../../Trade/tradeManager.js";
-import {ISpacedockRepository} from "../../Planets/spacedockRepository.js";
+import {IStardockRepository} from "../../Planets/stardockRepository.js";
 import {StarshipTradeItemView} from "./starshipTradeItemView.js";
 import {View} from "../../../Views/view.js";
 
@@ -11,11 +11,11 @@ export class StarshipTradeView extends View {
     private readonly tradeItemViews: StarshipTradeItemView[] = [];
 
     public constructor(starship: Starship,
-                       spacedockRepository: ISpacedockRepository,
+                       stardockRepository: IStardockRepository,
                        root: HTMLElement,
                        templateFactory: ITemplateFactory) {
         super("starship-trade", templateFactory, root);
-        this.tradeManager = spacedockRepository.createTradeManagerBetweenSpacedockAndStarship(
+        this.tradeManager = stardockRepository.createTradeManagerBetweenStardockAndStarship(
             starship.getDestinationName(),
             starship);
 
@@ -89,10 +89,9 @@ export class StarshipTradeView extends View {
     private updateBalanceColour(): void {
         const balanceElement = this.renderedTemplate.getElement().querySelector(".data-balance");
         balanceElement.classList.remove("text-green", "text-red");
-        if(this.tradeManager.getTransactionValue() < 0) {
+        if (this.tradeManager.getTransactionValue() < 0) {
             balanceElement.classList.add("text-red");
-        }
-        else if(this.tradeManager.getTransactionValue() > 0) {
+        } else if (this.tradeManager.getTransactionValue() > 0) {
             balanceElement.classList.add("text-green");
         }
     }
@@ -100,7 +99,7 @@ export class StarshipTradeView extends View {
     private updateCargoSizeColour(): void {
         const balanceElement = this.renderedTemplate.getElement().querySelector(".starship-cargo-capacity");
         balanceElement.classList.remove("text-yellow");
-        if(this.tradeManager.getStarshipCargoSizeAfterTransaction() == this.tradeManager.getStarshipCapacity()) {
+        if (this.tradeManager.getStarshipCargoSizeAfterTransaction() == this.tradeManager.getStarshipCapacity()) {
             balanceElement.classList.add("text-yellow");
         }
     }

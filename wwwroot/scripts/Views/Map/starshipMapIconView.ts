@@ -14,10 +14,9 @@ export class StarshipMapIconView extends MapIconView {
     }
 
     public update() {
-        if(this.starshipCardInfo.getEtaToCurrentDestination() === 0) {
+        if (this.starshipCardInfo.getEtaToCurrentDestination() === 0) {
             this.hide();
-        }
-        else {
+        } else {
             this.show();
         }
 
@@ -28,17 +27,17 @@ export class StarshipMapIconView extends MapIconView {
         return this.starshipCardInfo.getPosition();
     }
 
+    protected getData(): IDictionary<string> {
+        return {
+            name: this.starshipCardInfo.getName()
+        };
+    }
+
     private hide(): void {
         this.renderedTemplate.getElement().hidden = true;
     }
 
     private show(): void {
         this.renderedTemplate.getElement().hidden = false;
-    }
-
-    protected getData(): IDictionary<string> {
-        return {
-            name: this.starshipCardInfo.getName()
-        };
     }
 }

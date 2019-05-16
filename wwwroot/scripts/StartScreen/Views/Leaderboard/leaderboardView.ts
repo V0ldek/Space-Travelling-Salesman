@@ -17,10 +17,14 @@ export class LeaderboardView extends View {
         this.createLeaderboardEntryViews();
     }
 
+    protected getData(): IDictionary<string> {
+        return {};
+    }
+
     private createLeaderboardEntryViews(): void {
         const leaderboardEntries = this.leaderboard.getEntries().sort(
             (a, b) => b.credits - a.credits);
-        for(let i = leaderboardEntries.length; i < LeaderboardView.Size; ++i) {
+        for (let i = leaderboardEntries.length; i < LeaderboardView.Size; ++i) {
             leaderboardEntries.push(new LeaderboardEntry("-", 0));
         }
         console.log(JSON.stringify(leaderboardEntries));
@@ -35,9 +39,5 @@ export class LeaderboardView extends View {
                 rank,
                 this.renderedTemplate.getElement(),
                 this.templateFactory));
-    }
-
-    protected getData(): IDictionary<string> {
-        return {};
     }
 }

@@ -5,24 +5,24 @@ import {Format} from "../../../format.js";
 import {StarshipMovementForm} from "./starshipMovementForm.js";
 import {StarshipCargoView} from "./starshipCargoView.js";
 import {StarshipTradeView} from "./starshipTradeView.js";
-import {ISpacedockRepository} from "../../Planets/spacedockRepository.js";
+import {IStardockRepository} from "../../Planets/stardockRepository.js";
 import {GameClock} from "../../GameSystem/Clock/gameClock.js";
 import {ModalView} from "../../../Views/modalView.js";
 
 export class StarshipModalView extends ModalView {
     private readonly starship: Starship;
-    private readonly spacedockRepository: ISpacedockRepository;
+    private readonly stardockRepository: IStardockRepository;
     private readonly starshipMovementForm: StarshipMovementForm;
     private readonly starshipCargoView: StarshipCargoView;
     private starshipTradeView: StarshipTradeView = null;
     private isInDockedMode: boolean = true;
 
     public constructor(starship: Starship,
-                       spacedockRepository: ISpacedockRepository,
+                       stardockRepository: IStardockRepository,
                        templateFactory: ITemplateFactory) {
         super("starship-modal", `starship-modal-${starship.getId()}`, templateFactory);
         this.starship = starship;
-        this.spacedockRepository = spacedockRepository;
+        this.stardockRepository = stardockRepository;
         this.starshipMovementForm = new StarshipMovementForm(this.starship, this.getMovementFormElement());
         this.starshipCargoView = new StarshipCargoView(
             this.starship.getCargoHold(),
@@ -83,7 +83,7 @@ export class StarshipModalView extends ModalView {
         } else {
             this.starshipTradeView = new StarshipTradeView(
                 this.starship,
-                this.spacedockRepository,
+                this.stardockRepository,
                 this.renderedTemplate.getElement(),
                 this.templateFactory);
         }

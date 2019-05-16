@@ -19,10 +19,6 @@ export class Leaderboard {
         this.parseEntriesFromLocalStorage();
     }
 
-    public getEntries(): LeaderboardEntry[] {
-        return this.leaderboardEntries;
-    }
-
     public static saveScore(nickname: string, credits: number) {
         const numberOfEntries = Leaderboard.getNumberOfEntriesFromLocalStorage();
         const key = `${Leaderboard.EntryKeyPrefix}:${numberOfEntries + 1}`;
@@ -30,25 +26,9 @@ export class Leaderboard {
         Leaderboard.addItemToLocalStorage(key, JSON.stringify(entry));
     }
 
-    private addStaticEntries(): void {
-        Leaderboard.StaticEntries.forEach(e => this.leaderboardEntries.push(e));
-    }
-
-    private parseEntriesFromLocalStorage(): void {
-        for(const key in window.localStorage) {
-            if(!Storage.isApplicationEntryKey(key) || !Leaderboard.isLeaderboardEntryKey(key)) {
-                continue;
-            }
-            const entry = JSON.parse(window.localStorage[key]) as LeaderboardEntry;
-            if(entry) {
-                this.leaderboardEntries.push(new LeaderboardEntry(entry.nickname, entry.credits));
-            }
-        }
-    }
-
     private static getNumberOfEntriesFromLocalStorage(): number {
         const number = Leaderboard.getItemFromLocalStorage("numberOfEntries");
-        if(!number) {
+        if (!number) {
             Leaderboard.addItemToLocalStorage("numberOfEntries", "0");
             return 0;
         }
@@ -61,7 +41,7 @@ export class Leaderboard {
 
     private static addItemToLocalStorage(key: string, value: string): void {
         const keyWithPrefix = `${Leaderboard.KeyPrefix}:${key}`;
-        if(this.isLeaderboardEntryKey(keyWithPrefix)) {
+        if (this.isLeaderboardEntryKey(keyWithPrefix)) {
             this.incrementNumberOfEntriesInLocalStorage();
         }
         Storage.addItemToLocalStorage(keyWithPrefix, value);
@@ -74,5 +54,25 @@ export class Leaderboard {
     private static incrementNumberOfEntriesInLocalStorage(): void {
         const number = this.getNumberOfEntriesFromLocalStorage();
         Leaderboard.addItemToLocalStorage("numberOfEntries", (number + 1).toString());
+    }
+
+    public getEntries(): LeaderboardEntry[] {
+        return this.leaderboardEntries;
+    }
+
+    private addStaticEntries(): void {
+        Leaderboard.StaticEntries.forEach(e => this.leaderboardEntries.push(e));
+    }
+
+    private parseEntriesFromLocalStorage(): void {
+        for (const key in window.localStorage) {
+            if (!Storage.isApplicationEntryKey(key) || !Leaderboard.isLeaderboardEntryKey(key)) {
+                continue;
+            }
+            const entry = JSON.parse(window.localStorage[key]) as LeaderboardEntry;
+            if (entry) {
+                this.leaderboardEntries.push(new LeaderboardEntry(entry.nickname, entry.credits));
+            }
+        }
     }
 }

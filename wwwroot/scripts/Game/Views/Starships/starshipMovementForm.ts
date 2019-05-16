@@ -51,7 +51,7 @@ export class StarshipMovementForm {
 
     private removeAllOptions() {
         const select = this.getSelectElement();
-        for(let i = select.length - 1; i >= 0; --i) {
+        for (let i = select.length - 1; i >= 0; --i) {
             select.options[i].remove();
         }
     }

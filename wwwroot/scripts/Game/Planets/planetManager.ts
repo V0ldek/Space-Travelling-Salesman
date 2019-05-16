@@ -3,13 +3,13 @@ import {IPlanet} from "../GameData/planet.js";
 import {Planet} from "./planet.js";
 import {ITemplateFactory} from "../Templates/templateFactory.js";
 import {IUpdateable} from "../GameSystem/updateable.js";
-import {ISpacedockRepository} from "./spacedockRepository.js";
+import {IStardockRepository} from "./stardockRepository.js";
 import {Starship} from "../Starships/starship.js";
 import {TradeManager} from "../Trade/tradeManager.js";
 import {PlayerState} from "../Player/playerState.js";
 import {IPlanetCardInfo} from "./planetCardInfo";
 
-export class PlanetManager implements IUpdateable, ISpacedockRepository {
+export class PlanetManager implements IUpdateable, IStardockRepository {
     private readonly playerState: PlayerState;
     private readonly planets: IDictionary<Planet> = {};
     private readonly templateFactory: ITemplateFactory;
@@ -32,18 +32,18 @@ export class PlanetManager implements IUpdateable, ISpacedockRepository {
         return result;
     }
 
-    public getAllSpacedockNames(): string[] {
+    public getAllStardockNames(): string[] {
         const result: string[] = [];
         Dictionary.forEach(this.planets, k => result.push(k));
         return result;
     }
 
-    public getSpacedockByName(name: string): Planet {
+    public getStardockByName(name: string): Planet {
         return this.planets[name];
     }
 
-    public createTradeManagerBetweenSpacedockAndStarship(spacedockName: string, starship: Starship) {
-        const planet = this.getSpacedockByName(spacedockName);
+    public createTradeManagerBetweenStardockAndStarship(stardockName: string, starship: Starship) {
+        const planet = this.getStardockByName(stardockName);
         const tradeManager = new TradeManager(
             planet,
             starship.getCargoHold(),
@@ -66,9 +66,9 @@ export class PlanetManager implements IUpdateable, ISpacedockRepository {
 
     private resetAllActiveTradeManagersForPlanetExceptFor(planetName: string, starshipName: string): void {
         Dictionary.forEach(this.activeTradeManagersByPlanet[planetName], (k, t) => {
-           if(k != starshipName) {
-               t.reset();
-           }
+            if (k != starshipName) {
+                t.reset();
+            }
         });
     }
 }

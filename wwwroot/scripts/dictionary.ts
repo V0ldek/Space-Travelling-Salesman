@@ -13,8 +13,8 @@ export class Dictionary {
 
     public static fromArray<T>(array: T[], keyProvider: ((e: T) => string)): IDictionary<T> {
         const result: IDictionary<T> = {};
-        for(const item of array) {
-            result[keyProvider(item)] =  item;
+        for (const item of array) {
+            result[keyProvider(item)] = item;
         }
         return result;
     }

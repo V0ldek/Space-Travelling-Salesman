@@ -38,7 +38,7 @@ export class Game implements IUpdateable {
     }
 
     public update(): void {
-        if(this.gameClock.getRemainingTicks() == 0) {
+        if (this.gameClock.getRemainingTicks() == 0) {
             Leaderboard.saveScore(this.playerState.getNickname(), this.playerState.getCredits());
             this.gameOverView = new GameOverView(this.playerState, this.templateFactory);
         }

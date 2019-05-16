@@ -1,12 +1,12 @@
-import {ISpacedock} from "../Planets/spacedock.js";
+import {IStardock} from "../Planets/stardock.js";
 import {PlayerState} from "../Player/playerState.js";
 import {ITradeItemInfo} from "./tradeItemInfo.js";
 import {TradeItem} from "./tradeItem.js";
-import {IDictionary, Dictionary} from "../../dictionary.js";
+import {Dictionary, IDictionary} from "../../dictionary.js";
 import {CargoHold} from "../Starships/cargoHold.js";
 
 export class TradeManager {
-    private readonly spacedock: ISpacedock;
+    private readonly stardock: IStardock;
     private readonly starshipCargo: CargoHold;
     private readonly playerState: PlayerState;
     private readonly tradeItems: IDictionary<TradeItem> = {};
@@ -15,8 +15,8 @@ export class TradeManager {
     private tradeValue: number = 0;
     private deltaStarshipCargoSize: number = 0;
 
-    public constructor(spacedock: ISpacedock, starshipCargo: CargoHold, playerState: PlayerState) {
-        this.spacedock = spacedock;
+    public constructor(stardock: IStardock, starshipCargo: CargoHold, playerState: PlayerState) {
+        this.stardock = stardock;
         this.starshipCargo = starshipCargo;
         this.playerState = playerState;
         this.createTradeItems();
@@ -33,7 +33,7 @@ export class TradeManager {
         return this.playerState.getCredits() + this.tradeValue;
     }
 
-    public getTransactionValue():  number {
+    public getTransactionValue(): number {
         return this.tradeValue;
     }
 
@@ -53,9 +53,9 @@ export class TradeManager {
         const tradeItem = this.tradeItems[itemName];
         const capFromCargoSize = this.getStarshipCapacity() - this.getStarshipCargoSizeAfterTransaction();
         const capFromPrice = Math.floor(this.getCreditsAfterTransaction() / tradeItem.getBuyPrice());
-        const capFromSpacedockSupply = tradeItem.getSpacedockAmount();
+        const capFromStardockSupply = tradeItem.getStardockAmount();
 
-        return tradeItem.getStarshipAmount() + Math.min(capFromCargoSize, capFromPrice, capFromSpacedockSupply);
+        return tradeItem.getStarshipAmount() + Math.min(capFromCargoSize, capFromPrice, capFromStardockSupply);
     }
 
     public setStarshipAmountForItem(itemName: string, amount: number): void {
@@ -79,7 +79,7 @@ export class TradeManager {
     public commitTransactionForItem(itemName: string) {
         const item = this.tradeItems[itemName];
         this.starshipCargo.setAmountOfItem(item.getName(), item.getStarshipAmount());
-        this.spacedock.setAmountOfItem(item.getName(), item.getSpacedockAmount());
+        this.stardock.setAmountOfItem(item.getName(), item.getStardockAmount());
         this.playerState.changeCredits(item.getTradeValue());
         this.resetTradeItem(item);
         this.updateCommitSubscribers();
@@ -105,11 +105,11 @@ export class TradeManager {
     }
 
     private createTradeItems() {
-        this.spacedock.getItemStores().forEach(i => this.createTradeItem(i.getName()));
+        this.stardock.getItemStores().forEach(i => this.createTradeItem(i.getName()));
     }
 
     private createTradeItem(name: string) {
-        const spacedockItem = this.spacedock.getItemStores().filter(i => i.getName() == name)[0];
+        const stardockItem = this.stardock.getItemStores().filter(i => i.getName() == name)[0];
         const starshipItems = Dictionary.fromArray(this.starshipCargo.getCargoItems(), i => i.getName());
 
         const starshipAmount = starshipItems.hasOwnProperty(name) && starshipItems[name]
@@ -118,9 +118,9 @@ export class TradeManager {
         this.tradeItems[name] = new TradeItem(
             name,
             starshipAmount,
-            spacedockItem.getAmount(),
-            spacedockItem.getBuyPrice(),
-            spacedockItem.getSellPrice());
+            stardockItem.getAmount(),
+            stardockItem.getBuyPrice(),
+            stardockItem.getSellPrice());
     }
 
     private updateSubscribers(): void {

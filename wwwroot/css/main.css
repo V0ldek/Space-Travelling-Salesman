@@ -1,7 +1,9 @@
 /* Fonts
 -------------------------------------------------- */
 
-html { font-size: 2.5vw; }
+html {
+    font-size: 2.5vw;
+}
 
 @media (min-width: 768px) {
     html {

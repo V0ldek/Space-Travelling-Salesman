@@ -11,23 +11,21 @@ import {StarshipMapIconView} from "./starshipMapIconView.js";
 import {Point} from "../../Game/GameSystem/point.js";
 
 export class MapView extends View {
+    private static readonly MinOffset = -4.0;
+    private static readonly MaxOffset = 1.0;
+    private static readonly DragSpeed = 0.2;
+    private static readonly MinScale = 4.0;
+    private static readonly MaxScale = 15.0;
+    private static readonly ScaleSpeed = 0.3;
+    private static readonly BackgroundScaleFactor = 0.5;
+    private static readonly BackgroundStaticOffset = -15.0;
     private readonly planetManager: PlanetManager;
     private readonly starshipManager: StarshipManager;
     private readonly planetIcons: PlanetMapIconView[] = [];
     private readonly starshipIcons: StarshipMapIconView[] = [];
-
-    private static readonly MinOffset = -4.0;
-    private static readonly MaxOffset = 1.0;
-    private static readonly DragSpeed = 0.2;
     private leftOffset = 0.0;
     private topOffset = 0.0;
     private dragging = false;
-
-    private static readonly MinScale = 4.0;
-    private static readonly MaxScale = 15.0;
-    private static readonly ScaleSpeed = 0.3;
-    private static readonly BackgroundScaleFactor = 0.5 ;
-    private static readonly BackgroundStaticOffset = -15.0;
     private scale: number = 10.0;
 
     public constructor(planetManager: PlanetManager,
@@ -40,6 +38,10 @@ export class MapView extends View {
         this.generateStarshipIcons();
         this.setBehaviour();
         this.update();
+    }
+
+    private static clamp(number: number, min: number, max: number): number {
+        return Math.min(max, Math.max(min, number));
     }
 
     public update(): void {
@@ -154,10 +156,6 @@ export class MapView extends View {
     private increaseLeftOffset(number: number) {
         this.leftOffset += number;
         this.leftOffset = MapView.clamp(this.leftOffset, MapView.MinOffset * this.scale, MapView.MaxOffset * this.scale);
-    }
-
-    private static clamp(number: number, min: number, max: number): number {
-        return Math.min(max, Math.max(min, number));
     }
 
     private globalToRelativeMousePosition(globalPosition: Point) {

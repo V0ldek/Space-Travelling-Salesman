@@ -7,7 +7,7 @@ export class PlanetStarshipView extends ModalTriggerView {
     private readonly starshipCardInfo: IStarshipCardInfo;
 
     public constructor(starshipCardInfo: IStarshipCardInfo, root: HTMLElement, templateFactory: ITemplateFactory) {
-        super("planet-starship", `starship-modal-${starshipCardInfo.getId()}`,templateFactory, root);
+        super("planet-starship", `starship-modal-${starshipCardInfo.getId()}`, templateFactory, root);
         this.starshipCardInfo = starshipCardInfo;
     }
 

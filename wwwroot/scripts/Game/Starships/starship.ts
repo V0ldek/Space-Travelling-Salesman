@@ -1,10 +1,10 @@
 import {IStarship} from "../GameData/starship.js";
 import {ITemplateFactory} from "../Templates/templateFactory.js";
 import {Point} from "../GameSystem/point.js";
-import {ISpacedock} from "../Planets/spacedock.js";
+import {IStardock} from "../Planets/stardock.js";
 import {CargoHold} from "./cargoHold.js";
 import {StarshipCardView} from "../Views/Starships/starshipCardView.js";
-import {ISpacedockRepository} from "../Planets/spacedockRepository.js";
+import {IStardockRepository} from "../Planets/stardockRepository.js";
 import {IUpdateable} from "../GameSystem/updateable.js";
 import {StarshipModalView} from "../Views/Starships/starshipModalView.js";
 import {IStarshipInfo} from "./starshipInfo.js";
@@ -15,25 +15,25 @@ export class Starship implements IStarshipInfo, IUpdateable {
     private readonly id: number;
     private readonly name: string;
     private readonly cargoHold: CargoHold;
-    private readonly spacedockRepository: ISpacedockRepository;
+    private readonly stardockRepository: IStardockRepository;
     private readonly cardView: StarshipCardView;
     private readonly modalView: StarshipModalView;
-    private destinationSpacedock: ISpacedock;
+    private destinationStardock: IStardock;
     private position: Point;
 
     public constructor(id: number,
                        name: string,
                        data: IStarship,
-                       spacedockRepository: ISpacedockRepository,
+                       stardockRepository: IStardockRepository,
                        templateFactory: ITemplateFactory) {
         this.id = id;
         this.name = name;
         this.cargoHold = new CargoHold(data.cargo_hold_size);
-        this.spacedockRepository = spacedockRepository;
-        this.destinationSpacedock = spacedockRepository.getSpacedockByName(data.position);
+        this.stardockRepository = stardockRepository;
+        this.destinationStardock = stardockRepository.getStardockByName(data.position);
         this.arriveAtDestination();
         this.cardView = new StarshipCardView(this, templateFactory);
-        this.modalView = new StarshipModalView(this, spacedockRepository, templateFactory);
+        this.modalView = new StarshipModalView(this, stardockRepository, templateFactory);
     }
 
     public getId(): number {
@@ -45,17 +45,17 @@ export class Starship implements IStarshipInfo, IUpdateable {
     }
 
     public getDestinationName(): string {
-        return this.destinationSpacedock.getName();
+        return this.destinationStardock.getName();
     }
 
-    public getEtaTo(spacedockName: string): number {
-        const euclideanDistance = this.getDistanceToSpacedock(
-            this.spacedockRepository.getSpacedockByName(spacedockName));
+    public getEtaTo(stardockName: string): number {
+        const euclideanDistance = this.getDistanceToStardock(
+            this.stardockRepository.getStardockByName(stardockName));
         return Math.ceil(euclideanDistance / Starship.distancePerTick);
     }
 
     public getEtaToCurrentDestination(): number {
-        return this.getEtaTo(this.destinationSpacedock.getName());
+        return this.getEtaTo(this.destinationStardock.getName());
     }
 
     public getPosition(): Point {
@@ -67,13 +67,13 @@ export class Starship implements IStarshipInfo, IUpdateable {
     }
 
     public getPossibleDestinations(): string[] {
-        return this.spacedockRepository.getAllSpacedockNames().filter(
-            d => d !== this.destinationSpacedock.getName());
+        return this.stardockRepository.getAllStardockNames().filter(
+            d => d !== this.destinationStardock.getName());
     }
 
     public moveToDestination(destination: string): void {
-        this.destinationSpacedock.checkOutDepartingStarship(this.getName());
-        this.destinationSpacedock = this.spacedockRepository.getSpacedockByName(destination);
+        this.destinationStardock.checkOutDepartingStarship(this.getName());
+        this.destinationStardock = this.stardockRepository.getStardockByName(destination);
     }
 
     public update(): void {
@@ -83,7 +83,7 @@ export class Starship implements IStarshipInfo, IUpdateable {
     }
 
     private moveTowardsDestination(): void {
-        const euclideanDistance = this.getDistanceToSpacedock(this.destinationSpacedock);
+        const euclideanDistance = this.getDistanceToStardock(this.destinationStardock);
         if (euclideanDistance == 0) {
             return;
         }
@@ -91,19 +91,19 @@ export class Starship implements IStarshipInfo, IUpdateable {
             this.arriveAtDestination();
             return;
         }
-        const pointDifference = this.position.subtract(this.destinationSpacedock.getPosition());
+        const pointDifference = this.position.subtract(this.destinationStardock.getPosition());
         const deltaX = -pointDifference.getX() * Starship.distancePerTick / euclideanDistance;
         const deltaY = -pointDifference.getY() * Starship.distancePerTick / euclideanDistance;
 
         this.position = this.position.add(new Point(deltaX, deltaY));
     }
 
-    private getDistanceToSpacedock(spacedock: ISpacedock): number {
-        return this.position.euclideanDistanceTo(spacedock.getPosition());
+    private getDistanceToStardock(stardock: IStardock): number {
+        return this.position.euclideanDistanceTo(stardock.getPosition());
     }
 
     private arriveAtDestination(): void {
-        this.position = this.destinationSpacedock.getPosition();
-        this.destinationSpacedock.dockArrivingStarship(this);
+        this.position = this.destinationStardock.getPosition();
+        this.destinationStardock.dockArrivingStarship(this);
     }
 }

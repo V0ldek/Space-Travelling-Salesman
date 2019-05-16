@@ -12,6 +12,14 @@ export class GameClock implements ITimeInfo {
         this.maximalTicks = maximalTicks;
     }
 
+    public static ticksToTimeString(ticks: number): string {
+        const totalSeconds = ticks * GameClock.tickDuration / 1000;
+        const minutesPart = Math.floor(totalSeconds / 60);
+        const secondsPart = totalSeconds % 60;
+
+        return Format.minutesAndSecondsToTimeString(minutesPart, secondsPart);
+    }
+
     public start() {
         this.elapsedTicks = 0;
         setInterval(() => this.update(), GameClock.tickDuration);
@@ -24,14 +32,6 @@ export class GameClock implements ITimeInfo {
     public getRemainingTicks(): number {
         const result = this.maximalTicks - this.elapsedTicks;
         return result >= 0 ? result : 0;
-    }
-
-    public static ticksToTimeString(ticks: number): string {
-        const totalSeconds = ticks * GameClock.tickDuration / 1000;
-        const minutesPart = Math.floor(totalSeconds / 60);
-        const secondsPart = totalSeconds % 60;
-
-        return Format.minutesAndSecondsToTimeString(minutesPart, secondsPart);
     }
 
     private update(): void {

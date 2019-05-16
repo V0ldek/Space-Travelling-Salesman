@@ -27,14 +27,13 @@ export class CargoHold implements ICargoHoldInfo {
     }
 
     public setAmountOfItem(item: string, amount: number) {
-        if(!this.cargoItems.hasOwnProperty(item) || !this.cargoItems[item]) {
+        if (!this.cargoItems.hasOwnProperty(item) || !this.cargoItems[item]) {
             this.cargoItems[item] = new CargoItem(item, 0);
         }
         const delta = amount - this.cargoItems[item].getAmount();
-        if(amount === 0) {
+        if (amount === 0) {
             this.cargoItems[item] = null;
-        }
-        else {
+        } else {
             this.cargoItems[item].setAmount(amount);
         }
         this.cargoSize += delta;

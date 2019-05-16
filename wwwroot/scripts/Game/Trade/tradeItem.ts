@@ -6,17 +6,17 @@ export class TradeItem implements ITradeItemInfo {
     private readonly sellPrice: number;
     private readonly originalStarshipAmount: number;
     private starshipAmount: number;
-    private spacedockAmount: number;
+    private stardockAmount: number;
 
     public constructor(name: string,
                        starshipAmount: number,
-                       spacedockAmount: number,
+                       stardockAmount: number,
                        buyPrice: number,
                        sellPrice: number) {
         this.name = name;
         this.originalStarshipAmount = starshipAmount;
         this.starshipAmount = starshipAmount;
-        this.spacedockAmount = spacedockAmount;
+        this.stardockAmount = stardockAmount;
         this.buyPrice = buyPrice;
         this.sellPrice = sellPrice;
     }
@@ -29,16 +29,16 @@ export class TradeItem implements ITradeItemInfo {
         return this.starshipAmount;
     }
 
-    public getSpacedockAmount(): number {
-        return this.spacedockAmount;
+    public getStardockAmount(): number {
+        return this.stardockAmount;
     }
 
     public changeStarshipAmountBy(delta: number) {
-        if (delta > this.spacedockAmount) {
+        if (delta > this.stardockAmount) {
             throw new Error(
                 `Attempt to change starship amount of ${this.name} 
                 from ${this.starshipAmount} by ${delta} 
-                would cause the spacedock supply at ${this.spacedockAmount} to go negative.`);
+                would cause the stardock supply at ${this.stardockAmount} to go negative.`);
         }
         const newStarshipAmount = this.starshipAmount + delta;
         if (newStarshipAmount < 0) {
@@ -47,7 +47,7 @@ export class TradeItem implements ITradeItemInfo {
                 to a negative value of ${newStarshipAmount}.`);
         }
         this.starshipAmount = newStarshipAmount;
-        this.spacedockAmount -= delta;
+        this.stardockAmount -= delta;
     }
 
     public getBuyPrice(): number {
@@ -60,10 +60,9 @@ export class TradeItem implements ITradeItemInfo {
 
     public getTradeValue(): number {
         const delta = this.getDeltaStarshipAmount();
-        if(delta < 0) {
+        if (delta < 0) {
             return -(delta * this.sellPrice);
-        }
-        else {
+        } else {
             return -(delta * this.buyPrice);
         }
     }

@@ -162,10 +162,7 @@ ul {
     display: grid;
     grid-template-rows: 25% 10% 65%;
     grid-template-columns: 25% 25% 25% 25%;
-    grid-template-areas:
-            "icon name name position"
-            "goods-title goods-title starships-title starships-title"
-            "goods goods starships starships";
+    grid-template-areas: "icon name name position" "goods-title goods-title starships-title starships-title" "goods goods starships starships";
 
     align-items: center;
     justify-items: center;
@@ -257,9 +254,7 @@ ul {
     display: grid;
     grid-template-rows: 25% 75%;
     grid-template-columns: 25% 25% 25% 25%;
-    grid-template-areas:
-            "icon name position movement"
-            "cargo cargo cargo cargo";
+    grid-template-areas: "icon name position movement" "cargo cargo cargo cargo";
 
     align-items: center;
     justify-items: center;
@@ -303,10 +298,7 @@ ul {
     display: grid;
     grid-template-rows: 15% 70% 15%;
     grid-template-columns: 25% 25% 25% 25%;
-    grid-template-areas:
-            "title title capacity capacity"
-            "table table table table"
-            "trade-sum trade-sum trade-control trade-control";
+    grid-template-areas: "title title capacity capacity" "table table table table" "trade-sum trade-sum trade-control trade-control";
     align-items: center;
     justify-items: center;
     height: 100%;
@@ -421,7 +413,7 @@ ul {
     justify-self: center;
 }
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
     .starship-trade-item-input {
         width: 75%;
     }
@@ -450,10 +442,7 @@ ul {
     display: grid;
     grid-template-rows: 50% 30% 20%;
     grid-template-columns: auto;
-    grid-template-areas:
-            "title"
-            "text"
-            "exit-button";
+    grid-template-areas: "title" "text" "exit-button";
 
     align-items: center;
     justify-items: center;

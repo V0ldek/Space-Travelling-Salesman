@@ -21,7 +21,7 @@ export class TemplateRenderer {
     }
 
     private getTemplateElement(): HTMLTemplateElement {
-        return document.querySelector(`#template-${this.name}`);
+        return document.querySelector(`template#template-${this.name}`);
     }
 
     private getRenderElement(): HTMLElement {
