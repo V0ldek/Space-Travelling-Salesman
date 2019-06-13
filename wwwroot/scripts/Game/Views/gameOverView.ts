@@ -23,7 +23,7 @@ export class GameOverView extends View {
         const button = this.renderedTemplate.getElement().querySelector("button.exit-to-start-button");
         button.addEventListener("click", () => {
             this.remove();
-            window.location.href = "./start.html";
+            window.location.href = "./index.html";
         });
     }
 }

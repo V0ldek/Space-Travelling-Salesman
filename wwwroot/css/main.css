@@ -184,9 +184,9 @@ form {
     flex-direction: column;
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
     width: 100%;
-    padding: 12px;
+    padding: 8px;
     box-sizing: border-box;
     resize: vertical;
     margin-top: 1%;

@@ -1,13 +1,19 @@
-import {Storage} from "../../storage.js"
-
 export class NicknameManager {
-    private static readonly NicknameKey: string = "nickname";
+    public static readonly cookieName: string = "STS_USER";
+    private static readonly DefaultNickname: string = "Guest";
 
     public static getCurrentNickname(): string {
-        return Storage.getItemFromSessionStorage(`${NicknameManager.NicknameKey}`);
+        const cookie = document.cookie
+            .split(";")
+            .map(c => c.trim())
+            .filter(c => c.substring(0, this.cookieName.length + 1) === `${this.cookieName}=`)
+            .map(c => decodeURIComponent(c.substring(this.cookieName.length + 1)))
+            [0] || null;
+
+        return cookie ? cookie : this.DefaultNickname;
     }
 
-    public static setCurrentNickname(nickname: string): void {
-        Storage.addItemToSessionStorage(`${NicknameManager.NicknameKey}`, nickname);
+    static isGuest() {
+        return this.getCurrentNickname() == this.DefaultNickname;
     }
 }

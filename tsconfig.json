@@ -13,7 +13,8 @@
     "./**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules/**/*.ts",
+    "tests/**/*.ts"
   ],
   "compileOnSave": true
 }

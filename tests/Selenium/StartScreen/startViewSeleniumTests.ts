@@ -5,7 +5,7 @@ import {driver} from "mocha-webdriver"
 describe("Start screen start button", () => {
     it("should open a popup with nickname input", async function() {
         this.timeout(5000);
-        await driver.get("file:///D:/Code/year2/WWW/space-travelling-salesman/wwwroot/start.html");
+        await driver.get("file:///D:/Code/year2/WWW/space-travelling-salesman/wwwroot/index.html");
 
         await driver.find(".start-button-container button.start-button").click();
         const input = await driver.find("input.nickname-input");
@@ -21,7 +21,7 @@ describe("Start screen nickname popup", () => {
     it("should start a new game with passed nickname", async function() {
         this.timeout(5000);
 
-        await driver.get("file:///D:/Code/year2/WWW/space-travelling-salesman/wwwroot/start.html");
+        await driver.get("file:///D:/Code/year2/WWW/space-travelling-salesman/wwwroot/index.html");
 
         await driver.find(".start-button-container button.start-button").click();
         const input = await driver.find("input.nickname-input");
@@ -37,7 +37,7 @@ describe("Start screen nickname popup", () => {
     it("should not accept an empty nickname", async function() {
         this.timeout(5000);
 
-        await driver.get("file:///D:/Code/year2/WWW/space-travelling-salesman/wwwroot/start.html");
+        await driver.get("file:///D:/Code/year2/WWW/space-travelling-salesman/wwwroot/index.html");
 
         await driver.find(".start-button-container button.start-button").click();
         const input = await driver.find("input.nickname-input");
