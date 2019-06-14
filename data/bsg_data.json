@@ -1,0 +1,407 @@
+{
+  "game_duration": 300,
+  "initial_credits": 2000,
+  "items": [
+    "Steel",
+    "Gold",
+    "Tylium",
+    "Nuclear warheads",
+    "Centurions"
+  ],
+  "planets": {
+    "Caprica": {
+      "available_items": {
+        "Steel": {
+          "available": 50,
+          "buy_price": 5,
+          "sell_price": 3
+        },
+        "Gold": {
+          "available": 30,
+          "buy_price": 15,
+          "sell_price": 10
+        },
+        "Tylium": {
+          "available": 30,
+          "buy_price": 70,
+          "sell_price": 50
+        },
+        "Nuclear warheads": {
+          "available": 12,
+          "buy_price": 100,
+          "sell_price": 90
+        },
+        "Centurions": {
+          "available": 30,
+          "buy_price": 50,
+          "sell_price": 30
+        }
+      },
+      "x": 28,
+      "y": 10
+    },
+    "Gemenon": {
+      "available_items": {
+        "Steel": {
+          "available": 100,
+          "buy_price": 4,
+          "sell_price": 2
+        },
+        "Gold": {
+          "available": 15,
+          "buy_price": 20,
+          "sell_price": 15
+        },
+        "Tylium": {
+          "available": 2,
+          "buy_price": 120,
+          "sell_price": 60
+        },
+        "Nuclear warheads": {
+          "available": 2,
+          "buy_price": 50,
+          "sell_price": 40
+        },
+        "Centurions": {
+          "available": 10,
+          "buy_price": 120,
+          "sell_price": 40
+        }
+      },
+      "x": 18,
+      "y": 25
+    },
+    "Picon": {
+      "available_items": {
+        "Steel": {
+          "available": 50,
+          "buy_price": 5,
+          "sell_price": 3
+        },
+        "Gold": {
+          "available": 30,
+          "buy_price": 15,
+          "sell_price": 10
+        },
+        "Tylium": {
+          "available": 30,
+          "buy_price": 70,
+          "sell_price": 50
+        },
+        "Nuclear warheads": {
+          "available": 12,
+          "buy_price": 100,
+          "sell_price": 90
+        },
+        "Centurions": {
+          "available": 30,
+          "buy_price": 50,
+          "sell_price": 30
+        }
+      },
+      "x": 3,
+      "y": 13
+    },
+    "Tauron": {
+      "available_items": {
+        "Steel": {
+          "available": 50,
+          "buy_price": 5,
+          "sell_price": 3
+        },
+        "Gold": {
+          "available": 30,
+          "buy_price": 15,
+          "sell_price": 10
+        },
+        "Tylium": {
+          "available": 30,
+          "buy_price": 70,
+          "sell_price": 50
+        },
+        "Nuclear warheads": {
+          "available": 12,
+          "buy_price": 100,
+          "sell_price": 90
+        },
+        "Centurions": {
+          "available": 30,
+          "buy_price": 50,
+          "sell_price": 30
+        }
+      },
+      "x": 20,
+      "y": 3
+    },
+    "Scorpia": {
+      "available_items": {
+        "Steel": {
+          "available": 50,
+          "buy_price": 5,
+          "sell_price": 3
+        },
+        "Gold": {
+          "available": 30,
+          "buy_price": 15,
+          "sell_price": 10
+        },
+        "Tylium": {
+          "available": 30,
+          "buy_price": 70,
+          "sell_price": 50
+        },
+        "Nuclear warheads": {
+          "available": 12,
+          "buy_price": 100,
+          "sell_price": 90
+        },
+        "Centurions": {
+          "available": 30,
+          "buy_price": 50,
+          "sell_price": 30
+        }
+      },
+      "x": 86,
+      "y": 79
+    },
+    "Saggitarion": {
+      "available_items": {
+        "Steel": {
+          "available": 50,
+          "buy_price": 5,
+          "sell_price": 3
+        },
+        "Gold": {
+          "available": 30,
+          "buy_price": 15,
+          "sell_price": 10
+        },
+        "Tylium": {
+          "available": 30,
+          "buy_price": 70,
+          "sell_price": 50
+        },
+        "Nuclear warheads": {
+          "available": 12,
+          "buy_price": 100,
+          "sell_price": 90
+        },
+        "Centurions": {
+          "available": 30,
+          "buy_price": 50,
+          "sell_price": 30
+        }
+      },
+      "x": 93,
+      "y": 89
+    },
+    "Libran": {
+      "available_items": {
+        "Steel": {
+          "available": 50,
+          "buy_price": 5,
+          "sell_price": 3
+        },
+        "Gold": {
+          "available": 30,
+          "buy_price": 15,
+          "sell_price": 10
+        },
+        "Tylium": {
+          "available": 30,
+          "buy_price": 70,
+          "sell_price": 50
+        },
+        "Nuclear warheads": {
+          "available": 12,
+          "buy_price": 100,
+          "sell_price": 90
+        },
+        "Centurions": {
+          "available": 30,
+          "buy_price": 50,
+          "sell_price": 30
+        }
+      },
+      "x": 76,
+      "y": 94
+    },
+    "Aerilion": {
+      "available_items": {
+        "Steel": {
+          "available": 50,
+          "buy_price": 5,
+          "sell_price": 3
+        },
+        "Gold": {
+          "available": 30,
+          "buy_price": 15,
+          "sell_price": 10
+        },
+        "Tylium": {
+          "available": 30,
+          "buy_price": 70,
+          "sell_price": 50
+        },
+        "Nuclear warheads": {
+          "available": 12,
+          "buy_price": 100,
+          "sell_price": 90
+        },
+        "Centurions": {
+          "available": 30,
+          "buy_price": 50,
+          "sell_price": 30
+        }
+      },
+      "x": 50,
+      "y": 15
+    },
+    "Canceron": {
+      "available_items": {
+        "Steel": {
+          "available": 50,
+          "buy_price": 5,
+          "sell_price": 3
+        },
+        "Gold": {
+          "available": 30,
+          "buy_price": 15,
+          "sell_price": 10
+        },
+        "Tylium": {
+          "available": 30,
+          "buy_price": 70,
+          "sell_price": 50
+        },
+        "Nuclear warheads": {
+          "available": 12,
+          "buy_price": 100,
+          "sell_price": 90
+        },
+        "Centurions": {
+          "available": 30,
+          "buy_price": 50,
+          "sell_price": 30
+        }
+      },
+      "x": 64,
+      "y": 24
+    },
+    "Aquaria": {
+      "available_items": {
+        "Steel": {
+          "available": 50,
+          "buy_price": 5,
+          "sell_price": 3
+        },
+        "Gold": {
+          "available": 30,
+          "buy_price": 15,
+          "sell_price": 10
+        },
+        "Tylium": {
+          "available": 30,
+          "buy_price": 70,
+          "sell_price": 50
+        },
+        "Nuclear warheads": {
+          "available": 12,
+          "buy_price": 100,
+          "sell_price": 90
+        },
+        "Centurions": {
+          "available": 30,
+          "buy_price": 50,
+          "sell_price": 30
+        }
+      },
+      "x": 44,
+      "y": 33
+    },
+    "Virgon": {
+      "available_items": {
+        "Steel": {
+          "available": 50,
+          "buy_price": 5,
+          "sell_price": 3
+        },
+        "Gold": {
+          "available": 30,
+          "buy_price": 15,
+          "sell_price": 10
+        },
+        "Tylium": {
+          "available": 30,
+          "buy_price": 70,
+          "sell_price": 50
+        },
+        "Nuclear warheads": {
+          "available": 12,
+          "buy_price": 100,
+          "sell_price": 90
+        },
+        "Centurions": {
+          "available": 30,
+          "buy_price": 50,
+          "sell_price": 30
+        }
+      },
+      "x": 33,
+      "y": 89
+    },
+    "Leonis": {
+      "available_items": {
+        "Steel": {
+          "available": 50,
+          "buy_price": 5,
+          "sell_price": 3
+        },
+        "Gold": {
+          "available": 30,
+          "buy_price": 15,
+          "sell_price": 10
+        },
+        "Tylium": {
+          "available": 30,
+          "buy_price": 70,
+          "sell_price": 50
+        },
+        "Nuclear warheads": {
+          "available": 12,
+          "buy_price": 100,
+          "sell_price": 90
+        },
+        "Centurions": {
+          "available": 30,
+          "buy_price": 50,
+          "sell_price": 30
+        }
+      },
+      "x": 43,
+      "y": 97
+    }
+  },
+  "starships": {
+    "Galactica": {
+      "cargo_hold_size": 30,
+      "position": "Caprica"
+    },
+    "Pegasus": {
+      "cargo_hold_size": 50,
+      "position": "Scorpia"
+    },
+    "Valkyrie": {
+      "cargo_hold_size": 40,
+      "position": "Caprica"
+    },
+    "Yashuman": {
+      "cargo_hold_size": 40,
+      "position": "Caprica"
+    },
+    "Atlantia": {
+      "cargo_hold_size": 40,
+      "position": "Picon"
+    }
+  }
+}
