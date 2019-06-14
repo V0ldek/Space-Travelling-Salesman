@@ -71,12 +71,9 @@ main {
     top: -15vh;
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 30% 20%;
+    grid-template-rows: 40% 15% 15% 30%;
     grid-template-areas:
-            "login register"
-            "select-map select-map"
-            "upload-map upload-map"
-            "start-button start-button";
+            "login register" "select-map select-map" "start-button start-button" "upload-map upload-map";
 }
 
 .login-form {
@@ -131,12 +128,16 @@ main {
     margin-top: 5%;
 }
 
-.upload-map-form label {
-    float: left;
-}
-
 .upload-map-form input {
     float: right;
+}
+
+.map-name-label {
+    padding-top: 5%;
+}
+
+.upload-map-button {
+    margin-top: 10px;
 }
 
 .start-game-form {

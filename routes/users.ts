@@ -42,7 +42,7 @@ class Users {
         return this.router;
     }
 
-    public authorize(request, result, next) {
+    public static authorize(request, result, next) {
         const cookie = request.cookies.STS_USER;
         if (!cookie) {
             request.status(403).send("Unauthorized");
@@ -74,7 +74,7 @@ class Users {
                         result.status(403).send("Wrong password.");
                         return;
                     }
-                    result.cookie("STS_USER", userName, {maxAge: 3600, httpOnly: false});
+                    result.cookie("STS_USER", userName, {maxAge: 60 * 60 * 1000, httpOnly: false});
                     result.status(200).send("OK");
                 });
         } finally {
@@ -86,7 +86,7 @@ class Users {
         this.sqlite3.verbose();
         const db = new this.sqlite3.Database("sts.db");
         try {
-            db.get(
+            db.run(
                 "INSERT INTO user (userName, password) VALUES (?, ?)",
                 [request.body.userName, request.body.password],
                 (err) => {
